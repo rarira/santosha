@@ -55,6 +55,7 @@ export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        <h1 className="text-3xl font-bold underline">Hello, Next.js!</h1>
         <p>
           examples/basic&nbsp;
           <Code className={styles.code}>web</Code>
