@@ -18,7 +18,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ["only-warn"],
+  plugins: ["only-warn", "import"],
   settings: {
     "import/resolver": {
       typescript: {
@@ -32,4 +32,32 @@ module.exports = {
     "node_modules/",
   ],
   overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
+  rules: {
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "type",
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "unknown",
+        ],
+        pathGroups: [
+          {
+            pattern: "react*",
+            group: "external",
+            position: "before",
+          },
+        ],
+        "newlines-between": "always",
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+      },
+    ],
+  },
 };
