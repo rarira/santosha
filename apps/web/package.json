@@ -11,14 +11,16 @@
   "dependencies": {
     "@repo/ui": "workspace:*",
     "next": "^14.2.2",
+    "ra-data-json-server": "^4.16.16",
     "react": "^18.2.0",
+    "react-admin": "^4.16.16",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
