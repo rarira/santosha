@@ -1,8 +1,19 @@
 'use client';
-import jsonServerProvider from 'ra-data-json-server';
+
+import { createClient } from '@supabase/supabase-js';
+import { supabaseDataProvider } from 'ra-supabase';
 import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin';
 
-const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+import Util from '../../../libs/util';
+
+const { SUPABASE_URL, SUPABASE_SERVICE_ROLE } = Util.ENV_VARS;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE);
+
+const dataProvider = supabaseDataProvider({
+  instanceUrl: SUPABASE_URL,
+  apiKey: SUPABASE_SERVICE_ROLE,
+  supabaseClient,
+});
 
 const AdminApp = () => (
   <Admin dataProvider={dataProvider}>

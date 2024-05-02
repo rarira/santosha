@@ -9,9 +9,11 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@raphiniert/ra-data-postgrest": "^2.1.0",
     "@repo/ui": "workspace:*",
+    "@supabase/supabase-js": "^2.43.0",
     "next": "^14.2.2",
-    "ra-data-json-server": "^4.16.16",
+    "ra-supabase": "^2.2.0",
     "react": "^18.2.0",
     "react-admin": "^4.16.16",
     "react-dom": "^18.2.0"
