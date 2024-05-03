@@ -1,4 +1,4 @@
-const getEnv = ((env: typeof ENV_VARS) => {
+const getEnv = ((env: Record<string, any>) => {
   return function (key?: string) {
     if (!key) return env;
     return env[key];
