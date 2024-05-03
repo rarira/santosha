@@ -9,7 +9,6 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@raphiniert/ra-data-postgrest": "^2.1.0",
     "@repo/ui": "workspace:*",
     "@supabase/supabase-js": "^2.43.0",
     "next": "^14.2.2",
