@@ -1,8 +1,13 @@
-const ENV_VARS = {
-  SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  SUPABASE_SERVICE_ROLE: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE as string,
-};
+const getEnv = ((env: typeof ENV_VARS) => {
+  return function (key?: string) {
+    if (!key) return env;
+    return env[key];
+  };
+})({
+  SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+});
 
 export default {
-  ENV_VARS,
+  getEnv,
 };

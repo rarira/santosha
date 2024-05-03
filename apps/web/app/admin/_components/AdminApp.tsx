@@ -1,22 +1,13 @@
 'use client';
 
-import { createClient } from '@supabase/supabase-js';
-import { supabaseDataProvider } from 'ra-supabase';
+import { LoginPage } from 'ra-supabase';
 import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin';
 
-import Util from '../../../libs/util';
-
-const { SUPABASE_URL, SUPABASE_SERVICE_ROLE } = Util.ENV_VARS;
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE);
-
-const dataProvider = supabaseDataProvider({
-  instanceUrl: SUPABASE_URL,
-  apiKey: SUPABASE_SERVICE_ROLE,
-  supabaseClient,
-});
+import { authProvider } from '@/libs/supabase/authProvider';
+import { dataProvider } from '@/libs/supabase/dataProvider';
 
 const AdminApp = () => (
-  <Admin dataProvider={dataProvider}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider} loginPage={LoginPage}>
     <Resource name="users" list={ListGuesser} edit={EditGuesser} recordRepresentation="name" />
     <Resource name="posts" list={ListGuesser} edit={EditGuesser} recordRepresentation="title" />
     <Resource name="comments" list={ListGuesser} edit={EditGuesser} />
