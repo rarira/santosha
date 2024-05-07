@@ -7,6 +7,8 @@ import {
   BooleanInput,
   Create,
   DateInput,
+  ImageField,
+  ImageInput,
   SaveButton,
   SimpleFormConfigurable,
   SimpleFormIterator,
@@ -95,6 +97,9 @@ export default function PostCreate() {
       <SimpleFormConfigurable toolbar={<PostCreateToolbar />}>
         <TextInput autoFocus source="title" validate={required('Required field')} />
         <TextInput source="teaser" fullWidth multiline validate={required('Required field')} />
+        <ImageInput source="picture" label="Image" accept="image/*">
+          <ImageField source="src" title="title" />
+        </ImageInput>
         <RichTextInput source="body" fullWidth validate={required()} />
 
         <DateInput source="published_at" defaultValue={dateDefaultValue} />

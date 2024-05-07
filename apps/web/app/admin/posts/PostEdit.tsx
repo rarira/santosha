@@ -46,7 +46,7 @@ import {
 import PostTitle from './PostTitle';
 import TagReferenceInput from './TagReferenceInput';
 
-const CreateCategory = ({ onAddChoice }: { onAddChoice: (record: any) => void }) => {
+function CreateCategory({ onAddChoice }: { onAddChoice: (record: any) => void }) {
   const { filter, onCancel, onCreate } = useCreateSuggestionContext();
   const [value, setValue] = useState(filter || '');
   const handleSubmit = (event: React.FormEvent) => {
@@ -75,27 +75,29 @@ const CreateCategory = ({ onAddChoice }: { onAddChoice: (record: any) => void })
       </form>
     </Dialog>
   );
-};
+}
 
-const EditActions = ({ hasShow }: EditActionsProps) => (
-  <TopToolbar>
-    <CloneButton className="button-clone" />
-    {hasShow && <ShowButton />}
-    {/* FIXME: added because react-router HashHistory cannot block navigation induced by address bar changes */}
-    <CreateButton />
-  </TopToolbar>
-);
+function EditActions({ hasShow }: EditActionsProps) {
+  return (
+    <TopToolbar>
+      <CloneButton className="button-clone" />
+      {hasShow && <ShowButton />}
+      {/* FIXME: added because react-router HashHistory cannot block navigation induced by address bar changes */}
+      <CreateButton />
+    </TopToolbar>
+  );
+}
 
-const SanitizedBox = ({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean }) => (
-  <Box {...props} />
-);
+function SanitizedBox({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean }) {
+  return <Box {...props} />;
+}
 
 const categories = [
   { name: 'Tech', id: 'tech' },
   { name: 'Lifestyle', id: 'lifestyle' },
 ];
 
-const PostEdit = () => {
+export default function PostEdit() {
   const { permissions } = usePermissions();
   return (
     <Edit title={<PostTitle />} actions={<EditActions />}>
@@ -219,6 +221,4 @@ const PostEdit = () => {
       </TabbedForm>
     </Edit>
   );
-};
-
-export default PostEdit;
+}

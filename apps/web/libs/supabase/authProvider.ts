@@ -10,8 +10,6 @@ export const authProvider = supabaseAuthProvider(supabaseClient, {
       .match({ email: user.email })
       .single();
 
-    console.log({ data });
-
     if (!data || error) {
       throw new Error();
     }
