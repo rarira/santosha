@@ -146,7 +146,7 @@ export default function PostEdit() {
           </ImageInput>
 
           <FormDataConsumer>
-            {({ formData, dispatch, ...rest }) => {
+            {({ formData, ...rest }) => {
               if (!formData.picture) {
                 return <OriginalImage formData={formData} {...rest} />;
               }
