@@ -9,9 +9,19 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/libs/*": ["libs/*"]
+      "@/libs/*": ["libs/*"],
+      "@/types/*": ["types/*"],
+      "@/i18n/*": ["i18n/*"]
     }
+    // "typeRoots": ["./node_modules/@types", "@/types"]
   },
-  "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "next.config.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "types/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

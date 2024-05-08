@@ -1,3 +1,5 @@
+import merge from 'lodash/merge';
+
 const getEnv = ((env: Record<string, any>) => {
   return function (key?: string) {
     if (!key) return env;
@@ -10,4 +12,5 @@ const getEnv = ((env: Record<string, any>) => {
 
 export default {
   getEnv,
+  merge,
 };

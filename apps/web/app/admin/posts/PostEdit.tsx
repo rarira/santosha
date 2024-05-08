@@ -12,6 +12,7 @@ import { RichTextInput } from 'ra-input-rich-text';
 import { useEffect, useState } from 'react';
 import {
   ArrayInput,
+  AutocompleteInput,
   BooleanInput,
   CloneButton,
   CreateButton,
@@ -25,9 +26,9 @@ import {
   ImageField,
   ImageInput,
   Labeled,
+  ReferenceInput,
   ReferenceManyCount,
   ReferenceManyField,
-  SelectInput,
   ShowButton,
   SimpleFormIterator,
   TabbedForm,
@@ -36,7 +37,6 @@ import {
   TopToolbar,
   required,
   useCreateSuggestionContext,
-  useEditContext,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
@@ -89,11 +89,6 @@ function SanitizedBox({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean 
   return <Box {...props} />;
 }
 
-const categories = [
-  { name: 'Tech', id: 'tech' },
-  { name: 'Lifestyle', id: 'lifestyle' },
-];
-
 function OriginalImage({ formData, ...rest }: any) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -123,8 +118,6 @@ function OriginalImage({ formData, ...rest }: any) {
 }
 
 export default function PostEdit() {
-  const { record, isLoading } = useEditContext();
-
   return (
     <Edit title={<PostTitle />} actions={<EditActions />}>
       <TabbedForm warnWhenUnsavedChanges>
@@ -146,9 +139,9 @@ export default function PostEdit() {
           </ImageInput>
 
           <FormDataConsumer>
-            {({ formData, ...rest }) => {
+            {({ formData }) => {
               if (!formData.picture) {
-                return <OriginalImage formData={formData} {...rest} />;
+                return <OriginalImage formData={formData} />;
               }
             }}
           </FormDataConsumer>
@@ -157,7 +150,6 @@ export default function PostEdit() {
           <RichTextInput source="body" label={false} validate={required()} fullWidth />
         </TabbedForm.Tab>
         <TabbedForm.Tab label="post.form.miscellaneous">
-          {/* <TagReferenceInput reference="tags" source="tags" label="Tags" /> */}
           <ArrayInput source="backlinks">
             <SimpleFormIterator>
               <DateInput source="date" />
@@ -165,19 +157,10 @@ export default function PostEdit() {
             </SimpleFormIterator>
           </ArrayInput>
           <DateInput source="published_at" />
-          <SelectInput
-            create={
-              <CreateCategory
-                // Added on the component because we have to update the choices
-                // ourselves as we don't use a ReferenceInput
-                onAddChoice={choice => categories.push(choice)}
-              />
-            }
-            resettable
-            source="category"
-            choices={categories}
-          />
-          {/* <NumberInput source="average_note" validate={[required(), number(), minValue(0)]} /> */}
+          <ReferenceInput source="category_id" reference="categories" allowEmpty>
+            <AutocompleteInput label="Category" optionText="name" sx={{ width: 300 }} />
+          </ReferenceInput>
+
           <BooleanInput source="commentable" defaultValue />
           <TextInput InputProps={{ disabled: true }} source="views" />
         </TabbedForm.Tab>

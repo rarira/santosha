@@ -2,7 +2,7 @@ import { supabaseDataProvider } from 'ra-supabase';
 import { withLifecycleCallbacks } from 'react-admin';
 import { v4 as uuidv4 } from 'uuid';
 
-import { SUPABASE_ANON_KEY, SUPABASE_URL, supabaseClient } from '.';
+import { SUPABASE_ANON_KEY, SUPABASE_URL, splitBucketFullPath, supabaseClient } from '.';
 
 export const dataProvider = withLifecycleCallbacks(
   supabaseDataProvider({
@@ -13,10 +13,10 @@ export const dataProvider = withLifecycleCallbacks(
   [
     {
       resource: 'posts',
-      beforeSave: async ({ picture, ...rests }: any, _dataProvider: any): Promise<any> => {
-        if (!picture) return rests;
+      beforeSave: async ({ picture, ...rest }: any, _dataProvider: any): Promise<any> => {
+        if (!picture) return rest;
 
-        const filename = `posts/${rests.author_id}-${uuidv4()}`;
+        const filename = `posts/${rest.author_id}-${uuidv4()}`;
 
         const { data: uploadedData, error } = await supabaseClient.storage
           .from('images')
@@ -28,9 +28,20 @@ export const dataProvider = withLifecycleCallbacks(
         if (error) {
           console.log({ error });
         } else {
+          const { image, ...oldData } = rest;
           const { path, ...restUplodedData } = uploadedData;
 
-          return { ...rests, image: restUplodedData };
+          if (image) {
+            const { bucket, path: oldpath } = splitBucketFullPath(image.fullPath);
+            const { error: removeError } = await supabaseClient.storage
+              .from(bucket)
+              .remove([oldpath]);
+            if (removeError) {
+              console.log({ removeError });
+            }
+          }
+
+          return { ...oldData, image: restUplodedData };
         }
       },
     },
