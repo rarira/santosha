@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   Box,
   BoxProps,
@@ -8,12 +9,10 @@ import {
   TextField as MuiTextField,
 } from '@mui/material';
 import { RichTextInput } from 'ra-input-rich-text';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrayInput,
-  AutocompleteInput,
   BooleanInput,
-  CheckboxGroupInput,
   CloneButton,
   CreateButton,
   Datagrid,
@@ -25,8 +24,7 @@ import {
   FormDataConsumer,
   ImageField,
   ImageInput,
-  NumberInput,
-  ReferenceInput,
+  Labeled,
   ReferenceManyCount,
   ReferenceManyField,
   SelectInput,
@@ -36,15 +34,14 @@ import {
   TextField,
   TextInput,
   TopToolbar,
-  minValue,
-  number,
   required,
   useCreateSuggestionContext,
-  usePermissions,
+  useEditContext,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
+import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
+
 import PostTitle from './PostTitle';
-import TagReferenceInput from './TagReferenceInput';
 
 function CreateCategory({ onAddChoice }: { onAddChoice: (record: any) => void }) {
   const { filter, onCancel, onCreate } = useCreateSuggestionContext();
@@ -97,11 +94,40 @@ const categories = [
   { name: 'Lifestyle', id: 'lifestyle' },
 ];
 
+function OriginalImage({ formData, ...rest }: any) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { bucket, path } = splitBucketFullPath(formData.image.fullPath);
+
+      const { signedUrl } = await createSignedUrl({
+        bucket,
+        filePath: path,
+        options: { transform: { width: 300 } },
+      });
+
+      if (signedUrl) setImageUrl(signedUrl);
+    })();
+  }, [formData, formData?.image?.fullPath]);
+
+  if (!imageUrl) return null;
+
+  return (
+    <div style={{ width: 300, marginTop: 20 }}>
+      <Labeled label="Original image">
+        <img src={imageUrl} {...rest} />
+      </Labeled>
+    </div>
+  );
+}
+
 export default function PostEdit() {
-  const { permissions } = usePermissions();
+  const { record, isLoading } = useEditContext();
+
   return (
     <Edit title={<PostTitle />} actions={<EditActions />}>
-      <TabbedForm defaultValues={{ average_note: 0 }} warnWhenUnsavedChanges>
+      <TabbedForm warnWhenUnsavedChanges>
         <TabbedForm.Tab label="post.form.summary">
           <SanitizedBox
             display="flex"
@@ -114,58 +140,24 @@ export default function PostEdit() {
             <TextInput source="title" validate={required()} resettable />
           </SanitizedBox>
           <TextInput multiline fullWidth source="teaser" validate={required()} resettable />
-          <CheckboxGroupInput
-            source="notifications"
-            fullWidth
-            choices={[
-              { id: 12, name: 'Ray Hakt' },
-              { id: 31, name: 'Ann Gullar' },
-              { id: 42, name: 'Sean Phonee' },
-            ]}
-          />
-          <ImageInput multiple source="pictures" accept="image/*" helperText="">
+
+          <ImageInput source="picture" accept="image/*" helperText="">
             <ImageField source="src" title="title" />
           </ImageInput>
-          {permissions === 'admin' && (
-            <ArrayInput source="authors">
-              <SimpleFormIterator inline>
-                <ReferenceInput source="user_id" reference="users">
-                  <AutocompleteInput helperText={false} />
-                </ReferenceInput>
-                <FormDataConsumer>
-                  {({ scopedFormData, getSource, ...rest }) =>
-                    scopedFormData && scopedFormData.user_id ? (
-                      <SelectInput
-                        source={getSource('role')}
-                        choices={[
-                          {
-                            id: 'headwriter',
-                            name: 'Head Writer',
-                          },
-                          {
-                            id: 'proofreader',
-                            name: 'Proof reader',
-                          },
-                          {
-                            id: 'cowriter',
-                            name: 'Co-Writer',
-                          },
-                        ]}
-                        helperText={false}
-                        {...rest}
-                      />
-                    ) : null
-                  }
-                </FormDataConsumer>
-              </SimpleFormIterator>
-            </ArrayInput>
-          )}
+
+          <FormDataConsumer>
+            {({ formData, dispatch, ...rest }) => {
+              if (!formData.picture) {
+                return <OriginalImage formData={formData} {...rest} />;
+              }
+            }}
+          </FormDataConsumer>
         </TabbedForm.Tab>
         <TabbedForm.Tab label="post.form.body">
           <RichTextInput source="body" label={false} validate={required()} fullWidth />
         </TabbedForm.Tab>
         <TabbedForm.Tab label="post.form.miscellaneous">
-          <TagReferenceInput reference="tags" source="tags" label="Tags" />
+          {/* <TagReferenceInput reference="tags" source="tags" label="Tags" /> */}
           <ArrayInput source="backlinks">
             <SimpleFormIterator>
               <DateInput source="date" />
@@ -185,19 +177,9 @@ export default function PostEdit() {
             source="category"
             choices={categories}
           />
-          <NumberInput source="average_note" validate={[required(), number(), minValue(0)]} />
+          {/* <NumberInput source="average_note" validate={[required(), number(), minValue(0)]} /> */}
           <BooleanInput source="commentable" defaultValue />
           <TextInput InputProps={{ disabled: true }} source="views" />
-          <ArrayInput source="pictures">
-            <SimpleFormIterator>
-              <TextInput source="url" defaultValue="" />
-              <ArrayInput source="metas.authors">
-                <SimpleFormIterator>
-                  <TextInput source="name" defaultValue="" />
-                </SimpleFormIterator>
-              </ArrayInput>
-            </SimpleFormIterator>
-          </ArrayInput>
         </TabbedForm.Tab>
         <TabbedForm.Tab
           label="post.form.comments"
