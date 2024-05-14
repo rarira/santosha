@@ -1,13 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  Box,
-  BoxProps,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  TextField as MuiTextField,
-} from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 import { RichTextInput } from 'ra-input-rich-text';
 import { useEffect, useState } from 'react';
 import {
@@ -16,63 +8,25 @@ import {
   BooleanInput,
   CloneButton,
   CreateButton,
-  Datagrid,
-  DateField,
   DateInput,
   Edit,
   EditActionsProps,
-  EditButton,
   FormDataConsumer,
   ImageField,
   ImageInput,
   Labeled,
   ReferenceInput,
-  ReferenceManyCount,
-  ReferenceManyField,
   ShowButton,
   SimpleFormIterator,
   TabbedForm,
-  TextField,
   TextInput,
   TopToolbar,
   required,
-  useCreateSuggestionContext,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 
 import PostTitle from './PostTitle';
-
-function CreateCategory({ onAddChoice }: { onAddChoice: (record: any) => void }) {
-  const { filter, onCancel, onCreate } = useCreateSuggestionContext();
-  const [value, setValue] = useState(filter || '');
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    const choice = { name: value, id: value.toLowerCase() };
-    onAddChoice(choice);
-    onCreate(choice);
-    setValue('');
-    return false;
-  };
-  return (
-    <Dialog open onClose={onCancel}>
-      <form onSubmit={handleSubmit}>
-        <DialogContent>
-          <MuiTextField
-            label="New Category"
-            value={value}
-            onChange={event => setValue(event.target.value)}
-            autoFocus
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button type="submit">Save</Button>
-          <Button onClick={onCancel}>Cancel</Button>
-        </DialogActions>
-      </form>
-    </Dialog>
-  );
-}
 
 function EditActions({ hasShow }: EditActionsProps) {
   return (
@@ -163,25 +117,6 @@ export default function PostEdit() {
 
           <BooleanInput source="commentable" defaultValue />
           <TextInput InputProps={{ disabled: true }} source="views" />
-        </TabbedForm.Tab>
-        <TabbedForm.Tab
-          label="post.form.comments"
-          count={
-            <ReferenceManyCount
-              reference="comments"
-              target="post_id"
-              sx={{ lineHeight: 'inherit' }}
-            />
-          }
-        >
-          <ReferenceManyField reference="comments" target="post_id" fullWidth>
-            <Datagrid>
-              <DateField source="created_at" />
-              <TextField source="author.name" />
-              <TextField source="body" />
-              <EditButton />
-            </Datagrid>
-          </ReferenceManyField>
         </TabbedForm.Tab>
       </TabbedForm>
     </Edit>

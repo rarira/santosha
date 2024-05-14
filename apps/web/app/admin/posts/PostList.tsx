@@ -6,7 +6,6 @@ import {
   BooleanField,
   BulkDeleteButton,
   BulkExportButton,
-  ChipField,
   CreateButton,
   DatagridConfigurable,
   DateField,
@@ -16,13 +15,11 @@ import {
   InfiniteList,
   List,
   NumberField,
-  ReferenceArrayField,
   ReferenceManyCount,
   SearchInput,
   SelectColumnsButton,
   ShowButton,
   SimpleList,
-  SingleFieldList,
   TextField,
   TextInput,
   TopToolbar,
@@ -158,20 +155,6 @@ const PostListDesktop = () => (
         sortable={false}
       />
       <NumberField source="views" sortByOrder="DESC" />
-      <ReferenceArrayField
-        label="Tags"
-        reference="tags"
-        source="tags"
-        sortBy="tags.name"
-        sort={tagSort}
-        cellClassName="hiddenOnSmallScreens"
-        headerClassName="hiddenOnSmallScreens"
-      >
-        <SingleFieldList>
-          <ChipField clickable source="name.en" size="small" />
-        </SingleFieldList>
-      </ReferenceArrayField>
-      <NumberField source="average_note" />
       <PostListActionToolbar>
         <EditButton />
         <ShowButton />
