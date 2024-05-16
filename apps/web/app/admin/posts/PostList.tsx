@@ -1,9 +1,8 @@
 import BookIcon from '@mui/icons-material/Book';
 import { Box, useMediaQuery } from '@mui/material';
 import { Theme, styled } from '@mui/material/styles';
-import { Fragment, memo } from 'react';
+import { Fragment, ReactNode, memo } from 'react';
 import {
-  BooleanField,
   BulkDeleteButton,
   BulkExportButton,
   CreateButton,
@@ -15,7 +14,7 @@ import {
   InfiniteList,
   List,
   NumberField,
-  ReferenceManyCount,
+  ReferenceField,
   SearchInput,
   SelectColumnsButton,
   ShowButton,
@@ -23,20 +22,16 @@ import {
   TextField,
   TextInput,
   TopToolbar,
+  WrapperField,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
 import ResetViewsButton from './ResetViewsButton';
 
 export const PostIcon = BookIcon;
 
-// const QuickFilter = ({ label }: { label?: string; source?: string; defaultValue?: any }) => {
-//   return <Chip sx={{ marginBottom: 1 }} label={} />;
-// };
-
 const postFilter = [
   <SearchInput source="q" alwaysOn />,
   <TextInput source="title" defaultValue="Qui tempore rerum et voluptates" />,
-  // <QuickFilter label="resources.posts.fields.commentable" source="commentable" defaultValue />,
 ];
 
 // const exporter = posts => {
@@ -47,125 +42,103 @@ const postFilter = [
 //   return jsonExport(data, (err, csv) => downloadCSV(csv, 'posts'));
 // };
 
-const PostListMobileActions = () => (
-  <TopToolbar>
-    <FilterButton />
-    <CreateButton />
-    <ExportButton />
-  </TopToolbar>
-);
+function PostListActions({ isSmall }: { isSmall?: boolean }) {
+  return (
+    <TopToolbar>
+      {!isSmall && <SelectColumnsButton />}
+      <FilterButton />
+      <CreateButton />
+      <ExportButton />
+    </TopToolbar>
+  );
+}
 
-const PostListMobile = () => (
-  <InfiniteList
-    filters={postFilter}
-    sort={{ field: 'published_at', order: 'DESC' }}
-    // exporter={exporter}
-    actions={<PostListMobileActions />}
-  >
-    <SimpleList
-      primaryText={record => record.title}
-      secondaryText={record => `${record.views} views`}
-      tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
-    />
-  </InfiniteList>
-);
-
-const StyledDatagrid = styled(DatagridConfigurable)(({ theme }) => ({
-  '& .title': {
-    maxWidth: '16em',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  '& .hiddenOnSmallScreens': {
-    [theme.breakpoints.down('lg')]: {
-      display: 'none',
-    },
-  },
-  '& .column-tags': {
-    minWidth: '9em',
-  },
-  '& .publishedAt': { fontStyle: 'italic' },
-}));
-
-const PostListBulkActions = memo(
-  ({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    children,
-    ...props
-  }) => (
-    <Fragment>
-      <ResetViewsButton {...props} />
-      <BulkDeleteButton {...props} />
-      <BulkExportButton {...props} />
-    </Fragment>
-  ),
-);
-
-const PostListActions = () => (
-  <TopToolbar>
-    <SelectColumnsButton />
-    <FilterButton />
-    <CreateButton />
-    <ExportButton />
-  </TopToolbar>
-);
-
-const PostListActionToolbar = ({ children }) => (
-  <Box sx={{ alignItems: 'center', display: 'flex' }}>{children}</Box>
-);
-
-const rowClick = (_id, _resource, record) => {
-  if (record.commentable) {
-    return 'edit';
-  }
-
-  return 'show';
-};
-
-const PostPanel = ({ record }) => <div dangerouslySetInnerHTML={{ __html: record.body }} />;
-
-const tagSort = { field: 'name.en', order: 'ASC' };
-
-const PostListDesktop = () => (
-  <List
-    filters={postFilter}
-    sort={{ field: 'published_at', order: 'DESC' }}
-    // exporter={exporter}
-    actions={<PostListActions />}
-  >
-    <StyledDatagrid
-      bulkActionButtons={<PostListBulkActions />}
-      rowClick={rowClick}
-      expand={PostPanel}
-      omit={['average_note']}
+function PostListMobile() {
+  return (
+    <InfiniteList
+      filters={postFilter}
+      sort={{ field: 'published_at', order: 'DESC' }}
+      // exporter={exporter}
+      actions={<PostListActions isSmall />}
     >
-      <TextField source="id" />
-      <TextField source="title" cellClassName="title" />
-      <DateField source="published_at" sortByOrder="DESC" cellClassName="publishedAt" />
-      <ReferenceManyCount
-        label="resources.posts.fields.nb_comments"
-        reference="comments"
-        target="post_id"
-        link
+      <SimpleList
+        primaryText={record => record.title}
+        secondaryText={record => `${record.views} views`}
+        tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
       />
-      <BooleanField
-        source="commentable"
-        label="resources.posts.fields.commentable_short"
-        sortable={false}
-      />
-      <NumberField source="views" sortByOrder="DESC" />
-      <PostListActionToolbar>
-        <EditButton />
-        <ShowButton />
-      </PostListActionToolbar>
-    </StyledDatagrid>
-  </List>
-);
+    </InfiniteList>
+  );
+}
 
-const PostList = () => {
+// eslint-disable-next-line no-unused-vars
+const PostListBulkActions = memo(({ children, ...props }: any) => (
+  <Fragment>
+    <ResetViewsButton {...props} />
+    <BulkDeleteButton {...props} />
+    <BulkExportButton {...props} />
+  </Fragment>
+));
+
+function PostListActionToolbar({ children }: { children: ReactNode }) {
+  return <Box sx={{ alignItems: 'center', display: 'flex' }}>{children}</Box>;
+}
+
+function PostPanel({ record }: { record: any }) {
+  return <div dangerouslySetInnerHTML={{ __html: record.body }} />;
+}
+
+function PostListDesktop() {
+  return (
+    <List
+      filters={postFilter}
+      sort={{ field: 'published_at', order: 'DESC' }}
+      // exporter={exporter}
+      actions={<PostListActions />}
+    >
+      <Styled.Datagrid
+        bulkActionButtons={<PostListBulkActions />}
+        rowClick={'show'}
+        expand={PostPanel}
+      >
+        <TextField source="id" />
+        <TextField source="title" cellClassName="title" />
+        <ReferenceField source="category_id" reference="categories" label="Category">
+          <TextField source="name" />
+        </ReferenceField>
+        <DateField source="published_at" sortByOrder="DESC" cellClassName="publishedAt" />
+        <NumberField source="views" sortByOrder="DESC" />
+        <WrapperField label="Actions">
+          <PostListActionToolbar>
+            <EditButton />
+            <ShowButton />
+          </PostListActionToolbar>
+        </WrapperField>
+      </Styled.Datagrid>
+    </List>
+  );
+}
+
+export default function PostList() {
   const isSmall = useMediaQuery<Theme>(theme => theme.breakpoints.down('md'), { noSsr: true });
   return isSmall ? <PostListMobile /> : <PostListDesktop />;
-};
+}
 
-export default PostList;
+const Styled = {
+  Datagrid: styled(DatagridConfigurable)(({ theme }) => ({
+    '& .title': {
+      maxWidth: '16em',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+    '& .hiddenOnSmallScreens': {
+      [theme.breakpoints.down('lg')]: {
+        display: 'none',
+      },
+    },
+    '& .column-tags': {
+      minWidth: '9em',
+    },
+    '& .publishedAt': { fontStyle: 'italic' },
+  })),
+};

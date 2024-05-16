@@ -11,10 +11,18 @@ const ko: TranslationMessages = Util.merge(
       },
       action: {
         clear_array_input: '리스트 지우기',
+        select_columns: '열 선택',
       },
       message: {
         clear_array_input: '전체 리스트를 지우시겠습니까?',
       },
+    },
+    simple: {
+      action: {
+        close: '닫기',
+        resetViews: '보기 초기화',
+      },
+      'create-post': '포스트 생성',
     },
   },
   koreanMessages,
