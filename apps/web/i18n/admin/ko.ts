@@ -24,6 +24,43 @@ const ko: TranslationMessages = Util.merge(
       },
       'create-post': '포스트 생성',
     },
+    resources: {
+      posts: {
+        name: 'Post |||| Posts',
+        fields: {
+          notifications: 'Notifications recipients',
+          nb_view: 'Nb views',
+          password: 'Password (if protected post)',
+          pictures: 'Related Pictures',
+        },
+      },
+      users: {
+        name: 'User |||| Users',
+        fields: {
+          name: 'Name',
+          role: 'Role',
+        },
+      },
+    },
+    post: {
+      list: {
+        search: '검색',
+      },
+      form: {
+        summary: '개요',
+        body: '본문',
+        miscellaneous: '기타',
+      },
+      edit: {
+        title: 'Post "%{title}"',
+      },
+      action: {
+        save_and_edit: 'Save and Edit',
+        save_and_add: 'Save and Add',
+        save_and_show: 'Save and Show',
+        save_with_average_note: 'Save with Note',
+      },
+    },
   },
   koreanMessages,
 );

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, BoxProps } from '@mui/material';
 import { RichTextInput } from 'ra-input-rich-text';
-import { useEffect, useState } from 'react';
 import {
   ArrayInput,
   AutocompleteInput,
@@ -14,7 +13,6 @@ import {
   FormDataConsumer,
   ImageField,
   ImageInput,
-  Labeled,
   ReferenceInput,
   ShowButton,
   SimpleFormIterator,
@@ -24,8 +22,7 @@ import {
   required,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
-import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
-
+import OriginalImage from './OriginalImage';
 import PostTitle from './PostTitle';
 
 function EditActions({ hasShow }: EditActionsProps) {
@@ -39,36 +36,9 @@ function EditActions({ hasShow }: EditActionsProps) {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 function SanitizedBox({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean }) {
   return <Box {...props} />;
-}
-
-function OriginalImage({ formData, ...rest }: any) {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      const { bucket, path } = splitBucketFullPath(formData.image.fullPath);
-
-      const { signedUrl } = await createSignedUrl({
-        bucket,
-        filePath: path,
-        options: { transform: { width: 300 } },
-      });
-
-      if (signedUrl) setImageUrl(signedUrl);
-    })();
-  }, [formData, formData?.image?.fullPath]);
-
-  if (!imageUrl) return null;
-
-  return (
-    <div style={{ width: 300, marginTop: 20 }}>
-      <Labeled label="Original image">
-        <img src={imageUrl} {...rest} />
-      </Labeled>
-    </div>
-  );
 }
 
 export default function PostEdit() {
@@ -95,7 +65,7 @@ export default function PostEdit() {
           <FormDataConsumer>
             {({ formData }) => {
               if (!formData.picture) {
-                return <OriginalImage formData={formData} />;
+                return <OriginalImage imageFullPath={formData?.image.fullPath} />;
               }
             }}
           </FormDataConsumer>
