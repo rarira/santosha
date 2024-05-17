@@ -2,10 +2,11 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
-import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+import { noto_sans_kr } from '@/libs/font';
+
+import Header from './_components/Header';
 
 export const metadata: Metadata = {
   title: 'Santosha Yoga Studio',
@@ -14,8 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${noto_sans_kr.variable}`}>
+      <body className="flex flex-col">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
