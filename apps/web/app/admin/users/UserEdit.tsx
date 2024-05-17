@@ -1,15 +1,17 @@
 import { DateInput, Edit, SimpleForm, TextInput } from 'react-admin';
 
-function CategoryEdit() {
+function UserEdit() {
   return (
     <Edit>
       <SimpleForm>
         <TextInput source="id" disabled />
-        <TextInput source="name" />
+        <TextInput source="email" />
+        <TextInput source="first_name" />
+        <TextInput source="last_name" />
         <DateInput source="created_at" disabled />
       </SimpleForm>
     </Edit>
   );
 }
 
-export default CategoryEdit;
+export default UserEdit;
