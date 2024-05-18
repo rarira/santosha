@@ -28,3 +28,7 @@ export interface SupabaseTransformOptions {
    */
   format?: 'origin';
 }
+
+export enum CategoryExtraInfo {
+  ClassScore = 'Class Score',
+}

@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-import { SupabaseTransformOptions } from '@/libs/supabase/types';
 import Util from '@/libs/util';
+import { SupabaseTransformOptions } from '@/types/supabase';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

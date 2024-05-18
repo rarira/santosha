@@ -4,7 +4,6 @@ import { RichTextInput } from 'ra-input-rich-text';
 import {
   ArrayInput,
   AutocompleteInput,
-  BooleanInput,
   CloneButton,
   CreateButton,
   DateInput,
@@ -22,6 +21,7 @@ import {
   required,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
+import ClassScoreInput from './ClassScoreInput';
 import OriginalImage from './OriginalImage';
 import PostTitle from './PostTitle';
 
@@ -85,7 +85,7 @@ export default function PostEdit() {
             <AutocompleteInput label="Category" optionText="name" sx={{ width: 300 }} />
           </ReferenceInput>
 
-          <BooleanInput source="commentable" defaultValue />
+          <ClassScoreInput />
           <TextInput InputProps={{ disabled: true }} source="views" />
         </TabbedForm.Tab>
       </TabbedForm>
