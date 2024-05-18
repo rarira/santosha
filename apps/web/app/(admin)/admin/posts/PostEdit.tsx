@@ -13,15 +13,15 @@ import {
   ImageField,
   ImageInput,
   ReferenceInput,
+  required,
   ShowButton,
   SimpleFormIterator,
   TabbedForm,
   TextInput,
   TopToolbar,
-  required,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
-import ClassScoreInput from './ClassScoreInput';
+import ExtraInfoInput from './extraInfo/ExtraInfoInput';
 import OriginalImage from './OriginalImage';
 import PostTitle from './PostTitle';
 
@@ -85,7 +85,15 @@ export default function PostEdit() {
             <AutocompleteInput label="Category" optionText="name" sx={{ width: 300 }} />
           </ReferenceInput>
 
-          <ClassScoreInput />
+          <FormDataConsumer>
+            {({ formData, ...rest }) => {
+              if (formData.category_id) {
+                return <ExtraInfoInput categoryId={formData.category_id} />;
+              }
+            }}
+          </FormDataConsumer>
+
+          {/* <ClassScoreInput /> */}
           <TextInput InputProps={{ disabled: true }} source="views" />
         </TabbedForm.Tab>
       </TabbedForm>

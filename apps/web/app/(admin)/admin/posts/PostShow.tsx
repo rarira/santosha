@@ -48,6 +48,7 @@ function PostShow() {
             <ReferenceField source="category_id" reference="categories" label="Category">
               <TextField source="name" />
             </ReferenceField>
+            {controllerProps?.record?.extra_info && <></>}
             <TextField source="views" />
             <CloneButton />
           </TabbedShowLayout.Tab>

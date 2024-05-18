@@ -13,8 +13,26 @@ export const dataProvider = withLifecycleCallbacks(
   [
     {
       resource: 'posts',
-      beforeSave: async ({ picture, ...rest }: any, _dataProvider: any): Promise<any> => {
-        if (!picture) return rest;
+      beforeSave: async (data: any, _dataProvider: any): Promise<any> => {
+        if (!data) return;
+
+        const { picture, category_id, ...rest } = data;
+
+        if (category_id) {
+          const { data: categoryData } = await _dataProvider.getOne('categories', {
+            id: category_id,
+          });
+
+          if (!categoryData?.extra_info) {
+            rest.extra_info = null;
+          }
+
+          console.log(rest.extra_info);
+        }
+
+        if (!picture) {
+          return { category_id, ...rest };
+        }
 
         const filename = `posts/${rest.author_id}-${uuidv4()}`;
 
