@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 function Header() {
   return (
     <header className="flex w-[var(--max-width)] h-[50px] flex-row justify-between fixed">
@@ -6,10 +8,18 @@ function Header() {
       </div>
       <nav className="w-full">
         <ul className="flex w-full flex-row justify-around items-center">
-          <li>소개</li>
-          <li>요가 종류</li>
-          <li>과정</li>
-          <li>연락</li>
+          <li>
+            <Link href="#intro-section">소개</Link>
+          </li>
+          <li>
+            <Link href="#class-section">요가 종류</Link>
+          </li>
+          <li>
+            <Link href="#flow-section">과정</Link>
+          </li>
+          <li>
+            <Link href="#contact-section">연락</Link>
+          </li>
         </ul>
       </nav>
     </header>
