@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <html lang="en" className={`${noto_sans_kr.variable}`}>
+    <html lang="en" className={`${noto_sans_kr.variable}`} data-theme="emerald">
       <body className="flex flex-col">
         <Header />
         {children}
