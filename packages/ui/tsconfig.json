@@ -3,6 +3,9 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "../../apps/web/app/(external)/_components/sections/Contact/InputError.tsx"
+  ],
   "exclude": ["node_modules", "dist"]
 }
