@@ -2,22 +2,15 @@
 
 import { Button, Fieldset, Textarea } from '@headlessui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useActionState, useRef } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useActionState, useEffect, useRef } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import ko from '@/i18n/ko';
-import { phoneRegex } from '@/libs/constant';
-
-import { onFormPostAction } from './actions';
+import { onFormPostAction } from './_actions';
+import { contactFormSchema } from './formSchema';
 import TextInputField from './TextInputField';
 
-export const contactFormSchema = z.object({
-  name: z.string().min(1, { message: ko.form.required }),
-  email: z.string().email(ko.form.emailError).min(1, { message: ko.form.required }),
-  phoneNo: z.string().regex(phoneRegex, { message: ko.form.phoneError }).or(z.literal('')),
-  content: z.string().min(1, { message: ko.form.required }),
-});
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 function ContactForm(): JSX.Element {
   const [state, submitAction, isPending] = useActionState(onFormPostAction, { message: '' });
@@ -27,21 +20,46 @@ function ContactForm(): JSX.Element {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(contactFormSchema) });
+    reset,
+  } = useForm({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phoneNo: '',
+      content: '',
+    },
+  });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data, e) => {
+  useEffect(() => {
+    reset(state?.fields);
+  }, [state?.fields, reset]);
+
+  const onSubmit: SubmitHandler<ContactFormValues> = (data, e) => {
     e?.preventDefault();
     formRef.current?.submit();
   };
-  console.log({ errors, isPending, submitAction });
+
+  console.log({ state, isPending, current: formRef.current });
 
   return (
     <Fieldset>
+      {state?.issues && (
+        <div className="text-red-500">
+          <ul>
+            {state.issues.map(issue => (
+              <li key={issue.path} className="flex gap-1">
+                {issue.message}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <form
         ref={formRef}
         className="flex flex-col"
         action={submitAction}
-        onSubmit={handleSubmit(onSubmit)}
+        // onSubmit={handleSubmit(onSubmit)}
       >
         <TextInputField name={'name'} placeholder="이름" register={register} errors={errors} />
         <TextInputField
