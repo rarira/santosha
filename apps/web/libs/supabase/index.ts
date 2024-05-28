@@ -1,7 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
+import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
 import { SupabaseTransformOptions } from '@/types/supabase';
+import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -35,4 +36,14 @@ export async function createSignedUrl({
   }
 
   return data;
+}
+
+export async function createInqury(formData: ContactFormValues): Promise<PostgrestError | null> {
+  const { error } = await supabaseClient.from('inquiries').insert({
+    ...formData,
+    phoneNo: undefined,
+    phone_no: formData.phoneNo?.replace(/-/g, ''),
+  });
+
+  return error;
 }

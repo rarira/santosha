@@ -1,6 +1,7 @@
 'use server';
 
 import ko from '@/i18n/ko';
+import { createInqury } from '@/libs/supabase';
 
 import { contactFormSchema } from './formSchema';
 
@@ -28,6 +29,12 @@ export async function onFormPostAction(previousState: { message: string }, data:
         message: issue.message,
       })),
     };
+  }
+
+  const error = await createInqury(parsed.data);
+
+  if (error) {
+    return { message: error.message };
   }
 
   return { message: 'Successful' };
