@@ -9,3 +9,5 @@ export const contactFormSchema = z.object({
   phoneNo: z.string().regex(phoneRegex, { message: ko.form.phoneError }).or(z.literal('')),
   content: z.string().min(1, { message: ko.form.required }),
 });
+
+export type ContactFormValues = z.infer<typeof contactFormSchema>;

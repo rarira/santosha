@@ -3,14 +3,11 @@
 import { Button, Fieldset, Textarea } from '@headlessui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useActionState, useEffect, useRef } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { Path, SubmitHandler, useForm } from 'react-hook-form';
 
 import { onFormPostAction } from './_actions';
-import { contactFormSchema } from './formSchema';
+import { contactFormSchema, ContactFormValues } from './formSchema';
 import TextInputField from './TextInputField';
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 function ContactForm(): JSX.Element {
   const [state, submitAction, isPending] = useActionState(onFormPostAction, { message: '' });
@@ -32,6 +29,7 @@ function ContactForm(): JSX.Element {
   });
 
   useEffect(() => {
+    if (!state?.fields) return;
     reset(state?.fields);
   }, [state?.fields, reset]);
 
@@ -40,39 +38,36 @@ function ContactForm(): JSX.Element {
     formRef.current?.submit();
   };
 
-  console.log({ state, isPending, current: formRef.current });
+  const getErrorMessage = (name: Path<ContactFormValues>) => {
+    return errors[name]?.message || state?.issues?.find(issue => issue.path === name)?.message;
+  };
 
   return (
     <Fieldset>
-      {state?.issues && (
-        <div className="text-red-500">
-          <ul>
-            {state.issues.map(issue => (
-              <li key={issue.path} className="flex gap-1">
-                {issue.message}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {state?.issues && <div className="text-red-500">{state.message}</div>}
       <form
         ref={formRef}
         className="flex flex-col"
         action={submitAction}
         // onSubmit={handleSubmit(onSubmit)}
       >
-        <TextInputField name={'name'} placeholder="이름" register={register} errors={errors} />
+        <TextInputField
+          name={'name'}
+          placeholder="이름"
+          register={register}
+          errorMessage={getErrorMessage('name')}
+        />
         <TextInputField
           name={'email'}
           placeholder="이메일 주소"
           register={register}
-          errors={errors}
+          errorMessage={getErrorMessage('email')}
         />
         <TextInputField
           name={'phoneNo'}
           placeholder="휴대폰 번호 (선택)"
           register={register}
-          errors={errors}
+          errorMessage={getErrorMessage('phoneNo')}
         />
         <Textarea
           {...register('content')}

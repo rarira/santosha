@@ -1,5 +1,7 @@
 'use server';
 
+import ko from '@/i18n/ko';
+
 import { contactFormSchema } from './formSchema';
 
 export type FormState = {
@@ -18,9 +20,8 @@ export async function onFormPostAction(previousState: { message: string }, data:
       fields[key] = formData[key]!.toString();
     }
 
-    console.log(parsed.error.issues);
     return {
-      message: 'Invalid form data',
+      message: ko.form.serverInvalidate,
       fields,
       issues: parsed.error.issues.map((issue, index) => ({
         path: issue.path[index],
