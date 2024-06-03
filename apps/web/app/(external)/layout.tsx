@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 import { noto_sans_kr } from '@/libs/font';
+import { cn } from '@/libs/util';
 
 import Header from './_components/Header';
 
@@ -15,7 +16,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
-    <html lang="en" className={`${noto_sans_kr.variable}`} data-theme="emerald">
+    <html
+      lang="en"
+      className={cn('min-h-screen bg-background noto-sans-kr antialiased', noto_sans_kr.variable)}
+    >
       <body className="flex flex-col">
         <Header />
         {children}

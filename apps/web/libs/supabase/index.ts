@@ -38,8 +38,8 @@ export async function createSignedUrl({
   return data;
 }
 
-export async function createInqury(formData: ContactFormValues): Promise<PostgrestError | null> {
-  const { error } = await supabaseClient.from('inquiries').insert({
+export async function createContact(formData: ContactFormValues): Promise<PostgrestError | null> {
+  const { error } = await supabaseClient.from('contacts').insert({
     ...formData,
     phoneNo: undefined,
     phone_no: formData.phoneNo?.replace(/-/g, ''),

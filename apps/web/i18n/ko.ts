@@ -4,6 +4,12 @@ const ko = {
     emailError: '정확한 이메일 주소를 입력해 주세요',
     phoneError: '정확한 휴대폰 번호를 입력해 주세요',
     serverInvalidate: '서버에서 유효하지 않은 데이터를 반환했습니다',
+    field: {
+      name: '이름',
+      email: '이메일',
+      phoneNo: '휴대폰 번호',
+      content: '문의 내용',
+    },
   },
 };
 

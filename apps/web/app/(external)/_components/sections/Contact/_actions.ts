@@ -1,7 +1,7 @@
 'use server';
 
 import ko from '@/i18n/ko';
-import { createInqury } from '@/libs/supabase';
+import { createContact } from '@/libs/supabase';
 
 import { contactFormSchema } from './formSchema';
 
@@ -31,7 +31,7 @@ export async function onFormPostAction(previousState: { message: string }, data:
     };
   }
 
-  const error = await createInqury(parsed.data);
+  const error = await createContact(parsed.data);
 
   if (error) {
     return { message: error.message };

@@ -1,36 +1,45 @@
-import { Field, Input } from '@headlessui/react';
-import { Path, UseFormRegister } from 'react-hook-form';
+import { Path, UseFormReturn } from 'react-hook-form';
 
-import InputError from './InputError';
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
-interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
+export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
   name: Path<TFieldValues>;
+  control: UseFormReturn<TFieldValues>['control'];
+  label?: string;
   placeholder?: string;
-  fieldClassName?: string;
-  inputClassName?: string;
-  register: UseFormRegister<TFieldValues>;
-  errorMessage?: string;
+  description?: string;
 }
 
 function TextInputField<TFieldValues extends Record<string, any>>({
   name,
+  control,
+  label,
   placeholder,
-  fieldClassName,
-  inputClassName,
-  register,
-  errorMessage,
+  description,
 }: TextInputFieldProps<TFieldValues>): JSX.Element {
-  console.log({ errorMessage });
-
   return (
-    <Field className={`form-control w-full max-w-xs ${fieldClassName || ''}`}>
-      <Input
-        {...register(name)}
-        placeholder={placeholder}
-        className={`input input-bordered w-full max-w-xs my-2 ${errorMessage ? 'input-error' : ''} ${inputClassName || ''}`}
-      />
-      <InputError errorMessage={errorMessage} />
-    </Field>
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          {label && <FormLabel>{label}</FormLabel>}
+          <FormControl>
+            <Input placeholder={placeholder} {...field} />
+          </FormControl>
+          {description && <FormDescription>This is your public display name.</FormDescription>}
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 }
 
