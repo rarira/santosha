@@ -1,4 +1,4 @@
-import { Path, UseFormReturn } from 'react-hook-form';
+import { Path, useFormContext } from 'react-hook-form';
 
 import {
   FormControl,
@@ -12,7 +12,6 @@ import { Input } from '@/components/ui/input';
 
 export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
   name: Path<TFieldValues>;
-  control: UseFormReturn<TFieldValues>['control'];
   label?: string;
   placeholder?: string;
   description?: string;
@@ -20,11 +19,13 @@ export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
 
 function TextInputField<TFieldValues extends Record<string, any>>({
   name,
-  control,
+  // control,
   label,
   placeholder,
   description,
 }: TextInputFieldProps<TFieldValues>): JSX.Element {
+  const { control } = useFormContext();
+
   return (
     <FormField
       control={control}

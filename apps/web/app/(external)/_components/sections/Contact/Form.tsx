@@ -43,6 +43,18 @@ function ContactForm(): JSX.Element {
   }, [state?.fields, form.reset, form]);
 
   useEffect(() => {
+    if (state?.issues?.length) {
+      console.log(state.issues);
+      state.issues.forEach(issue => {
+        form.setError(issue.path as Path<ContactFormValues>, {
+          type: 'manual',
+          message: issue.message,
+        });
+      });
+    }
+  }, [form, state?.issues]);
+
+  useEffect(() => {
     setDomReady(true);
   }, []);
 
@@ -59,13 +71,6 @@ function ContactForm(): JSX.Element {
     formRef.current?.submit();
   };
 
-  const getErrorMessage = (name: Path<ContactFormValues>) => {
-    return (
-      form.formState.errors[name]?.message ||
-      state?.issues?.find(issue => issue.path === name)?.message
-    );
-  };
-
   return (
     <>
       <Form {...form}>
@@ -74,7 +79,7 @@ function ContactForm(): JSX.Element {
           ref={formRef}
           className="space-y-8"
           action={submitAction}
-          // onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={form.handleSubmit(onSubmit)}
         >
           {formFields.map(({ name, type }) => {
             return type === 'input' ? (
@@ -82,7 +87,7 @@ function ContactForm(): JSX.Element {
                 key={name}
                 name={name}
                 label={ko.form.field[name]}
-                control={form.control}
+                // control={form.control}
                 // error={getErrorMessage(name)}
               />
             ) : (
@@ -90,7 +95,7 @@ function ContactForm(): JSX.Element {
                 key={name}
                 name={name}
                 label={ko.form.field[name]}
-                control={form.control}
+                // control={form.control}
 
                 // error={getErrorMessage(name)}
               />

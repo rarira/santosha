@@ -24,8 +24,8 @@ export async function onFormPostAction(previousState: { message: string }, data:
     return {
       message: ko.form.serverInvalidate,
       fields,
-      issues: parsed.error.issues.map((issue, index) => ({
-        path: issue.path[index],
+      issues: parsed.error.issues.map(issue => ({
+        path: issue.path[0],
         message: issue.message,
       })),
     };
