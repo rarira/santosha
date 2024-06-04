@@ -2,8 +2,6 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
-import { ReactNode } from 'react';
-
 import { noto_sans_kr } from '@/libs/font';
 import { cn } from '@/libs/util';
 
@@ -14,7 +12,7 @@ export const metadata: Metadata = {
   description: 'Yoga studio in the heart of the city.',
 };
 
-export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
+export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html
       lang="en"

@@ -11,5 +11,5 @@ export default {
   edit: PostEdit,
   show: PostShow,
   icon: BookIcon,
-  recordRepresentation: 'title',
+  recordRepresentation: 'post',
 };

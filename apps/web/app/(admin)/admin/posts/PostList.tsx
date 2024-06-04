@@ -1,7 +1,7 @@
 import BookIcon from '@mui/icons-material/Book';
 import { Box, useMediaQuery } from '@mui/material';
 import { Theme, styled } from '@mui/material/styles';
-import { Fragment, ReactNode, memo } from 'react';
+import { ReactNode, memo } from 'react';
 import {
   BulkDeleteButton,
   BulkExportButton,
@@ -72,11 +72,11 @@ function PostListMobile() {
 
 // eslint-disable-next-line no-unused-vars
 const PostListBulkActions = memo(({ children, ...props }: any) => (
-  <Fragment>
+  <>
     <ResetViewsButton {...props} />
     <BulkDeleteButton {...props} />
     <BulkExportButton {...props} />
-  </Fragment>
+  </>
 ));
 
 function PostListActionToolbar({ children }: { children: ReactNode }) {
@@ -96,7 +96,7 @@ function PostListDesktop() {
       actions={<PostListActions />}
     >
       <Styled.Datagrid
-        bulkActionButtons={<PostListBulkActions />}
+        bulkActionButtons={<PostListBulkActions />} // Use the imported component as a JSX component
         rowClick={'show'}
         expand={PostPanel}
       >

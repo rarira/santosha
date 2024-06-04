@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
+import merge from 'lodash/merge';
 import { twMerge } from 'tailwind-merge';
 
 export default {
@@ -15,6 +16,7 @@ export default {
   cn: (...inputs: ClassValue[]) => {
     return twMerge(clsx(inputs));
   },
+  merge,
 };
 export const getEnv = ((env: Record<string, any>) => {
   return function (key?: string) {

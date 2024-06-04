@@ -28,8 +28,6 @@ const ko: TranslationMessages = Util.merge(
       posts: {
         name: 'Post |||| Posts',
         fields: {
-          notifications: 'Notifications recipients',
-          nb_view: 'Nb views',
           password: 'Password (if protected post)',
           pictures: 'Related Pictures',
         },
@@ -59,6 +57,11 @@ const ko: TranslationMessages = Util.merge(
         save_and_add: 'Save and Add',
         save_and_show: 'Save and Show',
         save_with_average_note: 'Save with Note',
+      },
+    },
+    contact: {
+      action: {
+        update_all_replied: '모두 답변한 것으로 변경',
       },
     },
   },
