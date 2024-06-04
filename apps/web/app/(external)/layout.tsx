@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }): JSX.E
       lang="en"
       className={cn('min-h-screen bg-background noto-sans-kr antialiased', noto_sans_kr.variable)}
     >
-      <body className="flex flex-col">
+      <body>
         <Header />
         {children}
       </body>

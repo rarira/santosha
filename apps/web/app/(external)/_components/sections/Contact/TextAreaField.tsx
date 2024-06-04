@@ -1,3 +1,5 @@
+import { useFormContext } from 'react-hook-form';
+
 import {
   FormControl,
   FormDescription,
@@ -15,17 +17,18 @@ interface TextAreaFieldProps<TFieldValues extends Record<string, any>>
 
 function TextAreaField<TFieldValues extends Record<string, any>>({
   name,
-  control,
+  className,
   label,
   placeholder,
   description,
 }: TextAreaFieldProps<TFieldValues>): JSX.Element {
+  const { control } = useFormContext();
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={className}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Textarea placeholder={placeholder} className="resize-none" {...field} />

@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react';
 import { Path, useFormContext } from 'react-hook-form';
 
 import {
@@ -12,6 +13,7 @@ import { Input } from '@/components/ui/input';
 
 export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
   name: Path<TFieldValues>;
+  className?: ComponentProps<'div'>['className'];
   label?: string;
   placeholder?: string;
   description?: string;
@@ -19,7 +21,7 @@ export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
 
 function TextInputField<TFieldValues extends Record<string, any>>({
   name,
-  // control,
+  className,
   label,
   placeholder,
   description,
@@ -31,7 +33,7 @@ function TextInputField<TFieldValues extends Record<string, any>>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={className}>
           {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Input placeholder={placeholder} {...field} />

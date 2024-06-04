@@ -1,33 +1,35 @@
-'use client';
+import { Dispatch, SetStateAction } from 'react';
 
-import { MutableRefObject, useEffect } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 interface ContactDialogProps {
+  open: boolean;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
   title: string;
-  body: string;
-  ref: MutableRefObject<HTMLDialogElement | null>;
+  description: string;
 }
 
-function ContactDialog({ title, body, ref }: ContactDialogProps): JSX.Element {
-  useEffect(() => {
-    ref.current?.addEventListener('close', () => {
-      ref.current?.close();
-    });
-  }, [ref]);
-
+function ContactDialog({
+  open,
+  onOpenChange,
+  title,
+  description,
+}: ContactDialogProps): JSX.Element {
   return (
-    <dialog ref={ref} className="modal">
-      <div className="modal-box flex-col">
-        <h3 className="font-bold text-lg">{title}</h3>
-        <p className="py-4">{body}</p>
-        <div className="modal-action">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
-          </form>
-        </div>
-      </div>
-    </dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader className="space-y-4">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 }
 
