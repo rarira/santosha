@@ -1,7 +1,7 @@
 import BookIcon from '@mui/icons-material/Book';
 import { Box, useMediaQuery } from '@mui/material';
 import { Theme, styled } from '@mui/material/styles';
-import { ReactNode } from 'react';
+import { ReactNode, type JSX } from 'react';
 import {
   BulkDeleteButton,
   BulkExportButton,

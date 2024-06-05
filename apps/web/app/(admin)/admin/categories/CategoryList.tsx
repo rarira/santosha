@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Datagrid, DateField, List, TextField } from 'react-admin';
 
 function CategoryList(): JSX.Element {

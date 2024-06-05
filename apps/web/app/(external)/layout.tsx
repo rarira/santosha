@@ -2,6 +2,8 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
+import type { JSX } from 'react';
+
 import { noto_sans_kr } from '@/libs/font';
 import { cn } from '@/libs/util';
 

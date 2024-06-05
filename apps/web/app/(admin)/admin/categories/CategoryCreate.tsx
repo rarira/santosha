@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Create, SelectInput, SimpleForm, TextInput } from 'react-admin';
 
 import { getCategoryExtraInfoChoices } from '@/libs/admin';

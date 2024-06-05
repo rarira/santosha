@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { Labeled } from 'react-admin';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';

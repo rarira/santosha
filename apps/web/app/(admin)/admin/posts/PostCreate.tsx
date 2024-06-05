@@ -1,7 +1,7 @@
 'use client';
 
 import { RichTextInput } from 'ra-input-rich-text';
-import { useMemo } from 'react';
+import { useMemo, type JSX } from 'react';
 import {
   ArrayInput,
   BooleanInput,

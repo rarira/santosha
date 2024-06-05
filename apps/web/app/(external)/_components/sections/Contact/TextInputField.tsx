@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, type JSX } from 'react';
 import { Path, useFormContext } from 'react-hook-form';
 
 import {

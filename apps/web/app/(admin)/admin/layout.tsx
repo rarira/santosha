@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import type { JSX } from 'react';
+
 import { noto_sans_kr } from '@/libs/font';
 
 export const metadata: Metadata = {

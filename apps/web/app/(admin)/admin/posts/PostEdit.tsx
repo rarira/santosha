@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import type { JSX } from 'react';
+
 import { Box, BoxProps } from '@mui/material';
 import { RichTextInput } from 'ra-input-rich-text';
 import {

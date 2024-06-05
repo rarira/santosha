@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import Class from './_components/sections/Class';
 import Contact from './_components/sections/Contact';
 import Flow from './_components/sections/Flow';

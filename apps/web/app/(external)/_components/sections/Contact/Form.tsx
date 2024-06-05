@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useActionState, useEffect, useRef, useState } from 'react';
+import { useActionState, useEffect, useRef, useState, type JSX } from 'react';
 import { Path, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
