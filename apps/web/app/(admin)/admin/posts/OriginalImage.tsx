@@ -4,7 +4,7 @@ import { Labeled } from 'react-admin';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 
-function OriginalImage({ imageFullPath }: { imageFullPath?: string }) {
+function OriginalImage({ imageFullPath }: { imageFullPath?: string }): JSX.Element | null {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {

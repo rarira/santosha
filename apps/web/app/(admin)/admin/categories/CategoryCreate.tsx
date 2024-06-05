@@ -2,7 +2,7 @@ import { Create, SelectInput, SimpleForm, TextInput } from 'react-admin';
 
 import { getCategoryExtraInfoChoices } from '@/libs/admin';
 
-function CategoryCreate() {
+function CategoryCreate(): JSX.Element {
   return (
     <Create redirect="list">
       <SimpleForm>

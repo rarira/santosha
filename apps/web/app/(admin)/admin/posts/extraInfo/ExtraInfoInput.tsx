@@ -3,7 +3,7 @@ import { TextInput, useGetOne } from 'react-admin';
 
 import ClassScoreInput from './ClassScoreInput';
 
-function ExtraInfoInput({ categoryId }: { categoryId: number }) {
+function ExtraInfoInput({ categoryId }: { categoryId: number }): React.ReactNode {
   const { data: category } = useGetOne('categories', { id: categoryId });
 
   switch (category?.extra_info) {
@@ -19,7 +19,7 @@ function ExtraInfoInput({ categoryId }: { categoryId: number }) {
         </div>
       );
     default:
-      return null;
+      return <></>;
   }
 }
 

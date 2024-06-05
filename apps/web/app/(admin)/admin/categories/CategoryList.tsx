@@ -1,6 +1,6 @@
 import { Datagrid, DateField, List, TextField } from 'react-admin';
 
-function CategoryList() {
+function CategoryList(): JSX.Element {
   return (
     <List>
       <Datagrid rowClick="edit">

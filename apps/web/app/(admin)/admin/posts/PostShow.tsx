@@ -17,7 +17,7 @@ import {
 import OriginalImage from './OriginalImage';
 import PostTitle from './PostTitle';
 
-function PostShow() {
+function PostShow(): JSX.Element {
   const controllerProps = useShowController();
   return (
     <ShowContextProvider value={controllerProps}>

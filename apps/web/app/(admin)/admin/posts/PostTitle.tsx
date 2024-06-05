@@ -1,6 +1,6 @@
 import { useRecordContext } from 'react-admin';
 
-export default () => {
+export default (): JSX.Element => {
   const record = useRecordContext();
   return <>{record ? `Title: ${record.title}` : ''}</>;
 };

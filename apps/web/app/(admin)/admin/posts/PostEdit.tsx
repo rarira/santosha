@@ -41,7 +41,7 @@ function SanitizedBox({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean 
   return <Box {...props} />;
 }
 
-export default function PostEdit() {
+export default function PostEdit(): JSX.Element {
   return (
     <Edit title={<PostTitle />} actions={<EditActions />}>
       <TabbedForm warnWhenUnsavedChanges>
@@ -92,7 +92,6 @@ export default function PostEdit() {
               }
             }}
           </FormDataConsumer>
-
           {/* <ClassScoreInput /> */}
           <TextInput InputProps={{ disabled: true }} source="views" />
         </TabbedForm.Tab>

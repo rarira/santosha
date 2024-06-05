@@ -9,9 +9,9 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.4.2",
-    "@mui/icons-material": "^5.15.18",
-    "@mui/material": "^5.15.18",
+    "@hookform/resolvers": "^3.5.0",
+    "@mui/icons-material": "^5.15.19",
+    "@mui/material": "^5.15.19",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.0.2",
@@ -27,11 +27,10 @@
     "ra-i18n-polyglot": "^4.16.17",
     "ra-input-rich-text": "^4.16.18",
     "ra-supabase": "^2.2.0",
-    "react": "19.0.0-rc-4c2e457c7c-20240522",
+    "react": "19.0.0-rc-1df34bdf62-20240605",
     "react-admin": "^4.16.18",
-    "react-dom": "19.0.0-rc-4c2e457c7c-20240522",
+    "react-dom": "19.0.0-rc-1df34bdf62-20240605",
     "react-hook-form": "^7.51.5",
-    "react-remove-scroll": "^2.5.10",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1",
@@ -44,16 +43,20 @@
     "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.10",
     "@types/lodash": "^4.17.4",
-    "@types/node": "^20.12.12",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/node": "^20.14.2",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@types/uuid": "^9.0.8",
     "@types/validator": "^13.11.10",
     "autoprefixer": "^10.4.19",
-    "daisyui": "^4.11.1",
+    "daisyui": "^4.12.2",
     "eslint": "^8.57.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }

@@ -86,7 +86,7 @@ const backlinksDefaultValue = [
   },
 ];
 
-export default function PostCreate() {
+export default function PostCreate(): JSX.Element | null {
   const { data, isLoading, error } = useGetIdentity();
   const dateDefaultValue = useMemo(() => new Date(), []);
 

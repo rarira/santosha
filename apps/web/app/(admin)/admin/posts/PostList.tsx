@@ -1,7 +1,7 @@
 import BookIcon from '@mui/icons-material/Book';
 import { Box, useMediaQuery } from '@mui/material';
 import { Theme, styled } from '@mui/material/styles';
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import {
   BulkDeleteButton,
   BulkExportButton,
@@ -42,6 +42,15 @@ const postFilter = [
 //   return jsonExport(data, (err, csv) => downloadCSV(csv, 'posts'));
 // };
 
+// eslint-disable-next-line no-unused-vars
+const PostListBulkActions = ({ children, ...props }: any) => (
+  <>
+    <ResetViewsButton {...props} />
+    <BulkDeleteButton {...props} />
+    <BulkExportButton {...props} />
+  </>
+);
+
 function PostListActions({ isSmall }: { isSmall?: boolean }) {
   return (
     <TopToolbar>
@@ -69,15 +78,6 @@ function PostListMobile() {
     </InfiniteList>
   );
 }
-
-// eslint-disable-next-line no-unused-vars
-const PostListBulkActions = memo(({ children, ...props }: any) => (
-  <>
-    <ResetViewsButton {...props} />
-    <BulkDeleteButton {...props} />
-    <BulkExportButton {...props} />
-  </>
-));
 
 function PostListActionToolbar({ children }: { children: ReactNode }) {
   return <Box sx={{ alignItems: 'center', display: 'flex' }}>{children}</Box>;
@@ -118,7 +118,7 @@ function PostListDesktop() {
   );
 }
 
-export default function PostList() {
+export default function PostList(): JSX.Element {
   const isSmall = useMediaQuery<Theme>(theme => theme.breakpoints.down('md'), { noSsr: true });
   return isSmall ? <PostListMobile /> : <PostListDesktop />;
 }

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import {
   BooleanField,
   BulkUpdateButton,
@@ -9,13 +8,11 @@ import {
   TextField,
 } from 'react-admin';
 
-function ContactList(): JSX.Element {
-  const ContactListBulkActions = memo(() => (
-    <>
-      <BulkUpdateButton data={{ replied: true }} label="contact.action.update_all_replied" />
-    </>
-  ));
+const ContactListBulkActions = () => (
+  <BulkUpdateButton data={{ replied: true }} label="contact.action.update_all_replied" />
+);
 
+function ContactList(): JSX.Element {
   return (
     <List>
       <Datagrid rowClick="edit" bulkActionButtons={<ContactListBulkActions />}>
