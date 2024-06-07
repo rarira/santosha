@@ -140,5 +140,5 @@ const Styled = {
       minWidth: '9em',
     },
     '& .publishedAt': { fontStyle: 'italic' },
-  })),
+  })) as any, // typecript 에러
 };
