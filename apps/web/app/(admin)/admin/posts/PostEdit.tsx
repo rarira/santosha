@@ -12,6 +12,7 @@ import {
   Edit,
   EditActionsProps,
   FormDataConsumer,
+  FormDataConsumerRenderParams,
   ImageField,
   ImageInput,
   ReferenceInput,
@@ -88,7 +89,7 @@ export default function PostEdit(): JSX.Element {
           </ReferenceInput>
 
           <FormDataConsumer>
-            {({ formData, ...rest }) => {
+            {({ formData, ..._rest }: FormDataConsumerRenderParams<Record<any, any>>) => {
               if (formData.category_id) {
                 return <ExtraInfoInput categoryId={formData.category_id} />;
               }
