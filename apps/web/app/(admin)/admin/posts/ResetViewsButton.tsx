@@ -1,7 +1,12 @@
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button, useNotify, useUnselectAll, useUpdateMany } from 'react-admin';
-
-function ResetViewsButton({ resource, selectedIds }: { resource: any; selectedIds: number[] }) {
+function ResetViewsButton({
+  resource,
+  selectedIds,
+}: {
+  resource: any;
+  selectedIds: number[];
+}): React.FC {
   const notify = useNotify();
   const unselectAll = useUnselectAll(resource);
   const [updateMany, { isLoading }] = useUpdateMany(
