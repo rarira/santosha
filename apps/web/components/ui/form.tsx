@@ -2,7 +2,7 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import {
-  Controller,
+  Controller as ControllerPrimitive,
   ControllerProps,
   FieldPath,
   FormProvider,
@@ -12,7 +12,9 @@ import {
 import { Label } from '@/components/ui/label';
 import { cn } from '@/libs/util';
 
-const Form = FormProvider;
+const Form = FormProvider as any;
+
+const Controller = ControllerPrimitive as any;
 
 export type FieldValues = Record<any, any>;
 
@@ -33,7 +35,7 @@ const FormField = <
 }: ControllerProps<TFieldValues, TName>) => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
-      <Controller {...props} />
+      <Controller {...(props as any)} />
     </FormFieldContext.Provider>
   );
 };
@@ -77,7 +79,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
       </FormItemContext.Provider>
     );
   },
-);
+) as any;
 FormItem.displayName = 'FormItem';
 
 const FormLabel = React.forwardRef<
@@ -94,7 +96,7 @@ const FormLabel = React.forwardRef<
       {...props}
     />
   );
-});
+}) as any;
 FormLabel.displayName = 'FormLabel';
 
 const FormControl = React.forwardRef<
@@ -112,7 +114,7 @@ const FormControl = React.forwardRef<
       {...props}
     />
   );
-});
+}) as any;
 FormControl.displayName = 'FormControl';
 
 const FormDescription = React.forwardRef<
@@ -129,7 +131,7 @@ const FormDescription = React.forwardRef<
       {...props}
     />
   );
-});
+}) as any;
 FormDescription.displayName = 'FormDescription';
 
 const FormMessage = React.forwardRef<
@@ -153,7 +155,7 @@ const FormMessage = React.forwardRef<
       {body}
     </p>
   );
-});
+}) as any;
 FormMessage.displayName = 'FormMessage';
 
 export {

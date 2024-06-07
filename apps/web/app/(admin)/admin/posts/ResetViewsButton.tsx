@@ -6,7 +6,7 @@ function ResetViewsButton({
 }: {
   resource: any;
   selectedIds: number[];
-}): React.FC {
+}): JSX.Element {
   const notify = useNotify();
   const unselectAll = useUnselectAll(resource);
   const [updateMany, { isLoading }] = useUpdateMany(

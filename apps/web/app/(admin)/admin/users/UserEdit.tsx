@@ -1,6 +1,6 @@
 import { DateInput, Edit, SimpleForm, TextInput } from 'react-admin';
 
-function UserEdit() {
+function UserEdit(): JSX.Element {
   return (
     <Edit>
       <SimpleForm>

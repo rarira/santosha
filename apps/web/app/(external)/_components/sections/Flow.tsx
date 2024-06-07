@@ -1,4 +1,4 @@
-function Flow() {
+function Flow(): JSX.Element {
   return (
     <div id="flow-section" className="flex-col mt-10 h-[250px]">
       <h1>진행 과정</h1>

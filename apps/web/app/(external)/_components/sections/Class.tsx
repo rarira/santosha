@@ -1,4 +1,4 @@
-function Class() {
+function Class(): JSX.Element {
   return (
     <div id="class-section" className="flex-col mt-10 h-[250px]">
       <h1>요가 종류</h1>

@@ -1,6 +1,6 @@
 import ContactForm from './Form';
 
-function Contact() {
+function Contact(): JSX.Element {
   return (
     <div id="contact-section" className="flex-col mt-10">
       <h1>Contact</h1>

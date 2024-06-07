@@ -1,4 +1,4 @@
-function Intro() {
+function Intro(): JSX.Element {
   return (
     <div id="intro-section" className="flex-col mt-10 h-[250px]">
       <h1>산토샤 소개</h1>

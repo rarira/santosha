@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function Header() {
+function Header(): JSX.Element {
   return (
     <header className="flex w-[var(--max-width)] h-[50px] flex-row justify-between fixed">
       <div className="w-[150px]">
