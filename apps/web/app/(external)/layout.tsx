@@ -16,11 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <html
-      lang="en"
-      className={cn('min-h-screen bg-background noto-sans-kr antialiased', noto_sans_kr.variable)}
-    >
-      <body>
+    <html lang="en" className={cn('min-h-screen noto-sans-kr antialiased', noto_sans_kr.variable)}>
+      <body className="flex-col justify-items-center">
         <Header />
         {children}
       </body>

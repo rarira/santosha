@@ -85,7 +85,7 @@ function ContactForm(): JSX.Element {
                   <TextAreaField key={name} name={name} label={ko.form.field[name]} />
                 );
               })}
-              <Button type="submit" className="w-2/5">
+              <Button type="submit" className="bg-primary w-2/5">
                 {ko.form.submit}
               </Button>
             </form>
