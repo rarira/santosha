@@ -7,8 +7,8 @@ import {
   FormItem,
   FormDescription,
   FormMessage,
-} from '@ui/components/ui/form';
-import { Textarea } from '@ui/components/ui/textarea';
+} from '@repo/ui/components/ui/form';
+import { Textarea } from '@repo/ui/components/ui/textarea';
 import { useFormContext } from 'react-hook-form';
 
 import { TextInputFieldProps } from './TextInputField';

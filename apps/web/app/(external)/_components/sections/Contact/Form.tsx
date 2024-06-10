@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/ui/components/ui/button';
 import { Card, CardContent } from '@repo/ui/components/ui/card';
-import { Form } from '@ui/components/ui/form';
+import { Form } from '@repo/ui/components/ui/form';
 import { useActionState, useEffect, useRef, useState, type JSX } from 'react';
 import { Path, SubmitHandler, useForm } from 'react-hook-form';
 
