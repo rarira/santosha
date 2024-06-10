@@ -9,7 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.5.0",
+    "@hookform/resolvers": "^3.6.0",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "@repo/ui": "workspace:*",
@@ -27,8 +27,6 @@
     "react-admin": "^4.16.18",
     "react-dom": "19.0.0-rc-827cbea417-20240606",
     "react-hook-form": "^7.51.5",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1",
     "zod": "^3.23.8"
   },
@@ -38,16 +36,15 @@
     "@repo/prettier-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.10",
-    "@types/lodash": "^4.17.4",
+    "@types/lodash": "^4.17.5",
     "@types/node": "^20.14.2",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@types/uuid": "^9.0.8",
-    "@types/validator": "^13.11.10",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
   },
   "overrides": {

@@ -1,6 +1,3 @@
-import { ComponentProps, type JSX } from 'react';
-import { Path, useFormContext } from 'react-hook-form';
-
 import {
   FormControl,
   FormDescription,
@@ -8,8 +5,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from '@ui/components/ui/form';
+import { Input } from '@ui/components/ui/input';
+import { ComponentProps, type JSX } from 'react';
+import { Path, useFormContext } from 'react-hook-form';
 
 export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
   name: Path<TFieldValues>;

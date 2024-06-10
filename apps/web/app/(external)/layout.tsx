@@ -1,11 +1,12 @@
-import './globals.css';
+import '@repo/ui/globals.css';
 
 import type { Metadata } from 'next';
 
 import type { JSX } from 'react';
 
+import { cn } from '@repo/ui/lib/utils';
+
 import { noto_sans_kr } from '@/libs/font';
-import { cn } from '@/libs/util';
 
 import Header from './_components/Header';
 

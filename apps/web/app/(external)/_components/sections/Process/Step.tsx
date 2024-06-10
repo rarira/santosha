@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@repo/ui/components/ui/card';
 
 interface ProcessStepProps {
   stepNo: number;
@@ -6,11 +6,11 @@ interface ProcessStepProps {
   description: string;
 }
 
-function ProcessStep({ stepNo, title, description }): JSX.Element {
+function ProcessStep({ stepNo, title, description }: ProcessStepProps): JSX.Element {
   return (
     <Card className="p-4">
       <h4 className="text-xl font-bold">{title}</h4>
-      <p>description</p>
+      <p>{description}</p>
     </Card>
   );
 }

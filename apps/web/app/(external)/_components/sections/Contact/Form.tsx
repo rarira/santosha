@@ -1,12 +1,12 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@repo/ui/components/ui/button';
+import { Card, CardContent } from '@repo/ui/components/ui/card';
+import { Form } from '@ui/components/ui/form';
 import { useActionState, useEffect, useRef, useState, type JSX } from 'react';
 import { Path, SubmitHandler, useForm } from 'react-hook-form';
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Form } from '@/components/ui/form';
 import ko from '@/i18n/ko';
 
 import { onFormPostAction } from './_actions';
@@ -45,7 +45,6 @@ function ContactForm(): JSX.Element {
 
   useEffect(() => {
     if (state?.issues?.length) {
-      console.log(state.issues);
       state.issues.forEach(issue => {
         form.setError(issue.path as Path<ContactFormValues>, {
           type: 'manual',

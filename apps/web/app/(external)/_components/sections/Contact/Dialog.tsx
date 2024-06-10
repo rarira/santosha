@@ -1,12 +1,11 @@
-import { Dispatch, SetStateAction, type JSX } from 'react';
-
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from '@repo/ui/components/ui/dialog';
+import { Dispatch, SetStateAction, type JSX } from 'react';
 
 interface ContactDialogProps {
   open: boolean;

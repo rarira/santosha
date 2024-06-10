@@ -1,16 +1,15 @@
 import type { JSX } from 'react';
 
-import { useFormContext } from 'react-hook-form';
-
 import {
+  FormLabel,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
+  FormDescription,
   FormMessage,
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
+} from '@ui/components/ui/form';
+import { Textarea } from '@ui/components/ui/textarea';
+import { useFormContext } from 'react-hook-form';
 
 import { TextInputFieldProps } from './TextInputField';
 
