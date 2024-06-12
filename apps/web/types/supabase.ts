@@ -32,3 +32,21 @@ export interface SupabaseTransformOptions {
 export enum CategoryExtraInfo {
   ClassScore = 'Class Score',
 }
+
+export enum CategoryId {
+  Yoga = 1,
+  LifeStyle,
+}
+
+export type PostResult = {
+  id: string;
+  title: string;
+  teaser: string;
+  image: {
+    fullPath: string;
+  };
+  extra_info: {
+    [key: string]: number;
+  };
+  [key: string]: any;
+};

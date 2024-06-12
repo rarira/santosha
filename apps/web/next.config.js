@@ -6,4 +6,14 @@ module.exports = {
       compilationMode: 'annotation',
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'stycpjnilfpbkqfnguqq.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/sign/images/**',
+      },
+    ],
+  },
 };

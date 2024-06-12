@@ -1,7 +1,7 @@
 import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
-import { SupabaseTransformOptions } from '@/types/supabase';
+import { CategoryId, PostResult, SupabaseTransformOptions } from '@/types/supabase';
 import { ContactFormValues } from 'app/(external)/_components/Sections/Contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
@@ -59,4 +59,27 @@ export async function getUser() {
   }
 
   return user;
+}
+
+export async function getPosts({
+  categoryId,
+  columns,
+}: {
+  categoryId?: CategoryId;
+  columns?: string[];
+} = {}) {
+  let promise = supabaseClient
+    .from('posts')
+    .select(columns?.join(',') || '*')
+    .order('id');
+
+  if (categoryId) promise = promise.eq('category_id', categoryId);
+
+  const { data, error } = await promise;
+
+  if (error) {
+    throw error;
+  }
+
+  return data as unknown as PostResult[];
 }
