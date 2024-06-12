@@ -2,7 +2,7 @@ import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
 import { CategoryId, PostResult, SupabaseTransformOptions } from '@/types/supabase';
-import { ContactFormValues } from 'app/(external)/_components/Sections/Contact/formSchema';
+import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
