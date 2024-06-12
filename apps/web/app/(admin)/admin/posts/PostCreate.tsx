@@ -4,11 +4,14 @@ import { RichTextInput } from 'ra-input-rich-text';
 import { useMemo, type JSX } from 'react';
 import {
   ArrayInput,
-  BooleanInput,
+  AutocompleteInput,
   Create,
   DateInput,
+  FormDataConsumer,
+  FormDataConsumerRenderParams,
   ImageField,
   ImageInput,
+  ReferenceInput,
   SaveButton,
   SimpleFormConfigurable,
   SimpleFormIterator,
@@ -20,6 +23,8 @@ import {
   useRedirect,
 } from 'react-admin';
 import { useFormContext } from 'react-hook-form';
+
+import ExtraInfoInput from './extraInfo/ExtraInfoInput';
 
 function PostCreateToolbar() {
   const notify = useNotify();
@@ -103,13 +108,22 @@ export default function PostCreate(): JSX.Element | null {
         <RichTextInput source="body" fullWidth validate={required()} />
 
         <DateInput source="published_at" defaultValue={dateDefaultValue} />
-        <BooleanInput source="commentable" defaultValue />
         <ArrayInput source="backlinks" defaultValue={backlinksDefaultValue} validate={[required()]}>
           <SimpleFormIterator>
             <DateInput source="date" defaultValue="" />
             <TextInput source="url" defaultValue="" />
           </SimpleFormIterator>
         </ArrayInput>
+        <ReferenceInput source="category_id" reference="categories" allowEmpty>
+          <AutocompleteInput label="Category" optionText="name" sx={{ width: 300 }} />
+        </ReferenceInput>
+        <FormDataConsumer>
+          {({ formData, ..._rest }: FormDataConsumerRenderParams<Record<any, any>>) => {
+            if (formData.category_id) {
+              return <ExtraInfoInput categoryId={formData.category_id} />;
+            }
+          }}
+        </FormDataConsumer>
         <TextInput source="author_id" defaultValue={data?.id} style={{ display: 'none' }} />
       </SimpleFormConfigurable>
     </Create>

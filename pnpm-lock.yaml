@@ -93,6 +93,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-autoplay:
+        specifier: ^8.1.4
+        version: 8.1.4(embla-carousel@8.1.4)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2127,6 +2130,11 @@ packages:
 
   electron-to-chromium@1.4.790:
     resolution: {integrity: sha512-eVGeQxpaBYbomDBa/Mehrs28MdvCXfJmEFzaMFsv8jH/MJDLIylJN81eTJ5kvx7B7p18OiPK0BkC06lydEy63A==}
+
+  embla-carousel-autoplay@8.1.4:
+    resolution: {integrity: sha512-lsQkKiU5sIVg5vuaWo6BTzQT+7Z6AEMnCIQho4bS6KFeBE8FtsL/HOmtLx7fLu2reH6keJ1vNmLn6L/w9CQj+Q==}
+    peerDependencies:
+      embla-carousel: 8.1.4
 
   embla-carousel-react@8.1.4:
     resolution: {integrity: sha512-0llfX4HlXrdgJKxlZ8q8LyI6EV+TvOI7KtZx9GkDTwdgP6/AyyuvzO8KYvDUNZOnbFBAPbVEe2qEgGMLEinlYw==}
@@ -6255,6 +6263,10 @@ snapshots:
   electron-to-chromium@1.4.583: {}
 
   electron-to-chromium@1.4.790: {}
+
+  embla-carousel-autoplay@8.1.4(embla-carousel@8.1.4):
+    dependencies:
+      embla-carousel: 8.1.4
 
   embla-carousel-react@8.1.4(react@19.0.0-rc-827cbea417-20240606):
     dependencies:

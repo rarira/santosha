@@ -26,8 +26,6 @@ export const dataProvider = withLifecycleCallbacks(
           if (!categoryData?.extra_info) {
             rest.extra_info = null;
           }
-
-          console.log(rest.extra_info);
         }
 
         if (!picture) {
@@ -59,7 +57,7 @@ export const dataProvider = withLifecycleCallbacks(
             }
           }
 
-          return { ...oldData, image: restUplodedData };
+          return { ...oldData, category_id, image: restUplodedData };
         }
       },
     },

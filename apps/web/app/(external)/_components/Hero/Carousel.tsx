@@ -9,6 +9,7 @@ import {
   CarouselNext,
   type CarouselApi,
 } from '@ui/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -44,14 +45,22 @@ function HeroCarousel(): JSX.Element {
 
   return (
     <div className="relative">
-      <Carousel opts={{ align: 'center', loop: true }} setApi={setApi}>
+      <Carousel
+        opts={{ align: 'center', loop: true }}
+        setApi={setApi}
+        plugins={[
+          Autoplay({
+            delay: 4000,
+          }),
+        ]}
+      >
         <CarouselContent>
           <CarouselItem>
             <AspectRatio ratio={16 / 10}>
               <Image
                 src={carouselImage1}
                 alt="santosha yoga hero image1"
-                className="rounded-md object-cover"
+                className="rounded-lg object-cover"
                 fill
               />
             </AspectRatio>
@@ -61,7 +70,7 @@ function HeroCarousel(): JSX.Element {
               <Image
                 src={carouselImage2}
                 alt="santosha yoga hero image2"
-                className="rounded-md object-cover"
+                className="rounded-lg object-cover"
                 fill
               />
             </AspectRatio>
@@ -71,7 +80,7 @@ function HeroCarousel(): JSX.Element {
               <Image
                 src={carouselImage3}
                 alt="santosha yoga hero image3"
-                className="rounded-md object-cover"
+                className="rounded-lgobject-cover"
                 fill
               />
             </AspectRatio>
@@ -102,7 +111,7 @@ function Dots({
         <button
           key={i}
           onClick={() => onClick(i)}
-          className={`w-2 h-2 mx-1 rounded-full border-x border-y border-slate-500 ${i === current - 1 ? 'bg-black' : 'bg-gray-300'}`}
+          className={`w-2 h-2 mx-1 rounded-full border-x border-y border-primary ${i === current - 1 ? 'bg-primary' : 'bg-slate-50'}`}
         />
       ))}
     </div>

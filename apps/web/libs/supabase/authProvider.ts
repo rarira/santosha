@@ -4,6 +4,7 @@ import { supabaseClient } from '.';
 
 export const authProvider = supabaseAuthProvider(supabaseClient, {
   getIdentity: async user => {
+    console.log({ user });
     const { data, error } = await supabaseClient
       .from('users')
       .select('id, first_name, last_name')
@@ -15,7 +16,8 @@ export const authProvider = supabaseAuthProvider(supabaseClient, {
     }
 
     return {
-      id: data.id,
+      id: user.id,
+      user_id: data.id,
       fullName: `${data.first_name} ${data.last_name}`,
     };
   },

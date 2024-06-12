@@ -47,3 +47,16 @@ export async function createContact(formData: ContactFormValues): Promise<Postgr
 
   return error;
 }
+
+export async function getUser() {
+  const {
+    data: { user },
+    error,
+  } = await supabaseClient.auth.getUser();
+
+  if (error) {
+    throw error;
+  }
+
+  return user;
+}

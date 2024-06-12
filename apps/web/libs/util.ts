@@ -1,3 +1,5 @@
+import merge from 'lodash/merge';
+
 export default {
   getEnv: ((env: Record<string, any>) => {
     return function (key?: string) {
@@ -8,6 +10,7 @@ export default {
     SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   }),
+  merge,
 };
 // cn: (...inputs: ClassValue[]) => {
 //   return twMerge(clsx(inputs));
