@@ -11,7 +11,7 @@ import {
   TextField,
 } from 'react-admin';
 
-function ContactEdit(): JSX.Element {
+function ContactEdit(): React.JSX.Element {
   return (
     <>
       <Show>

@@ -22,7 +22,7 @@ const formFields: Array<{ name: keyof ContactFormValues; type: 'input' | 'textar
   { name: 'content', type: 'textarea' },
 ];
 
-function ContactForm(): JSX.Element {
+function ContactForm(): React.JSX.Element {
   const [state, submitAction, isPending] = useActionState(onFormPostAction, { message: '' });
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -79,9 +79,19 @@ function ContactForm(): JSX.Element {
             >
               {formFields.map(({ name, type }) => {
                 return type === 'input' ? (
-                  <TextInputField key={name} name={name} label={ko.form.field[name]} />
+                  <TextInputField
+                    key={name}
+                    name={name}
+                    label={ko.form.field[name]}
+                    control={form.control}
+                  />
                 ) : (
-                  <TextAreaField key={name} name={name} label={ko.form.field[name]} />
+                  <TextAreaField
+                    key={name}
+                    name={name}
+                    label={ko.form.field[name]}
+                    control={form.control}
+                  />
                 );
               })}
               <Button type="submit" className="bg-primary w-2/5">

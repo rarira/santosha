@@ -14,7 +14,7 @@ const ContactListBulkActions = () => (
   <BulkUpdateButton data={{ replied: true }} label="contact.action.update_all_replied" />
 );
 
-function ContactList(): JSX.Element {
+function ContactList(): React.JSX.Element {
   return (
     <List>
       <Datagrid rowClick="edit" bulkActionButtons={<ContactListBulkActions />}>

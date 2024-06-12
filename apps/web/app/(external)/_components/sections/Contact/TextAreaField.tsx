@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+'use client';
 
 import {
   FormLabel,
@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from '@repo/ui/components/ui/form';
 import { Textarea } from '@repo/ui/components/ui/textarea';
-import { useFormContext } from 'react-hook-form';
 
 import { TextInputFieldProps } from './TextInputField';
 
@@ -18,12 +17,12 @@ interface TextAreaFieldProps<TFieldValues extends Record<string, any>>
 
 function TextAreaField<TFieldValues extends Record<string, any>>({
   name,
+  control,
   className,
   label,
   placeholder,
   description,
-}: TextAreaFieldProps<TFieldValues>): JSX.Element {
-  const { control } = useFormContext();
+}: TextAreaFieldProps<TFieldValues>): React.JSX.Element | null {
   return (
     <FormField
       control={control}

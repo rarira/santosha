@@ -1,3 +1,5 @@
+'use client';
+
 import {
   FormControl,
   FormDescription,
@@ -7,11 +9,12 @@ import {
   FormMessage,
 } from '@repo/ui/components/ui/form';
 import { Input } from '@repo/ui/components/ui/input';
-import { ComponentProps, type JSX } from 'react';
-import { Path, useFormContext } from 'react-hook-form';
+import { ComponentProps } from 'react';
+import { Path, UseFormReturn } from 'react-hook-form';
 
 export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
   name: Path<TFieldValues>;
+  control: UseFormReturn<TFieldValues>['control'];
   className?: ComponentProps<'div'>['className'];
   label?: string;
   placeholder?: string;
@@ -20,13 +23,12 @@ export interface TextInputFieldProps<TFieldValues extends Record<string, any>> {
 
 function TextInputField<TFieldValues extends Record<string, any>>({
   name,
+  control,
   className,
   label,
   placeholder,
   description,
-}: TextInputFieldProps<TFieldValues>): JSX.Element {
-  const { control } = useFormContext();
-
+}: TextInputFieldProps<TFieldValues>): React.JSX.Element | null {
   return (
     <FormField
       control={control}

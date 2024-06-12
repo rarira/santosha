@@ -1,5 +1,4 @@
 import { AspectRatio } from '@repo/ui/components/ui/aspect-ratio';
-import { cn } from '@ui/lib/utils';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +14,7 @@ function ThumbnailImage({
   imageFullPath,
   alt,
   className,
-}: ThumbnailImageprops): JSX.Element | null {
+}: ThumbnailImageprops): React.JSX.Element | null {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {

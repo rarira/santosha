@@ -3,7 +3,7 @@ interface ScoreIndicatorProps {
   fullScore: number;
 }
 
-function ScoreIndicator({ score, fullScore }: ScoreIndicatorProps): JSX.Element {
+function ScoreIndicator({ score, fullScore }: ScoreIndicatorProps): React.JSX.Element {
   return (
     <div className={`flex flex-row`}>
       {Array.from({ length: fullScore }, (_, index) => (

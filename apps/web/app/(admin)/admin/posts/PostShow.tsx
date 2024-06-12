@@ -19,7 +19,7 @@ import {
 import OriginalImage from './OriginalImage';
 import PostTitle from './PostTitle';
 
-function PostShow(): JSX.Element {
+function PostShow(): React.JSX.Element {
   const controllerProps = useShowController();
   return (
     <ShowContextProvider value={controllerProps}>

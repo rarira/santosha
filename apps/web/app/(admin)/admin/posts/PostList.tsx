@@ -118,7 +118,7 @@ function PostListDesktop() {
   );
 }
 
-export default function PostList(): JSX.Element {
+export default function PostList(): React.JSX.Element {
   const isSmall = useMediaQuery<Theme>(theme => theme.breakpoints.down('md'), { noSsr: true });
   return isSmall ? <PostListMobile /> : <PostListDesktop />;
 }

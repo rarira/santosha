@@ -4,7 +4,7 @@ import ProcessStep from './Step';
 import SectionContainer from '../_components/SectionContainer';
 import SectionTitle from '../_components/SectionTitle';
 
-function ProcessSection(): JSX.Element {
+function ProcessSection(): React.JSX.Element {
   return (
     <SectionContainer sectionName="process">
       <SectionTitle title="상담 프로세스" subtitle="이렇게 진행 되요" />

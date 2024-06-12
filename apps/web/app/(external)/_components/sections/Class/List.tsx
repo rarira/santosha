@@ -6,7 +6,7 @@ import ClassItemcard from './ItemCard';
 
 import { queryFn } from '.';
 
-function ClassList(): JSX.Element | null {
+function ClassList(): React.JSX.Element | null {
   const { data: posts, error } = useSuspenseQuery({ queryKey: ['posts'], queryFn });
 
   if (error) return null;

@@ -7,7 +7,7 @@ interface ProcessStepProps {
   description: string;
 }
 
-function ProcessStep({ stepNo, title, description }: ProcessStepProps): JSX.Element {
+function ProcessStep({ stepNo, title, description }: ProcessStepProps): React.JSX.Element {
   return (
     <Card className="p-4 text-center">
       <h3 className="text-2xl font-bold text-green-400">{stepNo}</h3>

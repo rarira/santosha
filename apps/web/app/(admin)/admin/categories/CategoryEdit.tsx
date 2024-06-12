@@ -4,7 +4,7 @@ import { DateInput, Edit, SelectInput, SimpleForm, TextInput } from 'react-admin
 
 import { getCategoryExtraInfoChoices } from '@/libs/admin';
 
-function CategoryEdit(): JSX.Element {
+function CategoryEdit(): React.JSX.Element {
   return (
     <Edit>
       <SimpleForm>

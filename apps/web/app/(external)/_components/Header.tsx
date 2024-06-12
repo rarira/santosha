@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function Header(): JSX.Element {
+function Header(): React.JSX.Element {
   return (
     <header className="flex w-full max-w-[var(--max-width)] h-[50px] justify-between mx-auto">
       <div className="flex w-[200px] items-center justify-center">

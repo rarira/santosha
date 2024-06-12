@@ -3,7 +3,7 @@ import { Labeled, NumberInput } from 'react-admin';
 
 import { Class_Score_Criteria, Class_Score_Max_Score } from '@/libs/admin/constant';
 
-function ClassScoreInput(): JSX.Element {
+function ClassScoreInput(): React.JSX.Element {
   return (
     <Labeled label="Class Scores">
       <Grid container spacing={2}>

@@ -6,8 +6,9 @@ const project = resolve(process.cwd(), "tsconfig.json");
 module.exports = {
   extends: [
     "eslint:recommended",
+    "next",
     "prettier",
-    require.resolve("@vercel/style-guide/eslint/next"),
+    // require.resolve("@vercel/style-guide/eslint/next"),
     "plugin:react-hooks/recommended",
   ],
   globals: {

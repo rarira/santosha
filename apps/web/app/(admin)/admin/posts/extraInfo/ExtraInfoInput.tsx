@@ -2,7 +2,7 @@ import { TextInput, useGetOne } from 'react-admin';
 
 import ClassScoreInput from './ClassScoreInput';
 
-function ExtraInfoInput({ categoryId }: { categoryId: number }): JSX.Element {
+function ExtraInfoInput({ categoryId }: { categoryId: number }): React.JSX.Element {
   const { data: category } = useGetOne('categories', { id: categoryId });
 
   switch (category?.extra_info) {

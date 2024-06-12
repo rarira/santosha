@@ -3,7 +3,7 @@ interface SectionContainerProps {
   sectionName: string;
 }
 
-function SectionContainer({ children, sectionName }: SectionContainerProps): JSX.Element {
+function SectionContainer({ children, sectionName }: SectionContainerProps): React.JSX.Element {
   return (
     <section
       id={`${sectionName}-section`}

@@ -3,7 +3,7 @@ interface SectionTitleProps {
   subtitle?: string;
 }
 
-function SectionTitle({ title, subtitle }: SectionTitleProps): JSX.Element {
+function SectionTitle({ title, subtitle }: SectionTitleProps): React.JSX.Element {
   return (
     <div className="flex-col mb-6 text-center">
       <h2 className="text-3xl font-bold ">{title}</h2>

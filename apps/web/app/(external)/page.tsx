@@ -6,7 +6,7 @@ import ContactSection from './_components/sections/Contact';
 import IntroSection from './_components/sections/Intro';
 import ProcessSection from './_components/sections/Process';
 
-export default async function Page(): Promise<JSX.Element> {
+export default async function Page(): Promise<React.JSX.Element> {
   return (
     <main className="flex-col w-full">
       <Hero />

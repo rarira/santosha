@@ -3,7 +3,7 @@ export interface InputErrorProps {
   errorMessage?: string;
 }
 
-function InputError({ errorMessage }: InputErrorProps): JSX.Element | null {
+function InputError({ errorMessage }: InputErrorProps): React.JSX.Element | null {
   if (!errorMessage) return null;
 
   return (

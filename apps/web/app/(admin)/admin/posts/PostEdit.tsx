@@ -44,7 +44,7 @@ function SanitizedBox({ fullWidth, ...props }: BoxProps & { fullWidth?: boolean 
   return <Box {...props} />;
 }
 
-export default function PostEdit(): JSX.Element {
+export default function PostEdit(): React.JSX.Element {
   return (
     <Edit title={<PostTitle />} actions={<EditActions />}>
       <TabbedForm warnWhenUnsavedChanges>

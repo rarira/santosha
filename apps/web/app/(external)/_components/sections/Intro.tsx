@@ -1,4 +1,4 @@
-function IntroSection(): JSX.Element {
+function IntroSection(): React.JSX.Element {
   return (
     <div
       id="intro-section"

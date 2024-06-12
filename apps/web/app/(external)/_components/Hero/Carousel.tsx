@@ -1,6 +1,6 @@
 'use client';
 
-import { AspectRatio } from '@ui/components/ui/aspect-ratio';
+import { AspectRatio } from '@repo/ui/components/ui/aspect-ratio';
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
   CarouselNext,
   type CarouselApi,
-} from '@ui/components/ui/carousel';
+} from '@repo/ui/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ import carouselImage1 from 'public/image/hero/lizzy-004.jpg';
 import carouselImage2 from 'public/image/hero/lizzy-006.jpg';
 import carouselImage3 from 'public/image/hero/lizzy-014.jpg';
 
-function HeroCarousel(): JSX.Element {
+function HeroCarousel(): React.JSX.Element {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -104,7 +104,7 @@ function Dots({
   count: number;
   current: number;
   onClick: (_index: number) => void;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <div className="flex justify-center">
       {Array.from({ length: count }, (_, i) => (

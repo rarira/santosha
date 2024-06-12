@@ -2,7 +2,7 @@ import ContactForm from './Form';
 import SectionContainer from '../_components/SectionContainer';
 import SectionTitle from '../_components/SectionTitle';
 
-function ContactSection(): JSX.Element {
+function ContactSection(): React.JSX.Element {
   return (
     <SectionContainer sectionName="contact">
       <SectionTitle title="Contact" subtitle="연락해 주세요" />

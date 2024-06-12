@@ -19,7 +19,7 @@ function ContactDialog({
   onOpenChange,
   title,
   description,
-}: ContactDialogProps): JSX.Element {
+}: ContactDialogProps): React.JSX.Element {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>

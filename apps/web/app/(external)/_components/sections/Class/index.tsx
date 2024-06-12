@@ -13,7 +13,7 @@ export const queryFn = () =>
     columns: ['id', 'title', 'teaser', 'image', 'extra_info'],
   });
 
-async function ClassSection(): Promise<JSX.Element> {
+async function ClassSection(): Promise<React.JSX.Element> {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({

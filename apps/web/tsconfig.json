@@ -8,11 +8,20 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/libs/*": ["libs/*"],
-      "@/types/*": ["types/*"],
-      "@/i18n/*": ["i18n/*"],
-      "@ui/*": ["../../packages/ui/src/*"]
-    }
+      "@/libs/*": [
+        "libs/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/i18n/*": [
+        "i18n/*"
+      ],
+      "@ui/*": [
+        "../../packages/ui/src/*"
+      ]
+    },
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
@@ -22,5 +31,7 @@
     "**/*.d.ts",
     "*.config.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
