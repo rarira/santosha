@@ -1,10 +1,10 @@
 import steps from '@/libs/data/process_steps';
 
 import ProcessStep from './Step';
-import SectionContainer from '../../SectionContainer';
-import SectionTitle from '../../SectionTitle';
+import SectionContainer from '../_components/SectionContainer';
+import SectionTitle from '../_components/SectionTitle';
 
-function Process(): JSX.Element {
+function ProcessSection(): JSX.Element {
   return (
     <SectionContainer sectionName="process">
       <SectionTitle title="상담 프로세스" subtitle="이렇게 진행 되요" />
@@ -22,4 +22,4 @@ function Process(): JSX.Element {
   );
 }
 
-export default Process;
+export default ProcessSection;

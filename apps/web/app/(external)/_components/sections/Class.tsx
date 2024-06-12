@@ -1,4 +1,4 @@
-function Class(): JSX.Element {
+function ClassSection(): JSX.Element {
   return (
     <div id="class-section" className="flex-col mt-10 h-[250px]  max-w-[var(--max-width)] mx-auto">
       <h1>요가 종류</h1>
@@ -7,4 +7,4 @@ function Class(): JSX.Element {
   );
 }
 
-export default Class;
+export default ClassSection;

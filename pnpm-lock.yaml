@@ -215,6 +215,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.6.0
         version: 3.6.0(react-hook-form@7.51.5(react@19.0.0-rc-827cbea417-20240606))
+      '@radix-ui/react-aspect-ratio':
+        specifier: ^1.0.3
+        version: 1.0.3(@types/react-dom@18.2.19)(@types/react@18.3.3)(react-dom@19.0.0-rc-827cbea417-20240606(react@19.0.0-rc-827cbea417-20240606))(react@19.0.0-rc-827cbea417-20240606)
       '@radix-ui/react-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.19)(@types/react@18.3.3)(react-dom@19.0.0-rc-827cbea417-20240606(react@19.0.0-rc-827cbea417-20240606))(react@19.0.0-rc-827cbea417-20240606)
@@ -236,6 +239,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-react:
+        specifier: ^8.1.4
+        version: 8.1.4(react@19.0.0-rc-827cbea417-20240606)
       react-hook-form:
         specifier: ^7.51.5
         version: 7.51.5(react@19.0.0-rc-827cbea417-20240606)
@@ -970,6 +976,19 @@ packages:
 
   '@radix-ui/primitive@1.0.1':
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
+
+  '@radix-ui/react-aspect-ratio@1.0.3':
+    resolution: {integrity: sha512-fXR5kbMan9oQqMuacfzlGG/SQMcmMlZ4wrvpckv8SgUulD0MMpspxJrxg/Gp/ISV3JfV1AeSWTYK9GvxA4ySwA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
 
   '@radix-ui/react-compose-refs@1.0.1':
     resolution: {integrity: sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==}
@@ -2108,6 +2127,19 @@ packages:
 
   electron-to-chromium@1.4.790:
     resolution: {integrity: sha512-eVGeQxpaBYbomDBa/Mehrs28MdvCXfJmEFzaMFsv8jH/MJDLIylJN81eTJ5kvx7B7p18OiPK0BkC06lydEy63A==}
+
+  embla-carousel-react@8.1.4:
+    resolution: {integrity: sha512-0llfX4HlXrdgJKxlZ8q8LyI6EV+TvOI7KtZx9GkDTwdgP6/AyyuvzO8KYvDUNZOnbFBAPbVEe2qEgGMLEinlYw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+
+  embla-carousel-reactive-utils@8.1.4:
+    resolution: {integrity: sha512-qkovXTiNaURsnYhJxUBsDx9YV6crxLIZwfO6jIFSKKn6ZZE1JVeZAvy/UsiyNxiFikVrO76iquvD6uBHI9YD8w==}
+    peerDependencies:
+      embla-carousel: 8.1.4
+
+  embla-carousel@8.1.4:
+    resolution: {integrity: sha512-AMe40ZpyLpztfNnGQtMWVIgYdcBoY2MuQttRwQ/xqSPC3UvDG2QF17CR5Efz4c8qEkno7pxdZFDRO2R11y6hRQ==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4956,6 +4988,16 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.7
 
+  '@radix-ui/react-aspect-ratio@1.0.3(@types/react-dom@18.2.19)(@types/react@18.3.3)(react-dom@19.0.0-rc-827cbea417-20240606(react@19.0.0-rc-827cbea417-20240606))(react@19.0.0-rc-827cbea417-20240606)':
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.19)(@types/react@18.3.3)(react-dom@19.0.0-rc-827cbea417-20240606(react@19.0.0-rc-827cbea417-20240606))(react@19.0.0-rc-827cbea417-20240606)
+      react: 19.0.0-rc-827cbea417-20240606
+      react-dom: 19.0.0-rc-827cbea417-20240606(react@19.0.0-rc-827cbea417-20240606)
+    optionalDependencies:
+      '@types/react': 18.3.3
+      '@types/react-dom': 18.2.19
+
   '@radix-ui/react-compose-refs@1.0.1(@types/react@18.3.3)(react@19.0.0-rc-827cbea417-20240606)':
     dependencies:
       '@babel/runtime': 7.24.7
@@ -6213,6 +6255,18 @@ snapshots:
   electron-to-chromium@1.4.583: {}
 
   electron-to-chromium@1.4.790: {}
+
+  embla-carousel-react@8.1.4(react@19.0.0-rc-827cbea417-20240606):
+    dependencies:
+      embla-carousel: 8.1.4
+      embla-carousel-reactive-utils: 8.1.4(embla-carousel@8.1.4)
+      react: 19.0.0-rc-827cbea417-20240606
+
+  embla-carousel-reactive-utils@8.1.4(embla-carousel@8.1.4):
+    dependencies:
+      embla-carousel: 8.1.4
+
+  embla-carousel@8.1.4: {}
 
   emoji-regex@8.0.0: {}
 

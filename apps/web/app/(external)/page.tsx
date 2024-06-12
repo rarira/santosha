@@ -1,17 +1,19 @@
 import type { JSX } from 'react';
 
-import Class from './_components/sections/Class';
-import Contact from './_components/sections/Contact';
-import Intro from './_components/sections/Intro';
-import Process from './_components/sections/Process';
+import Hero from './_components/Hero';
+import ClassSection from './_components/Sections/Class';
+import ContactSection from './_components/Sections/Contact';
+import IntroSection from './_components/Sections/Intro';
+import ProcessSection from './_components/Sections/Process';
 
 export default function Page(): JSX.Element {
   return (
     <main className="flex-col w-full">
-      <Intro />
-      <Class />
-      <Process />
-      <Contact />
+      <Hero />
+      <IntroSection />
+      <ClassSection />
+      <ProcessSection />
+      <ContactSection />
     </main>
   );
 }

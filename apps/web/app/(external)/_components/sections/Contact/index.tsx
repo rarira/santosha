@@ -1,8 +1,8 @@
 import ContactForm from './Form';
-import SectionContainer from '../../SectionContainer';
-import SectionTitle from '../../SectionTitle';
+import SectionContainer from '../_components/SectionContainer';
+import SectionTitle from '../_components/SectionTitle';
 
-function Contact(): JSX.Element {
+function ContactSection(): JSX.Element {
   return (
     <SectionContainer sectionName="contact">
       <SectionTitle title="Contact" subtitle="연락해 주세요" />
@@ -16,4 +16,4 @@ function Contact(): JSX.Element {
   );
 }
 
-export default Contact;
+export default ContactSection;
