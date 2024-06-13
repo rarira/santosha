@@ -48,7 +48,7 @@ const processSteps: ProcessStep[] = [
   {
     type: 'arrow',
     direction: 'down',
-    span: 3,
+    span: 4,
   },
 
   {
@@ -59,7 +59,7 @@ const processSteps: ProcessStep[] = [
   {
     type: 'line',
     direction: 'horizontal',
-    span: 3,
+    span: 4,
   },
   {
     type: 'line',
@@ -69,7 +69,7 @@ const processSteps: ProcessStep[] = [
   {
     type: 'line',
     direction: 'vertical',
-    span: 3,
+    span: 4,
   },
   {
     type: 'content',

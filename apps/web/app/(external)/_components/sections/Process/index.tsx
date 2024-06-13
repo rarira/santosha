@@ -10,7 +10,7 @@ function ProcessSection(): React.JSX.Element {
   return (
     <SectionContainer sectionName="process">
       <SectionTitle title="상담 프로세스" subtitle="이렇게 진행 되요" />
-      <div className="grid grid-cols-11 gap-0">
+      <div className="grid grid-cols-14 gap-0">
         {steps.map((step, index) => {
           if (step.type !== 'content')
             return (
@@ -24,7 +24,7 @@ function ProcessSection(): React.JSX.Element {
             );
 
           return (
-            <div key={index} className="col-span-3">
+            <div key={index} className="col-span-4">
               <ProcessStep stepNo={step.stepNo} title={step.title} description={step.description} />
             </div>
           );
