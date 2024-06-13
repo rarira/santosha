@@ -35,9 +35,9 @@ function ProcessArrow({
 
   if (direction === 'down') {
     return (
-      <div className="relative flex flex-col w-full h-[50px] justify-center items-center">
-        <div className={`absolute right-0 my-1 w-1/2 bg-${color} h-2`} />
-        <div className={`absolute bottom-1 mx-1  w-2  h-1/2 bg-${color}`} />
+      <div className="relative flex flex-col w-full h-[50px] justify-center items-center  ">
+        <div className={`absolute right-0 my-1 w-[calc(50%-0.25rem)] bg-${color} h-2 `} />
+        <div className={`absolute bottom-1 mx-1 w-2 h-1/2 bg-${color} rounded-tl-lg`} />
         {!noPoint && (
           <div
             className={`absolute w-0 h-0 border-t-[1rem] border-${color} border-x-[0.75rem] border-x-transparent bottom-[-0.25rem]`}
@@ -50,8 +50,8 @@ function ProcessArrow({
   if (direction === 'up') {
     return (
       <div className="relative flex flex-col w-full h-[50px] justify-center items-center">
-        <div className={`absolute left-0 my-1 w-1/2 bg-${color} h-2`} />
-        <div className={`absolute top-1 mx-1  w-2  h-1/2 bg-${color}`} />
+        <div className={`absolute left-0 my-1 w-[calc(50%-0.25rem)] bg-${color} h-2`} />
+        <div className={`absolute top-1 mx-1  w-2  h-1/2 bg-${color} rounded-br-lg`} />
         {!noPoint && (
           <div
             className={`absolute w-0 h-0 border-b-[1rem] border-${color} border-x-[0.75rem] border-x-transparent top-[-0.25rem]`}
