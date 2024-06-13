@@ -69,10 +69,15 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "zoom-in": {
+          from: { transform: "scale(2)" },
+          to: { transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "zoom-in": "zoom-in 1s ease 0s 1",
       },
       gridTemplateColumns: {
         "14": "repeat(14, minmax(0, 1fr))",
