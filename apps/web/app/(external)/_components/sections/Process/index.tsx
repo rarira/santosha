@@ -1,5 +1,7 @@
 import steps from '@/libs/data/process_steps';
 
+import ProcessArrow from './Arrow';
+import ProcessLine from './Line';
 import ProcessStep from './Step';
 import SectionContainer from '../_components/SectionContainer';
 import SectionTitle from '../_components/SectionTitle';
@@ -8,15 +10,25 @@ function ProcessSection(): React.JSX.Element {
   return (
     <SectionContainer sectionName="process">
       <SectionTitle title="상담 프로세스" subtitle="이렇게 진행 되요" />
-      <div className="grid grid-cols-3 gap-4">
-        {steps.map((step, index) => (
-          <ProcessStep
-            key={index}
-            stepNo={index + 1}
-            title={step.title}
-            description={step.description}
-          />
-        ))}
+      <div className="grid grid-cols-11 gap-0">
+        {steps.map((step, index) => {
+          if (step.type !== 'content')
+            return (
+              <div key={index} className={`col-span-${step.span}`}>
+                {step.type === 'arrow' ? (
+                  <ProcessArrow direction={step.direction} />
+                ) : (
+                  <ProcessLine direction={step.direction} />
+                )}
+              </div>
+            );
+
+          return (
+            <div key={index} className="col-span-3">
+              <ProcessStep stepNo={step.stepNo} title={step.title} description={step.description} />
+            </div>
+          );
+        })}
       </div>
     </SectionContainer>
   );

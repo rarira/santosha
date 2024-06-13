@@ -7,7 +7,7 @@ function SectionContainer({ children, sectionName }: SectionContainerProps): Rea
   return (
     <section
       id={`${sectionName}-section`}
-      className="flex-col max-w-[var(--max-width)] mx-auto mb-12"
+      className="flex-col max-w-[var(--max-width)] mx-auto mb-20"
     >
       {children}
     </section>

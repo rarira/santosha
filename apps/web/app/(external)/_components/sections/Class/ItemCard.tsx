@@ -1,3 +1,5 @@
+import { Card } from '@repo/ui/components/ui/card';
+
 import util from '@/libs/util';
 import { PostResult } from '@/types/supabase';
 
@@ -10,9 +12,9 @@ interface ClassItemcardProps {
 
 function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full bg-white">
-      <h4 className="text-xl font-semibold text-center">{post.title}</h4>
-      <div className="flex flex-row items-center justify-center w-full h-full p-4 space-y-4 bg-white">
+    <Card className="flex flex-col p-4 items-center justify-center w-full h-full bg-white">
+      <h4 className="text-xl font-semibold text-center mb-3">{post.title}</h4>
+      <div className="flex flex-row items-center justify-center w-full h-full space-y-4 bg-white">
         <div className="w-1/2 relative ">
           <ThumbnailImage
             imageFullPath={post.image.fullPath}
@@ -34,7 +36,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
           })}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 
