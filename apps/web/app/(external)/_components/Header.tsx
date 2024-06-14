@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 function Header(): React.JSX.Element {
   return (
-    <header className="flex w-full max-w-[var(--max-width)] h-[50px] justify-between mx-auto">
-      <div className="flex w-[200px] items-center justify-center">
-        <h1 className="text-4xl font-bold self-center">Santosha</h1>
+    <header className="flex w-full md:max-w-[var(--max-width)] h-[4rem] justify-between mx-1 md:mx-auto">
+      <div className="flex w-min items-center justify-center pl-2 md:pl-0">
+        <h1 className="text-3xl md:text-4xl font-bold self-center">Santosha</h1>
       </div>
-      <nav className="flex w-full items-center">
+      <nav className="hidden md:flex w-full items-center">
         <ul className="flex w-full flex-row justify-around items-center">
           <li>
             <Link href="#intro-section">소개</Link>

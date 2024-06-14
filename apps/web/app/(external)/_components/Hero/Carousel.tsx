@@ -86,8 +86,8 @@ function HeroCarousel(): React.JSX.Element {
             </AspectRatio>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="hidden md:flex" />
+        <CarouselNext className="hidden md:flex" />
       </Carousel>
       <div className="absolute bottom-3 w-full">
         <Dots count={count} current={current} onClick={scrollToSlide} />
