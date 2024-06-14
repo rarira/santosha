@@ -67,7 +67,7 @@ function ContactForm(): React.JSX.Element {
 
   return (
     <>
-      <Card className="w-[600px]">
+      <Card className="w-full md:w-1/2 md:max-w-[600px]">
         <CardContent>
           <Form {...form}>
             {state?.issues && <div className="text-red-500">{state.message}</div>}

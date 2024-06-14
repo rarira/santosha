@@ -1,5 +1,3 @@
-import type { JSX } from 'react';
-
 import Hero from './_components/Hero';
 import ClassSection from './_components/sections/Class';
 import ContactSection from './_components/sections/Contact';
@@ -8,7 +6,7 @@ import ProcessSection from './_components/sections/Process';
 
 export default async function Page(): Promise<React.JSX.Element> {
   return (
-    <main className="flex-col w-full">
+    <main className="flex-col w-full ">
       <Hero />
       <IntroSection />
       <ClassSection />
