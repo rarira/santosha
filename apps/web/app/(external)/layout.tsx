@@ -2,8 +2,6 @@ import '@repo/ui/globals.css';
 
 import type { Metadata } from 'next';
 
-import type { JSX } from 'react';
-
 import { cn } from '@repo/ui/lib/utils';
 
 import { noto_sans_kr } from '@/libs/font';
