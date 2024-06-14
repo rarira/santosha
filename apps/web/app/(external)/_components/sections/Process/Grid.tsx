@@ -1,7 +1,8 @@
 'use client';
 
 import processSteps from '@/libs/data/process_steps';
-import { useViewport } from 'app/hooks/userViewport';
+import { useViewport } from 'app/hooks/useViewport';
+import { SafeHydrate } from 'components/SafeHydrate';
 
 import ProcessArrow from './Arrow';
 import ProcessLine from './Line';
@@ -13,26 +14,28 @@ function ProcessGrid() {
   const steps = isMobile ? processSteps.mobile : processSteps.desktop;
 
   return (
-    <div className="grid grid-cols-9 md:grid-cols-14 gap-0">
-      {steps.map((step, index) => {
-        if (step.type !== 'content')
+    <SafeHydrate>
+      <div className="grid grid-cols-9 md:grid-cols-14 gap-0">
+        {steps.map((step, index) => {
+          if (step.type !== 'content')
+            return (
+              <div key={index} className={`col-span-${step.span}`}>
+                {step.type === 'arrow' ? (
+                  <ProcessArrow direction={step.direction} />
+                ) : (
+                  <ProcessLine direction={step.direction} />
+                )}
+              </div>
+            );
+
           return (
-            <div key={index} className={`col-span-${step.span}`}>
-              {step.type === 'arrow' ? (
-                <ProcessArrow direction={step.direction} />
-              ) : (
-                <ProcessLine direction={step.direction} />
-              )}
+            <div key={index} className="col-span-4">
+              <ProcessStep stepNo={step.stepNo} title={step.title} description={step.description} />
             </div>
           );
-
-        return (
-          <div key={index} className="col-span-4">
-            <ProcessStep stepNo={step.stepNo} title={step.title} description={step.description} />
-          </div>
-        );
-      })}
-    </div>
+        })}
+      </div>
+    </SafeHydrate>
   );
 }
 

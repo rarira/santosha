@@ -60,7 +60,7 @@ function HeroCarousel(): React.JSX.Element {
               <Image
                 src={carouselImage1}
                 alt="santosha yoga hero image1"
-                className="rounded-lg object-cover"
+                className="md:rounded-lg object-cover"
                 fill
               />
             </AspectRatio>
@@ -70,7 +70,7 @@ function HeroCarousel(): React.JSX.Element {
               <Image
                 src={carouselImage2}
                 alt="santosha yoga hero image2"
-                className="rounded-lg object-cover"
+                className="md:rounded-lg object-cover"
                 fill
               />
             </AspectRatio>
@@ -80,7 +80,7 @@ function HeroCarousel(): React.JSX.Element {
               <Image
                 src={carouselImage3}
                 alt="santosha yoga hero image3"
-                className="rounded-lgobject-cover"
+                className="md:rounded-lgobject-cover"
                 fill
               />
             </AspectRatio>

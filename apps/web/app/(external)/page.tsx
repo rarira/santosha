@@ -6,7 +6,7 @@ import ProcessSection from './_components/sections/Process';
 
 export default async function Page(): Promise<React.JSX.Element> {
   return (
-    <main className="flex-col w-full ">
+    <main className="flex-col w-full pb-10 pt-16">
       <Hero />
       <IntroSection />
       <ClassSection />

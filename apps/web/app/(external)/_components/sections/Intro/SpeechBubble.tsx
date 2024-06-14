@@ -15,7 +15,6 @@ function IntroSpeechBubble() {
           안녕하세요. 산토샤 요가의 Lizzy입니다. 산토샤요가는 1대1 개인레슨과 단체수업 출강을 모두
           진행하고 있습니다. 궁금하신 사항은 사이트 하단 contact를 통해 연락주세요🙏🏻
         </p>
-        <span className="text-xs font-normal text-slate-200 text-end">Delivered</span>
       </div>
     </div>
   );

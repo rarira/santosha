@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@repo/ui/components/ui/dialog';
-import { Dispatch, SetStateAction, type JSX } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface ContactDialogProps {
   open: boolean;
@@ -22,7 +22,7 @@ function ContactDialog({
 }: ContactDialogProps): React.JSX.Element {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="w-[calc(100%-2rem)]">
         <DialogHeader className="space-y-4">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
