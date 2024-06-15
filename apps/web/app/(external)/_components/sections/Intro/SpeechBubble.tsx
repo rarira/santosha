@@ -1,3 +1,6 @@
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@repo/ui/components/ui/hover-card';
+import Link from 'next/link';
+
 function IntroSpeechBubble() {
   const now = new Date().toLocaleString();
 
@@ -13,7 +16,18 @@ function IntroSpeechBubble() {
         </div>
         <p className="text-sm md:text-md font-normal py-2.5 text-white">
           안녕하세요. 산토샤 요가의 Lizzy입니다. 산토샤요가는 1대1 개인레슨과 단체수업 출강을 모두
-          진행하고 있습니다. 궁금하신 사항은 사이트 하단 contact를 통해 연락주세요🙏🏻
+          진행하고 있습니다. 궁금하신 사항은 사이트 하단{' '}
+          <HoverCard>
+            <HoverCardTrigger className="hover:text-lime-200" asChild>
+              <Link href="#contact-section" replace>
+                contact
+              </Link>
+            </HoverCardTrigger>
+            <HoverCardContent className="bg-white p-2 w-20 rounded-lg shadow-lg text-center">
+              <span className="text-sm text-gray-700">연락하기</span>
+            </HoverCardContent>
+          </HoverCard>
+          를 통해 연락주세요🙏🏻
         </p>
       </div>
     </div>

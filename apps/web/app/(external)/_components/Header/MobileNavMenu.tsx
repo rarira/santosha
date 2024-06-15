@@ -1,7 +1,6 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@repo/ui/components/ui/dropdown-menu';
 import { HamburgerMenuIcon } from '@repo/ui/components/ui/hamburger-menu-icon';
@@ -20,14 +19,17 @@ function MobileHeaderNavMenu(): React.JSX.Element {
           <HamburgerMenuIcon className="w-6 h-6 stroke-slate-900 stroke-0 focus:stroke-1" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="mr-1 px-2">
-        <nav>
-          {nav_menu.map(menu => (
-            <DropdownMenuItem key={menu.url} className="hover:bg-slate-200 my-2">
-              <Link href={menu.url} onClick={() => setOpen(false)}>
-                {menu.title}
-              </Link>
-            </DropdownMenuItem>
+      <DropdownMenuContent className="mr-2 px-2">
+        <nav className="flex flex-col p-1">
+          {nav_menu.map((item, i) => (
+            <Link
+              key={i}
+              href={item.url}
+              onClick={() => setOpen(false)}
+              className="p-2 hover:cursor hover:bg-gray-100"
+            >
+              {item.title}
+            </Link>
           ))}
         </nav>
       </DropdownMenuContent>
