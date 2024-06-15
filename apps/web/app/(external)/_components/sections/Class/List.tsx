@@ -12,7 +12,7 @@ function ClassList(): React.JSX.Element | null {
   if (error) return null;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4">
       {posts.map((post, index) => (
         <ClassItemcard key={index} post={post} />
       ))}

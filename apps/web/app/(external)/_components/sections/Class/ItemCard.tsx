@@ -14,8 +14,8 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
   return (
     <Card className="flex flex-col p-4 items-center justify-center w-full h-full bg-white">
       <h4 className="text-xl font-semibold text-center mb-3">{post.title}</h4>
-      <div className="flex flex-row items-center justify-center w-full h-full space-y-4 bg-white">
-        <div className="w-1/2 relative ">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-4 bg-white">
+        <div className="w-full md:w-1/2 relative ">
           <ThumbnailImage
             imageFullPath={post.image.fullPath}
             alt={`${post.title}-thumbnail-image`}
@@ -25,7 +25,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
             <p className="text-sm font-semibold">{post.teaser}</p>
           </div>
         </div>
-        <div className="w-1/2 px-4">
+        <div className="w-full md:w-1/2 px-4">
           {Object.entries(post.extra_info).map(([key, value]) => {
             return (
               <div key={key} className="flex flex-row justify-between m-1">
