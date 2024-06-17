@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 
 interface ThumbnailImageprops {
-  imageFullPath: string;
+  imageFullPath: any;
   alt: string;
   className?: string;
 }

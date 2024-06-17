@@ -1,7 +1,9 @@
-import { CategoryExtraInfo } from '@/types/supabase';
+import { Enums } from '@/types/supabase';
 
-export const categoryExtraInfo = Object.entries(CategoryExtraInfo);
+//NOTE: CategoryExtraInfo가 추가될 때마다 작업해 줘야 함
+const CategoryExtraInfo: Enums<'CategoryExtraInfo'>[] = ['ClassScore'] as const;
 
-export const getCategoryExtraInfoChoices = () => {
-  return Object.entries(CategoryExtraInfo).map(([key, value]) => ({ id: key, name: value }));
-};
+export const categoryExtraInfo = CategoryExtraInfo.map((value, index) => ({
+  id: index,
+  name: value,
+}));

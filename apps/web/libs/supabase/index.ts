@@ -1,7 +1,7 @@
 import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
-import { CategoryId, PostResult, SupabaseTransformOptions } from '@/types/supabase';
+import { Tables, Enums } from '@/types/supabase';
 import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
@@ -25,7 +25,7 @@ export async function createSignedUrl({
   bucket: string;
   filePath: string;
   expiresIn?: number;
-  options?: { download?: string | boolean; transform?: SupabaseTransformOptions };
+  options?: { download?: string | boolean; transform?: any };
 }) {
   const { data, error } = await supabaseClient.storage
     .from(bucket)
@@ -65,9 +65,9 @@ export async function getPosts({
   categoryId,
   columns,
 }: {
-  categoryId?: CategoryId;
+  categoryId?: number;
   columns?: string[];
-} = {}) {
+} = {}): Promise<Tables<'posts'>[]> {
   let promise = supabaseClient
     .from('posts')
     .select(columns?.join(',') || '*')
@@ -81,5 +81,14 @@ export async function getPosts({
     throw error;
   }
 
-  return data as unknown as PostResult[];
+  return data as unknown as Tables<'posts'>[];
+}
+
+export async function getCategory(name: Enums<'CategoryName'>): Promise<Tables<'categories'>> {
+  const { data, error } = await supabaseClient.from('categories').select().eq('name', name);
+  if (error) {
+    throw error;
+  }
+
+  return data[0];
 }

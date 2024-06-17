@@ -1,18 +1,19 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
 import { getPostsQuery } from '@/libs/react-query';
-import { CategoryId } from '@/types/supabase';
+import { getCategory } from '@/libs/supabase';
 
 import ClassList from './List';
 import SectionContainer from '../_components/SectionContainer';
 import SectionTitle from '../_components/SectionTitle';
 
-export const queryFn = () =>
-  getPostsQuery({
-    categoryId: CategoryId.Yoga,
+export const queryFn = async () => {
+  const { id: categoryId } = await getCategory('요가');
+  return await getPostsQuery({
+    categoryId,
     columns: ['id', 'title', 'teaser', 'image', 'extra_info'],
   });
-
+};
 async function ClassSection(): Promise<React.JSX.Element> {
   const queryClient = new QueryClient();
 
