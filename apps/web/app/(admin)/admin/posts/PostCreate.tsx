@@ -1,7 +1,7 @@
 'use client';
 
 import { RichTextInput } from 'ra-input-rich-text';
-import { useMemo, type JSX } from 'react';
+import { useMemo } from 'react';
 import {
   ArrayInput,
   AutocompleteInput,
