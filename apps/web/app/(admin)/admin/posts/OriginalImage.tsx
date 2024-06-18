@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState, type JSX } from 'react';
+import { useEffect, useState } from 'react';
 import { Labeled } from 'react-admin';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
@@ -18,6 +18,8 @@ function OriginalImage({ imageFullPath }: { imageFullPath?: string }): React.JSX
         filePath: path,
         options: { transform: { width: 300 } },
       });
+
+      console.log({ signedUrl });
 
       if (signedUrl) setImageUrl(signedUrl);
     })();
