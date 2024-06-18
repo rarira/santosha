@@ -31,6 +31,7 @@ export async function createSignedUrl({
     .from(bucket)
     .createSignedUrl(filePath, expiresIn, options);
 
+  console.log({ data });
   if (error) {
     throw error;
   }

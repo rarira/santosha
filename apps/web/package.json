@@ -3,11 +3,12 @@
   "version": "1.0.0-alpha.sw2",
   "private": true,
   "scripts": {
-    "dev": "supabase start && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
-    "stop:supabase": "supabase stop",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
     "update-types": "eval $(grep '^SUPABASE_PROJECT_ID' .env) && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > types/supabase.ts"
   },
   "dependencies": {

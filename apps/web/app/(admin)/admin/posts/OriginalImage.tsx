@@ -19,6 +19,8 @@ function OriginalImage({ imageFullPath }: { imageFullPath?: string }): React.JSX
         options: { transform: { width: 300 } },
       });
 
+      console.log({ signedUrl });
+
       if (signedUrl) setImageUrl(signedUrl);
     })();
   }, [imageFullPath]);
