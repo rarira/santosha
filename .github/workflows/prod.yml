@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./apps/web
+
 jobs:
   migrate:
     runs-on: ubuntu-latest

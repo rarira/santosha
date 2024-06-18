@@ -13,6 +13,10 @@ on:
       - development
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./apps/web
+
 jobs:
   test:
     runs-on: ubuntu-latest
