@@ -14,10 +14,8 @@ function MobileHeaderNavMenu(): React.JSX.Element {
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
-      <DropdownMenuTrigger>
-        <div className="md:hidden mr-4">
-          <HamburgerMenuIcon className="w-6 h-6 stroke-slate-900 stroke-0 focus:stroke-1" />
-        </div>
+      <DropdownMenuTrigger className="md:hidden mr-4">
+        <HamburgerMenuIcon className="w-6 h-6 stroke-slate-900 stroke-0 focus:stroke-1" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-2 px-2">
         <nav className="flex flex-col p-1">

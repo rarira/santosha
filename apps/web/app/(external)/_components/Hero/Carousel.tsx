@@ -9,6 +9,7 @@ import {
   CarouselNext,
   type CarouselApi,
 } from '@repo/ui/components/ui/carousel';
+import { cn } from '@ui/lib/utils';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -53,6 +54,7 @@ function HeroCarousel(): React.JSX.Element {
             delay: 4000,
           }),
         ]}
+        className="relative"
       >
         <CarouselContent>
           <CarouselItem>
@@ -89,9 +91,12 @@ function HeroCarousel(): React.JSX.Element {
         <CarouselPrevious className="hidden md:flex" />
         <CarouselNext className="hidden md:flex" />
       </Carousel>
-      <div className="absolute bottom-3 w-full">
-        <Dots count={count} current={current} onClick={scrollToSlide} />
-      </div>
+      <Dots
+        count={count}
+        current={current}
+        onClick={scrollToSlide}
+        className="absolute bottom-3 w-full"
+      />
     </div>
   );
 }
@@ -100,13 +105,15 @@ function Dots({
   count,
   current,
   onClick,
+  className,
 }: {
   count: number;
   current: number;
   onClick: (_index: number) => void;
+  className?: string;
 }): React.JSX.Element {
   return (
-    <div className="flex justify-center">
+    <div className={cn('flex justify-center', className)}>
       {Array.from({ length: count }, (_, i) => (
         <button
           key={i}
