@@ -7,7 +7,8 @@ import { cn } from '@repo/ui/lib/utils';
 import { noto_sans_kr } from '@/libs/font';
 
 import Header from './_components/Header';
-import Providers from './Providers';
+import QueryProvider from './_components/providers/QueryProvider';
+import { ThemeProvider } from './_components/providers/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Santosha Yoga Studio',
@@ -17,9 +18,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
     <html lang="en" className={cn('min-h-screen noto-sans-kr antialiased', noto_sans_kr.variable)}>
-      <body className="flex-col justify-items-center">
-        <Header />
-        <Providers>{children}</Providers>
+      <body className="flex-col justify-items-center bg-background">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <QueryProvider>
+            <>
+              <Header />
+              {children}
+            </>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

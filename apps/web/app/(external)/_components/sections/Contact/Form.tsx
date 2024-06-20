@@ -75,7 +75,7 @@ function ContactForm(): React.JSX.Element {
               ref={formRef}
               className="space-y-8"
               action={submitAction}
-              onSubmit={form.handleSubmit(onSubmit)}
+              // onSubmit={form.handleSubmit(onSubmit)}
             >
               {formFields.map(({ name, type }) => {
                 return type === 'input' ? (

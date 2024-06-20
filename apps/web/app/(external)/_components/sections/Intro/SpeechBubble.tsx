@@ -24,8 +24,8 @@ function IntroSpeechBubble() {
             </div>
           </Link>
         </HoverCardTrigger>
-        <HoverCardContent className="bg-white p-2 w-full flex-row rounded-lg shadow-lg text-center">
-          <span className="text-sm text-gray-700">지금 연락하려면 클릭하세요</span>
+        <HoverCardContent className="p-2 w-full flex-row rounded-lg shadow-lg text-center">
+          <span className="text-sm">지금 연락하려면 클릭하세요</span>
         </HoverCardContent>
       </HoverCard>
     </div>

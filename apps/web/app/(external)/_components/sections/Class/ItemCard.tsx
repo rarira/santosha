@@ -12,9 +12,9 @@ interface ClassItemcardProps {
 
 function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
   return (
-    <Card className="flex flex-col p-4 items-center justify-center w-full h-full bg-white">
+    <Card className="flex flex-col p-4 items-center justify-center w-full h-full">
       <h4 className="text-xl font-semibold text-center mb-3">{post.title}</h4>
-      <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-4 bg-white">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-4">
         <div className="w-full md:w-1/2 relative ">
           {!!post.image && (
             <ThumbnailImage
@@ -23,9 +23,9 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
               className="rounded-lg"
             />
           )}
-          <div className="flex absolute bottom-0 left-0 right-0 w-full h-full bg-white bg-opacity-75 p-4 items-center justify-center">
-            <p className="text-sm font-semibold">{post.teaser}</p>
-          </div>
+          <p className="flex absolute bottom-0 left-0 right-0 w-full h-full bg-opacity-75 p-4 items-center justify-center text-sm font-semibold">
+            {post.teaser}
+          </p>
         </div>
         <div className="w-full md:w-1/2 px-4">
           {Object.entries(post?.extra_info ?? []).map(([key, value]) => {
