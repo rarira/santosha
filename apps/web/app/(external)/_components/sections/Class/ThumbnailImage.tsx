@@ -1,6 +1,6 @@
 import { AspectRatio } from '@repo/ui/components/ui/aspect-ratio';
-import { cn } from '@ui/lib/utils';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 
@@ -10,22 +10,34 @@ interface ThumbnailImageprops {
   className?: string;
 }
 
-async function ThumbnailImage({
+function ThumbnailImage({
   imageFullPath,
   alt,
   className,
-}: ThumbnailImageprops): Promise<React.JSX.Element | null> {
-  const { bucket, path } = splitBucketFullPath(imageFullPath);
+}: ThumbnailImageprops): React.JSX.Element | null {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const { signedUrl } = await createSignedUrl({
-    bucket,
-    filePath: path,
-    options: { transform: { width: 300 } },
-  });
+  useEffect(() => {
+    if (!imageFullPath) return;
+
+    (async () => {
+      const { bucket, path } = splitBucketFullPath(imageFullPath);
+
+      const { signedUrl } = await createSignedUrl({
+        bucket,
+        filePath: path,
+        options: { transform: { width: 300 } },
+      });
+
+      if (signedUrl) setImageUrl(signedUrl);
+    })();
+  }, [imageFullPath]);
+
+  if (!imageUrl) return null;
 
   return (
     <AspectRatio ratio={1 / 1} className="w-full">
-      <Image src={signedUrl} alt={alt} fill className={cn('object-cover', className)} />
+      <Image src={imageUrl} alt={alt} fill className={className} />
     </AspectRatio>
   );
 }

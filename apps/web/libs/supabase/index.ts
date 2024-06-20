@@ -1,10 +1,10 @@
 import { PostgrestError, createClient } from '@supabase/supabase-js';
 
-import U from '@/libs/util';
+import Util from '@/libs/util';
 import { Tables, Enums } from '@/types/supabase';
 import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
 
-export const { SUPABASE_URL, SUPABASE_ANON_KEY } = U.getEnv();
+export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const DEFAULT_EXPIRES_IN = 60 * 5; // 5 minutes
