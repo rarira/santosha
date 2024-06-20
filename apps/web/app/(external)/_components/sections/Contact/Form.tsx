@@ -57,11 +57,11 @@ function ContactForm(): React.JSX.Element {
   useEffect(() => {
     if (state.message === 'Successful') {
       setShowDialog(true);
+      form.reset();
     }
-  }, [state.message]);
+  }, [form, state.message]);
 
-  const onSubmit: SubmitHandler<ContactFormValues> = (data, e) => {
-    e?.preventDefault();
+  const onSubmit: SubmitHandler<ContactFormValues> = () => {
     formRef.current?.submit();
   };
 
@@ -75,7 +75,10 @@ function ContactForm(): React.JSX.Element {
               ref={formRef}
               className="space-y-8"
               action={submitAction}
-              // onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={e => {
+                e.preventDefault();
+                form.handleSubmit(onSubmit)();
+              }}
             >
               {formFields.map(({ name, type }) => {
                 return type === 'input' ? (

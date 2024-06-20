@@ -19,8 +19,6 @@ function OriginalImage({ imageFullPath }: { imageFullPath?: string }): React.JSX
         options: { transform: { width: 300 } },
       });
 
-      console.log({ signedUrl });
-
       if (signedUrl) setImageUrl(signedUrl);
     })();
   }, [imageFullPath]);
@@ -30,7 +28,7 @@ function OriginalImage({ imageFullPath }: { imageFullPath?: string }): React.JSX
   return (
     <div style={{ width: 300, marginTop: 20 }}>
       <Labeled label="Original image">
-        <img src={imageUrl} />
+        <img src={imageUrl} alt="image" />
       </Labeled>
     </div>
   );

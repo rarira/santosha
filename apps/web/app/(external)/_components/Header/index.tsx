@@ -13,10 +13,6 @@ function Header(): React.JSX.Element {
   const { scrollDirection } = useScrollDirection();
   const { isMobile } = useViewport();
 
-  const { theme } = useTheme();
-
-  console.log({ theme });
-
   return (
     <header
       className={`fixed flex w-full ${scrollDirection === 'down' && isMobile ? 'top-[-4rem]' : 'top-0'} md:top:0 left-1/2 md:max-w-[var(--max-width)] h-16 translate-x-[-50%] justify-between items-center mx-1 md:mx-auto z-40 transition-all ease-in-out duration-[200ms] bg-background`}
