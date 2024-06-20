@@ -1,6 +1,6 @@
 import { Card } from '@repo/ui/components/ui/card';
 
-import util from '@/libs/util';
+import U from '@/libs/util';
 import { Tables } from '@/types/supabase';
 
 import ScoreIndicator from './ScoreIndicator';
@@ -31,7 +31,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
           {Object.entries(post?.extra_info ?? []).map(([key, value]) => {
             return (
               <div key={key} className="flex flex-row justify-between m-1">
-                <h6>{util.getClassScoreCriteriaName(key)}</h6>
+                <h6>{U.getClassScoreCriteriaName(key)}</h6>
                 <ScoreIndicator fullScore={3} score={value} />
               </div>
             );
