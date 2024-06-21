@@ -10,34 +10,41 @@ interface ClassThumbnailImageprops {
   className?: string;
 }
 
-function ClassThumbnailImage({
+async function ClassThumbnailImage({
   imageFullPath,
   alt,
   className,
-}: ClassThumbnailImageprops): React.JSX.Element | null {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+}: ClassThumbnailImageprops): Promise<React.JSX.Element> {
+  const { bucket, path } = splitBucketFullPath(imageFullPath);
 
-  useEffect(() => {
-    if (!imageFullPath) return;
+  const { signedUrl } = await createSignedUrl({
+    bucket,
+    filePath: path,
+    options: { transform: { width: 300 } },
+  });
+  // const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-    (async () => {
-      const { bucket, path } = splitBucketFullPath(imageFullPath);
+  // useEffect(() => {
+  //   if (!imageFullPath) return;
 
-      const { signedUrl } = await createSignedUrl({
-        bucket,
-        filePath: path,
-        options: { transform: { width: 300 } },
-      });
+  //   (async () => {
+  //     const { bucket, path } = splitBucketFullPath(imageFullPath);
 
-      if (signedUrl) setImageUrl(signedUrl);
-    })();
-  }, [imageFullPath]);
+  //     const { signedUrl } = await createSignedUrl({
+  //       bucket,
+  //       filePath: path,
+  //       options: { transform: { width: 300 } },
+  //     });
 
-  if (!imageUrl) return null;
+  //     if (signedUrl) setImageUrl(signedUrl);
+  //   })();
+  // }, [imageFullPath]);
+
+  // if (!imageUrl) return null;
 
   return (
     <AspectRatio ratio={1 / 1} className="w-full">
-      <Image src={imageUrl} alt={alt} fill className={className} />
+      <Image src={signedUrl} alt={alt} fill className={className} />
     </AspectRatio>
   );
 }

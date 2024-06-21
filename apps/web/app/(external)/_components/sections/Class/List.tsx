@@ -1,15 +1,9 @@
-'use client';
-
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { getPosts } from '@/libs/supabase';
 
 import ClassItemcard from './item-card';
 
-import { queryFn } from '.';
-
-function ClassList(): React.JSX.Element | null {
-  const { data: posts, error } = useSuspenseQuery({ queryKey: ['posts'], queryFn });
-
-  if (error) return null;
+async function ClassList(): Promise<React.JSX.Element> {
+  const posts = await getPosts();
 
   return (
     <div className="grid grid-cols-2 gap-4">

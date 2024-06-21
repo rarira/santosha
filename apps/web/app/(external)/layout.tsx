@@ -7,7 +7,6 @@ import { cn } from '@repo/ui/lib/utils';
 import { noto_sans_kr } from '@/libs/font';
 
 import Header from './_components/header';
-import QueryProvider from './_components/providers/query-provider';
 import { ThemeProvider } from './_components/providers/theme-provider';
 
 export const metadata: Metadata = {
@@ -25,12 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           enableSystem
           disableTransitionOnChange
         >
-          <QueryProvider>
-            <>
-              <Header />
-              {children}
-            </>
-          </QueryProvider>
+          <Header />
+          {children}
         </ThemeProvider>
       </body>
     </html>
