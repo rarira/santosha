@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 import { getPostsQuery } from '@/libs/react-query';
 import { getCategory } from '@/libs/supabase';
 
-import ClassList from './List';
+import ClassList from './list';
 import SectionContainer from '../_components/section-container';
 import SectionTitle from '../_components/section-title';
 

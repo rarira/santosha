@@ -1,6 +1,8 @@
 import { useRecordContext } from 'react-admin';
 
-export default (): React.JSX.Element => {
+const PostTitle = (): React.JSX.Element => {
   const record = useRecordContext();
   return <>{record ? `Title: ${record.title}` : ''}</>;
 };
+
+export default PostTitle;

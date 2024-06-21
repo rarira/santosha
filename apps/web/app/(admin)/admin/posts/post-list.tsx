@@ -30,8 +30,8 @@ import ResetViewsButton from './_components/reset-views-button';
 export const PostIcon = BookIcon;
 
 const postFilter = [
-  <SearchInput source="q" alwaysOn />,
-  <TextInput source="title" defaultValue="Qui tempore rerum et voluptates" />,
+  <SearchInput key={0} source="q" alwaysOn />,
+  <TextInput key={1} source="title" defaultValue="Qui tempore rerum et voluptates" />,
 ];
 
 // const exporter = posts => {

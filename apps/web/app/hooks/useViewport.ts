@@ -1,5 +1,5 @@
 import { isServer } from '@tanstack/react-query';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 export function useViewport() {
   const [width, setWidth] = useState(
