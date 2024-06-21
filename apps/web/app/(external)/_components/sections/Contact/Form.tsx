@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ReloadIcon } from '@radix-ui/react-icons';
 import { Button } from '@repo/ui/components/ui/button';
 import { Card, CardContent } from '@repo/ui/components/ui/card';
 import { Form } from '@repo/ui/components/ui/form';
@@ -10,10 +11,10 @@ import { Path, SubmitHandler, useForm } from 'react-hook-form';
 import ko from '@/i18n/ko';
 
 import { onFormPostAction } from './_actions';
-import ContactDialog from './Dialog';
-import { contactFormSchema, ContactFormValues } from './formSchema';
-import TextAreaField from './TextAreaField';
-import TextInputField from './TextInputField';
+import ContactDialog from './_components/dialog';
+import TextAreaField from './_components/text-area-field';
+import TextInputField from './_components/text-input-field';
+import { ContactFormValues, contactFormSchema } from './formSchema';
 
 const formFields: Array<{ name: keyof ContactFormValues; type: 'input' | 'textarea' }> = [
   { name: 'name', type: 'input' },
@@ -97,7 +98,8 @@ function ContactForm(): React.JSX.Element {
                   />
                 );
               })}
-              <Button type="submit" className="bg-primary w-2/5">
+              <Button disabled={isPending} type="submit" className="bg-primary w-2/5">
+                {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
                 {ko.form.submit}
               </Button>
             </form>

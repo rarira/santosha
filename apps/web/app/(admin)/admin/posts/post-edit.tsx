@@ -23,9 +23,9 @@ import {
   TopToolbar,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
-import ExtraInfoInput from './extraInfo/ExtraInfoInput';
-import OriginalImage from './OriginalImage';
-import PostTitle from './PostTitle';
+import ExtraInfoInput from './_components/extraInfo/extra-info-input';
+import OriginalImage from './_components/original-image';
+import PostTitle from './post-title';
 
 function EditActions({ hasShow }: EditActionsProps) {
   return (

@@ -2,7 +2,7 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import ClassItemcard from './ItemCard';
+import ClassItemcard from './item-card';
 
 import { queryFn } from '.';
 

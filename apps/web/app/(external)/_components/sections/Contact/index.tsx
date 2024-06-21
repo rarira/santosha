@@ -1,6 +1,6 @@
-import ContactForm from './Form';
-import SectionContainer from '../_components/SectionContainer';
-import SectionTitle from '../_components/SectionTitle';
+import ContactForm from './form';
+import SectionContainer from '../_components/section-container';
+import SectionTitle from '../_components/section-title';
 
 function ContactSection(): React.JSX.Element {
   return (

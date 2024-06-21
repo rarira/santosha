@@ -25,7 +25,7 @@ import {
   WrapperField,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
-import ResetViewsButton from './ResetViewsButton';
+import ResetViewsButton from './_components/reset-views-button';
 
 export const PostIcon = BookIcon;
 

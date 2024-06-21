@@ -1,11 +1,13 @@
 import ContactIcon from '@mui/icons-material/ContactSupport';
 
-import ContactEdit from './ContactEdit';
-import ContactList from './ContactList';
+import ContactEdit from './contact-edit';
+import ContactList from './contact-list';
 
-export default {
+const contacts = {
   list: ContactList,
   edit: ContactEdit,
   icon: ContactIcon,
   recordRepresentation: 'contact',
 };
+
+export default contacts;

@@ -24,7 +24,7 @@ import {
 } from 'react-admin';
 import { useFormContext } from 'react-hook-form';
 
-import ExtraInfoInput from './extraInfo/ExtraInfoInput';
+import ExtraInfoInput from './_components/extraInfo/extra-info-input';
 
 function PostCreateToolbar() {
   const notify = useNotify();

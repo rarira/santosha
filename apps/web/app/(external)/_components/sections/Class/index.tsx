@@ -4,8 +4,8 @@ import { getPostsQuery } from '@/libs/react-query';
 import { getCategory } from '@/libs/supabase';
 
 import ClassList from './List';
-import SectionContainer from '../_components/SectionContainer';
-import SectionTitle from '../_components/SectionTitle';
+import SectionContainer from '../_components/section-container';
+import SectionTitle from '../_components/section-title';
 
 export const queryFn = async () => {
   const { id: categoryId } = await getCategory('요가');

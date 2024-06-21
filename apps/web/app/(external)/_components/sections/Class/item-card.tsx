@@ -3,8 +3,8 @@ import { Card } from '@repo/ui/components/ui/card';
 import U from '@/libs/util';
 import { Tables } from '@/types/supabase';
 
-import ScoreIndicator from './ScoreIndicator';
-import ThumbnailImage from './ThumbnailImage';
+import ClassScoreIndicator from './score-indicator';
+import ClassThumbnailImage from './thumbnail-Image';
 
 interface ClassItemcardProps {
   post: Tables<'posts'>;
@@ -17,7 +17,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
       <div className="flex flex-col md:flex-row items-center justify-center w-full h-full space-y-4">
         <div className="w-full md:w-1/2 relative ">
           {!!post.image && (
-            <ThumbnailImage
+            <ClassThumbnailImage
               imageFullPath={(post.image as Record<string, unknown>)['fullPath']}
               alt={`${post.title}-thumbnail-image`}
               className="rounded-lg"
@@ -32,7 +32,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
             return (
               <div key={key} className="flex flex-row justify-between m-1">
                 <h6>{U.getClassScoreCriteriaName(key)}</h6>
-                <ScoreIndicator fullScore={3} score={value} />
+                <ClassScoreIndicator fullScore={3} score={value} />
               </div>
             );
           })}

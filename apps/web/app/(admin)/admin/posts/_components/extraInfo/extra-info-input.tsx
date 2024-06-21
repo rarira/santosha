@@ -1,6 +1,6 @@
 import { TextInput, useGetOne } from 'react-admin';
 
-import ClassScoreInput from './ClassScoreInput';
+import ClassScoreInput from './class-score-input';
 
 function ExtraInfoInput({ categoryId }: { categoryId: number }): React.JSX.Element {
   const { data: category } = useGetOne('categories', { id: categoryId });

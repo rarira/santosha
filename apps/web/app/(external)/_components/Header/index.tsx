@@ -1,13 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 
 import useScrollDirection from 'app/hooks/useScrollDirection';
 import { useViewport } from 'app/hooks/useViewport';
 
-import DesktopHeaderNavMenu from './DesktopNavMenu';
-import MobileHeaderNavMenu from './MobileNavMenu';
+import DesktopHeaderNavMenu from './desktop-nav-menu';
+import MobileHeaderNavMenu from './mobile-nav-menu';
 
 function Header(): React.JSX.Element {
   const { scrollDirection } = useScrollDirection();

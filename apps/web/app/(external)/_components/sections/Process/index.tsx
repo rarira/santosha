@@ -1,6 +1,6 @@
-import ProcessGrid from './Grid';
-import SectionContainer from '../_components/SectionContainer';
-import SectionTitle from '../_components/SectionTitle';
+import ProcessGrid from './grid';
+import SectionContainer from '../_components/section-container';
+import SectionTitle from '../_components/section-title';
 
 function ProcessSection(): React.JSX.Element {
   return (

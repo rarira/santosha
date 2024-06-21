@@ -1,4 +1,4 @@
-import ProcessArrow from './Arrow';
+import ProcessArrow from './arrow';
 
 function ProcessLine({ direction }: { direction: 'horizontal' | 'vertical' }): React.JSX.Element {
   if (direction === 'horizontal') {

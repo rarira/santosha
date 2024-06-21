@@ -1,9 +1,9 @@
-interface ScoreIndicatorProps {
+interface ClassScoreIndicatorProps {
   score: number;
   fullScore: number;
 }
 
-function ScoreIndicator({ score, fullScore }: ScoreIndicatorProps): React.JSX.Element {
+function ClassScoreIndicator({ score, fullScore }: ClassScoreIndicatorProps): React.JSX.Element {
   return (
     <div className={`flex flex-row`}>
       {Array.from({ length: fullScore }, (_, index) => (
@@ -16,4 +16,4 @@ function ScoreIndicator({ score, fullScore }: ScoreIndicatorProps): React.JSX.El
   );
 }
 
-export default ScoreIndicator;
+export default ClassScoreIndicator;

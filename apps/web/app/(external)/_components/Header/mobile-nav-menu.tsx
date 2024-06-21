@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 import { nav_menu } from '@/libs/data/nav_menu';
 
-import { ThemeToggle } from './ThemeToggle';
+import { ThemeToggle } from './theme-toggle';
 
 function MobileHeaderNavMenu(): React.JSX.Element {
   const [open, setOpen] = useState(false);

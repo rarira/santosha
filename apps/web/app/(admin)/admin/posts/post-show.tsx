@@ -14,8 +14,8 @@ import {
   useShowController,
 } from 'react-admin';
 
-import OriginalImage from './OriginalImage';
-import PostTitle from './PostTitle';
+import OriginalImage from './_components/original-image';
+import PostTitle from './post-title';
 
 function PostShow(): React.JSX.Element {
   const controllerProps = useShowController();

@@ -1,8 +1,8 @@
-import IntroContent from './Content';
-import IntroProfile from './Profile';
-import IntroSpeechBubble from './SpeechBubble';
-import SectionContainer from '../_components/SectionContainer';
-import SectionTitle from '../_components/SectionTitle';
+import IntroContent from './content';
+import IntroProfile from './profile';
+import IntroSpeechBubble from './speech-bubble';
+import SectionContainer from '../_components/section-container';
+import SectionTitle from '../_components/section-title';
 
 function IntroSection(): React.JSX.Element {
   return (

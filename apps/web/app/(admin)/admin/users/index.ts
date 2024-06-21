@@ -1,12 +1,14 @@
 import UserIcon from '@mui/icons-material/People';
 
-import UserEdit from './UserEdit';
-import UserList from './UserList';
+import UserEdit from './user-edit';
+import UserList from './user-list';
 
-export default {
+const users = {
   list: UserList,
   //   create: CategoryCreate,
   edit: UserEdit,
   icon: UserIcon,
   recordRepresentation: 'user',
 };
+
+export default users;

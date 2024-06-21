@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 
-interface ThumbnailImageprops {
+interface ClassThumbnailImageprops {
   imageFullPath: any;
   alt: string;
   className?: string;
 }
 
-function ThumbnailImage({
+function ClassThumbnailImage({
   imageFullPath,
   alt,
   className,
-}: ThumbnailImageprops): React.JSX.Element | null {
+}: ClassThumbnailImageprops): React.JSX.Element | null {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ function ThumbnailImage({
   );
 }
 
-export default ThumbnailImage;
+export default ClassThumbnailImage;

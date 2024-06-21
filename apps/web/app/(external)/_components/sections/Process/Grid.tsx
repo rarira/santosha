@@ -4,9 +4,9 @@ import processSteps from '@/libs/data/process_steps';
 import { useViewport } from 'app/hooks/useViewport';
 import { SafeHydrate } from 'components/SafeHydrate';
 
-import ProcessArrow from './Arrow';
-import ProcessLine from './Line';
-import ProcessStep from './Step';
+import ProcessArrow from './_components/arrow';
+import ProcessLine from './_components/line';
+import ProcessStep from './step';
 
 function ProcessGrid() {
   const { isMobile } = useViewport();

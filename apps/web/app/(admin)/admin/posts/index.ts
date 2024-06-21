@@ -1,11 +1,11 @@
 import BookIcon from '@mui/icons-material/Book';
 
-import PostCreate from './PostCreate';
-import PostEdit from './PostEdit';
-import PostList from './PostList';
-import PostShow from './PostShow';
+import PostCreate from './post-create';
+import PostEdit from './post-edit';
+import PostList from './post-list';
+import PostShow from './post-show';
 
-export default {
+const posts = {
   list: PostList,
   create: PostCreate,
   edit: PostEdit,
@@ -13,3 +13,5 @@ export default {
   icon: BookIcon,
   recordRepresentation: 'post',
 };
+
+export default posts;

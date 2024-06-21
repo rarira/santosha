@@ -10,7 +10,7 @@ import {
 } from '@repo/ui/components/ui/form';
 import { Textarea } from '@repo/ui/components/ui/textarea';
 
-import { TextInputFieldProps } from './TextInputField';
+import { TextInputFieldProps } from './text-input-field';
 
 interface TextAreaFieldProps<TFieldValues extends Record<string, any>>
   extends TextInputFieldProps<TFieldValues> {}
