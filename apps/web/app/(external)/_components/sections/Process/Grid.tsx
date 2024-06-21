@@ -1,8 +1,8 @@
 'use client';
 
+import { SafeHydrate } from '@/components/safe-hydrate';
 import processSteps from '@/libs/data/process_steps';
 import { useViewport } from 'app/hooks/useViewport';
-import { SafeHydrate } from 'components/SafeHydrate';
 
 import ProcessArrow from './_components/arrow';
 import ProcessLine from './_components/line';

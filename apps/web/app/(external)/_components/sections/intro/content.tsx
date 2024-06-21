@@ -7,8 +7,8 @@ import {
   AccordionTrigger,
 } from '@repo/ui/components/ui/accordion';
 
+import { SafeHydrate } from '@/components/safe-hydrate';
 import { useViewport } from 'app/hooks/useViewport';
-import { SafeHydrate } from 'components/SafeHydrate';
 
 function IntroContent() {
   const { isMobile } = useViewport();

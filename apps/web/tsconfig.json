@@ -8,18 +8,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/libs/*": [
-        "libs/*"
-      ],
-      "@/types/*": [
-        "types/*"
-      ],
-      "@/i18n/*": [
-        "i18n/*"
-      ],
-      "@ui/*": [
-        "../../packages/ui/src/*"
-      ]
+      "@/libs/*": ["libs/*"],
+      "@/components/*": ["components/*"],
+      "@/types/*": ["types/*"],
+      "@/i18n/*": ["i18n/*"],
+      "@ui/*": ["../../packages/ui/src/*"]
     },
     "jsx": "preserve"
   },
@@ -31,7 +24,5 @@
     "**/*.d.ts",
     "*.config.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
