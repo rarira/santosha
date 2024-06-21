@@ -2,7 +2,7 @@ import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
 import { Tables, Enums } from '@/types/supabase';
-import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
+import { ContactFormValues } from 'app/(external)/_components/sections/contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -31,7 +31,6 @@ export async function createSignedUrl({
     .from(bucket)
     .createSignedUrl(filePath, expiresIn, options);
 
-  console.log({ data });
   if (error) {
     throw error;
   }

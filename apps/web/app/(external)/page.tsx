@@ -1,8 +1,8 @@
-import Hero from './_components/Hero';
-import ClassSection from './_components/sections/Class';
-import ContactSection from './_components/sections/Contact';
-import IntroSection from './_components/sections/Intro';
-import ProcessSection from './_components/sections/Process';
+import Hero from './_components/hero';
+import ClassSection from './_components/sections/class';
+import ContactSection from './_components/sections/contact';
+import IntroSection from './_components/sections/intro';
+import ProcessSection from './_components/sections/process';
 
 export default async function Page(): Promise<React.JSX.Element> {
   return (

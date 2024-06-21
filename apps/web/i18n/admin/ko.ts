@@ -1,9 +1,9 @@
 import koreanMessages from '@spectrum/ra-language-korean';
 import { TranslationMessages } from 'react-admin';
 
-import Util from '@/libs/util';
+import U from '@/libs/util';
 
-const ko: TranslationMessages = Util.merge(
+const ko: TranslationMessages = U.merge(
   {
     ra: {
       configurable: {

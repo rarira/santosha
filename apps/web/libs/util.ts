@@ -6,7 +6,7 @@ const getClassScoreCriteriaName = (classScoreCriteria: string) => {
   return Class_Score_Criteria.find(criteria => criteria.key === classScoreCriteria)?.display;
 };
 
-export default {
+const U = {
   getEnv: ((env: Record<string, any>) => {
     return function (key?: string) {
       if (!key) return env;
@@ -18,4 +18,7 @@ export default {
   }),
   merge,
   getClassScoreCriteriaName,
+  isServer: typeof window === 'undefined',
 };
+
+export default U;
