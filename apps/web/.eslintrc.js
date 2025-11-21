@@ -1,9 +1,9 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['@repo/eslint-config/next.js'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: true,
+  extends: ['next/core-web-vitals', 'prettier'],
+  rules: {
+    'react/no-unescaped-entities': 'off',
+    '@next/next/no-html-link-for-pages': 'off',
   },
 };

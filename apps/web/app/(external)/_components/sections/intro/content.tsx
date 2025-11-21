@@ -16,6 +16,7 @@ function IntroContent() {
   const accordionProps: any = isMobile
     ? {
         type: 'single',
+        collapsible: true,
         defaultValue: 'item-1',
       }
     : {
@@ -25,7 +26,7 @@ function IntroContent() {
 
   return (
     <SafeHydrate>
-      <Accordion className="w-full" collapsible {...accordionProps}>
+      <Accordion className="w-full" {...accordionProps}>
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-md">✔️ 1대1 개인레슨</AccordionTrigger>
           <AccordionContent className="px-4">

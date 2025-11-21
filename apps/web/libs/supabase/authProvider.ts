@@ -20,4 +20,7 @@ export const authProvider = supabaseAuthProvider(supabaseClient, {
       fullName: `${data.first_name} ${data.last_name}`,
     };
   },
+  getPermissions: async () => {
+    return Promise.resolve();
+  },
 });

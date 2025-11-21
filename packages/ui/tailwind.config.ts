@@ -1,14 +1,11 @@
 import type { Config } from "tailwindcss";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 const config = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "../../packages/ui/src/**/*.{ts,tsx}", //추가
+    "../../apps/web/app/**/*.{ts,tsx}",
+    "../../apps/web/components/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -20,6 +17,9 @@ const config = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        "14": "repeat(14, minmax(0, 1fr))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -79,12 +79,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "zoom-in": "zoom-in 1s ease 0s 1",
       },
-      gridTemplateColumns: {
-        "14": "repeat(14, minmax(0, 1fr))",
-      },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;

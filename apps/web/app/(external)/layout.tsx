@@ -16,7 +16,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
-    <html lang="en" className={cn('min-h-screen noto-sans-kr antialiased', noto_sans_kr.variable)}>
+    <html
+      lang="en"
+      className={cn('min-h-screen noto-sans-kr antialiased', noto_sans_kr.variable)}
+      suppressHydrationWarning
+    >
       <body className="flex-col justify-items-center bg-background">
         <ThemeProvider
           attribute="class"

@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   transpilePackages: ['@repo/ui'],
-  experimental: {
-    reactCompiler: {
-      compilationMode: 'annotation',
-    },
+  reactCompiler: {
+    compilationMode: 'annotation',
   },
   images: {
     remotePatterns: [
@@ -27,5 +25,7 @@ module.exports = {
         pathname: '/storage/v1/**',
       },
     ],
+    // 로컬 개발 환경에서 이미지 최적화 비활성화
+    unoptimized: process.env.NODE_ENV === 'development',
   },
 };

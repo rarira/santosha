@@ -1,6 +1,5 @@
 import { AspectRatio } from '@repo/ui/components/ui/aspect-ratio';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 import { createSignedUrl, splitBucketFullPath } from '@/libs/supabase';
 

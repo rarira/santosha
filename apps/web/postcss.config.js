@@ -1,2 +1,1 @@
-const postcssConfig = require('@repo/ui/postcss.config');
-module.exports = postcssConfig;
+module.exports = require('@repo/ui/postcss.config');
