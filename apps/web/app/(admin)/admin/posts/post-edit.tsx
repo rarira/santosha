@@ -60,7 +60,7 @@ export default function PostEdit(): React.JSX.Element {
           </SanitizedBox>
           <TextInput multiline fullWidth source="teaser" validate={required()} resettable />
 
-          <ImageInput source="picture" accept="image/*" helperText="">
+          <ImageInput source="picture" accept={{ 'image/*': [] }} helperText="">
             <ImageField source="src" title="title" />
           </ImageInput>
 

@@ -102,7 +102,7 @@ export default function PostCreate(): React.JSX.Element | null {
       <SimpleFormConfigurable toolbar={<PostCreateToolbar />}>
         <TextInput autoFocus source="title" validate={required('Required field')} />
         <TextInput source="teaser" fullWidth multiline validate={required('Required field')} />
-        <ImageInput source="picture" label="Image" accept="image/*">
+        <ImageInput source="picture" label="Image" accept={{ 'image/*': [] }}>
           <ImageField source="src" title="title" />
         </ImageInput>
         <RichTextInput source="body" fullWidth validate={required()} />

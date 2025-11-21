@@ -1,7 +1,7 @@
 'use client';
 
 import { LoginPage } from 'ra-supabase';
-import { Admin, AuthProvider, Resource } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
 
 import { i18nProvider } from '@/i18n/admin';
 import { authProvider } from '@/libs/supabase/authProvider';
@@ -15,9 +15,10 @@ import users from '../users';
 const AdminApp: React.FC = () => (
   <Admin
     dataProvider={dataProvider}
-    authProvider={authProvider as AuthProvider}
+    authProvider={authProvider}
     loginPage={LoginPage}
     i18nProvider={i18nProvider}
+    darkTheme={null}
   >
     <Resource name="users" {...users} />
     <Resource name="posts" {...posts} />

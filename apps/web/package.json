@@ -9,7 +9,10 @@
     "lint": "echo 'ESLint 8 + Next.js 16: Known circular reference issue. Type checking is done during build.'",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
-    "update-types": "eval $(grep '^SUPABASE_PROJECT_ID' .env) && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > types/supabase.ts"
+    "update-types": "eval $(grep '^SUPABASE_PROJECT_ID' .env) && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > types/supabase.ts",
+    "env:switch": "bash scripts/switch-env.sh",
+    "env:stage": "bash scripts/switch-env.sh stage",
+    "env:prod": "bash scripts/switch-env.sh prod"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -26,11 +29,11 @@
     "lodash": "^4.17.21",
     "next": "^16.0.3",
     "next-themes": "^0.4.4",
-    "ra-i18n-polyglot": "^4.16.20",
-    "ra-input-rich-text": "^4.16.20",
-    "ra-supabase": "^2.2.0",
+    "ra-i18n-polyglot": "^5.13.1",
+    "ra-input-rich-text": "^5.13.1",
+    "ra-supabase": "^3.5.2",
     "react": "^19.0.0",
-    "react-admin": "^4.16.20",
+    "react-admin": "^5.13.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.1",
     "uuid": "^11.0.4",
@@ -50,7 +53,7 @@
     "autoprefixer": "^10.4.22",
     "eslint": "^8.57.1",
     "postcss": "^8.5.6",
-    "supabase": ">=1.8.1",
+    "supabase": "^2.58.5",
     "tailwindcss": "^3.4.18",
     "typescript": "^5.7.2"
   }
