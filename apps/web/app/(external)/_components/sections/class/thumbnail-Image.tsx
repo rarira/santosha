@@ -22,6 +22,11 @@ async function ClassThumbnailImage({
     options: { transform: { width: 300 } },
   });
 
+  // If signedUrl is empty (error occurred), don't render the image
+  if (!signedUrl) {
+    return <AspectRatio ratio={1 / 1} className="w-full bg-muted" />;
+  }
+
   return (
     <AspectRatio ratio={1 / 1} className="w-full">
       <Image src={signedUrl} alt={alt} fill className={className} />

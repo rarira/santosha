@@ -32,7 +32,9 @@ export async function createSignedUrl({
     .createSignedUrl(filePath, expiresIn, options);
 
   if (error) {
-    throw error;
+    console.error('Failed to create signed URL:', error);
+    // Return a placeholder or empty signed URL instead of throwing
+    return { signedUrl: '', path: filePath };
   }
 
   return data;
@@ -78,7 +80,8 @@ export async function getPosts({
   const { data, error } = await promise;
 
   if (error) {
-    throw error;
+    console.error('Failed to fetch posts:', error);
+    return [];
   }
 
   return data as unknown as Tables<'posts'>[];

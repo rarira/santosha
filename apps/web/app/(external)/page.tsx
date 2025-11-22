@@ -4,6 +4,8 @@ import ContactSection from './_components/sections/contact';
 import IntroSection from './_components/sections/intro';
 import ProcessSection from './_components/sections/process';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page(): Promise<React.JSX.Element> {
   return (
     <main className="flex-col w-full pb-10 pt-16">

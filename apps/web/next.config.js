@@ -8,13 +8,13 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'bxnjlnqkijdalzpidnxz.supabase.co',
+        hostname: 'ifkzuniguelwaaybbcsz.supabase.co',
         port: '',
         pathname: '/storage/v1/object/sign/images/**',
       },
       {
         protocol: 'https',
-        hostname: 'uxghlhwtdvvfevjxflpe.supabase.co',
+        hostname: 'ecidgakvipnuqamwvufs.supabase.co',
         port: '',
         pathname: '/storage/v1/object/sign/images/**',
       },
