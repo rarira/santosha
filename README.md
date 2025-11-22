@@ -1,16 +1,88 @@
-## Getting Started
+# Santosha
 
-First, run the development server:
+Next.js 16 기반의 요가 스튜디오 웹사이트
+
+## 기술 스택
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Supabase** (Database, Auth, Storage)
+- **React Admin** (Admin Panel)
+- **pnpm** (Package Manager)
+
+## 환경 변수 설정
+
+프로젝트 루트에 `.env.local` 파일을 생성하고 다음 환경 변수를 설정하세요:
 
 ```bash
-yarn dev
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+SUPABASE_DB_PASSWORD=your_database_password
+SUPABASE_ACCESS_TOKEN=your_supabase_access_token
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **참고**: Supabase는 이제 `anon` key 대신 `publishable` key를 권장합니다.
+> 자세한 내용은 [Supabase API Keys 문서](https://supabase.com/docs/guides/api/api-keys)를 참조하세요.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 로컬 개발
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+### 1. 의존성 설치
+
+```bash
+pnpm install
+```
+
+### 2. Supabase 로컬 환경 시작
+
+```bash
+pnpm supabase:start
+```
+
+### 3. 개발 서버 실행
+
+```bash
+pnpm dev
+```
+
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 결과를 확인하세요.
+
+### 4. 환경 전환
+
+개발/스테이징/프로덕션 환경을 전환하려면:
+
+```bash
+# 스테이징 환경으로 전환
+pnpm env:stage
+
+# 프로덕션 환경으로 전환
+pnpm env:prod
+```
+
+## 주요 명령어
+
+```bash
+pnpm dev          # 개발 서버 시작
+pnpm build        # 프로덕션 빌드
+pnpm start        # 프로덕션 서버 시작
+pnpm lint         # ESLint 실행
+pnpm update-types # Supabase 타입 생성
+```
+
+## 프로젝트 구조
+
+```
+santosha/
+├── app/              # Next.js App Router
+│   ├── (admin)/     # 관리자 페이지
+│   └── (external)/  # 외부 공개 페이지
+├── components/      # 재사용 가능한 UI 컴포넌트
+├── libs/           # 비즈니스 로직 및 유틸리티
+├── types/          # TypeScript 타입 정의
+├── styles/         # 글로벌 스타일
+└── supabase/       # Supabase 설정 및 마이그레이션
+```
 
 ## Learn More
 

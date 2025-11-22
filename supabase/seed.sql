@@ -362,19 +362,21 @@ INSERT INTO "public"."posts" ("id", "created_at", "title", "body", "published_at
 -- Data for Name: buckets; Type: TABLE DATA; Schema: storage; Owner: supabase_storage_admin
 --
 
-INSERT INTO "storage"."buckets" ("id", "name", "owner", "created_at", "updated_at", "public", "avif_autodetection", "file_size_limit", "allowed_mime_types", "owner_id") VALUES
-	('images', 'images', NULL, '2024-05-07 10:28:40.433331+00', '2024-05-07 10:28:40.433331+00', true, false, 10485760, '{image/*}', NULL);
+-- COMMENTED OUT: Storage is disabled in local config, so this INSERT will fail
+-- INSERT INTO "storage"."buckets" ("id", "name", "owner", "created_at", "updated_at", "public", "avif_autodetection", "file_size_limit", "allowed_mime_types", "owner_id") VALUES
+-- 	('images', 'images', NULL, '2024-05-07 10:28:40.433331+00', '2024-05-07 10:28:40.433331+00', true, false, 10485760, '{image/*}', NULL);
 
 
 --
 -- Data for Name: objects; Type: TABLE DATA; Schema: storage; Owner: supabase_storage_admin
 --
 
-INSERT INTO "storage"."objects" ("id", "bucket_id", "name", "owner", "created_at", "updated_at", "last_accessed_at", "metadata", "version", "owner_id") VALUES
-	('fbac62fe-d8a3-4e22-91e3-8550611a7151', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-146c4d7d-91a6-4a5e-817e-14d0bda5a40a', NULL, '2024-06-18 10:23:45.940893+00', '2024-06-18 10:24:21.019237+00', '2024-06-18 10:23:45.940893+00', '{"eTag": "\"f6c91bb01fb0d5f93435a74e21a1ffe1\"", "size": 93087, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:21.000Z", "contentLength": 93087, "httpStatusCode": 200}', '81162761-1956-41d0-a8f5-0d5b7f9b8f7e', NULL),
-	('fb316b59-f875-47dc-bab7-f89b1d1df176', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-7215f096-4040-47b9-b6aa-74d546effa15', NULL, '2024-06-18 10:23:46.101605+00', '2024-06-18 10:24:25.810898+00', '2024-06-18 10:23:46.101605+00', '{"eTag": "\"caa6c69af6368cc892d53deb22ebc857\"", "size": 219216, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:26.000Z", "contentLength": 219216, "httpStatusCode": 200}', '5350700b-95cb-4f39-a156-081c3cf2610e', NULL),
-	('b9fc60e8-d8f8-47d8-8879-caafc1ff1398', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-e35ae702-e541-433c-9577-9256e1fe74c2', NULL, '2024-06-18 10:23:45.887926+00', '2024-06-18 10:24:30.876346+00', '2024-06-18 10:23:45.887926+00', '{"eTag": "\"3dff6ef6d25c186e0f239781ae06b7b7\"", "size": 23432, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:31.000Z", "contentLength": 23432, "httpStatusCode": 200}', '7fe133a4-d63e-41cd-bdab-7d6ea38630ab', NULL),
-	('2e126f1d-b566-49a4-a7fb-757d2cffbc64', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-f41da9a5-f776-4782-8fb8-1129e5da8b75', NULL, '2024-06-18 10:23:46.142674+00', '2024-06-18 10:24:36.499763+00', '2024-06-18 10:23:46.142674+00', '{"eTag": "\"21ff19bdb22372cd383e261005c3330c\"", "size": 279415, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:37.000Z", "contentLength": 279415, "httpStatusCode": 200}', 'bf483a73-c262-458f-aa78-4453b924c0df', NULL);
+-- COMMENTED OUT: Storage is disabled in local config, so this INSERT will fail
+-- INSERT INTO "storage"."objects" ("id", "bucket_id", "name", "owner", "created_at", "updated_at", "last_accessed_at", "metadata", "version", "owner_id") VALUES
+-- 	('fbac62fe-d8a3-4e22-91e3-8550611a7151', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-146c4d7d-91a6-4a5e-817e-14d0bda5a40a', NULL, '2024-06-18 10:23:45.940893+00', '2024-06-18 10:24:21.019237+00', '2024-06-18 10:23:45.940893+00', '{"eTag": "\"f6c91bb01fb0d5f93435a74e21a1ffe1\"", "size": 93087, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:21.000Z", "contentLength": 93087, "httpStatusCode": 200}', '81162761-1956-41d0-a8f5-0d5b7f9b8f7e', NULL),
+-- 	('fb316b59-f875-47dc-bab7-f89b1d1df176', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-7215f096-4040-47b9-b6aa-74d546effa15', NULL, '2024-06-18 10:23:46.101605+00', '2024-06-18 10:24:25.810898+00', '2024-06-18 10:23:46.101605+00', '{"eTag": "\"caa6c69af6368cc892d53deb22ebc857\"", "size": 219216, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:26.000Z", "contentLength": 219216, "httpStatusCode": 200}', '5350700b-95cb-4f39-a156-081c3cf2610e', NULL),
+-- 	('b9fc60e8-d8f8-47d8-8879-caafc1ff1398', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-e35ae702-e541-433c-9577-9256e1fe74c2', NULL, '2024-06-18 10:23:45.887926+00', '2024-06-18 10:24:30.876346+00', '2024-06-18 10:23:45.887926+00', '{"eTag": "\"3dff6ef6d25c186e0f239781ae06b7b7\"", "size": 23432, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:31.000Z", "contentLength": 23432, "httpStatusCode": 200}', '7fe133a4-d63e-41cd-bdab-7d6ea38630ab', NULL),
+-- 	('2e126f1d-b566-49a4-a7fb-757d2cffbc64', 'images', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-f41da9a5-f776-4782-8fb8-1129e5da8b75', NULL, '2024-06-18 10:23:46.142674+00', '2024-06-18 10:24:36.499763+00', '2024-06-18 10:23:46.142674+00', '{"eTag": "\"21ff19bdb22372cd383e261005c3330c\"", "size": 279415, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2024-06-18T10:24:37.000Z", "contentLength": 279415, "httpStatusCode": 200}', 'bf483a73-c262-458f-aa78-4453b924c0df', NULL);
 
 
 --
