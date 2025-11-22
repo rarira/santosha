@@ -1,0 +1,6 @@
+{
+  "corepack": true,
+  "buildCommand": "turbo build",
+  "installCommand": "pnpm install",
+  "framework": null
+}

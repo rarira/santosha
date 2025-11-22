@@ -1,7 +1,7 @@
 {
   "name": "santosha",
   "private": true,
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.21.0+sha512.dc1baf70c1bf5667daf8870b5a1296b87b51b279e5f72dc96ea4868ffedde5c2f858c9d2d2c1dc4e5f78e9ba65c6f9c2e91cb2e8d0ef4b84d0a16e0e8f44fa2e",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -20,7 +20,7 @@
     "turbo": "^2.3.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "resolutions": {
     "@types/react": "^19.0.2",
