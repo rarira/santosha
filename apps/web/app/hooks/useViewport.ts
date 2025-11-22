@@ -1,13 +1,14 @@
-import { isServer } from '@tanstack/react-query';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
+
+import U from '@/libs/util';
 
 export function useViewport() {
   const [width, setWidth] = useState(
-    isServer ? 0 : Math.max(document.documentElement.clientWidth, window.innerWidth),
+    U.isServer ? 0 : Math.max(document.documentElement.clientWidth, window.innerWidth),
   );
 
   useLayoutEffect(() => {
-    if (isServer) return;
+    if (U.isServer) return;
 
     const handleWindowResize = () =>
       setWidth(Math.max(document.documentElement.clientWidth, window.innerWidth));

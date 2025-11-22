@@ -2,7 +2,7 @@ import { PostgrestError, createClient } from '@supabase/supabase-js';
 
 import Util from '@/libs/util';
 import { Tables, Enums } from '@/types/supabase';
-import { ContactFormValues } from 'app/(external)/_components/sections/Contact/formSchema';
+import { ContactFormValues } from 'app/(external)/_components/sections/contact/formSchema';
 
 export const { SUPABASE_URL, SUPABASE_ANON_KEY } = Util.getEnv();
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -31,9 +31,10 @@ export async function createSignedUrl({
     .from(bucket)
     .createSignedUrl(filePath, expiresIn, options);
 
-  console.log({ data });
   if (error) {
-    throw error;
+    console.error('Failed to create signed URL:', error);
+    // Return a placeholder or empty signed URL instead of throwing
+    return { signedUrl: '', path: filePath };
   }
 
   return data;
@@ -79,7 +80,8 @@ export async function getPosts({
   const { data, error } = await promise;
 
   if (error) {
-    throw error;
+    console.error('Failed to fetch posts:', error);
+    return [];
   }
 
   return data as unknown as Tables<'posts'>[];

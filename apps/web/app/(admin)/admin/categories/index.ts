@@ -1,13 +1,15 @@
 import CategoryIcon from '@mui/icons-material/Category';
 
-import CategoryCreate from './CategoryCreate';
-import CategoryEdit from './CategoryEdit';
-import CategoryList from './CategoryList';
+import CategoryCreate from './category-create';
+import CategoryEdit from './category-edit';
+import CategoryList from './category-list';
 
-export default {
+const categories = {
   list: CategoryList,
   create: CategoryCreate,
   edit: CategoryEdit,
   icon: CategoryIcon,
   recordRepresentation: 'category',
 };
+
+export default categories;
