@@ -18,7 +18,6 @@ import {
   TextInput,
   Toolbar,
   required,
-  useGetIdentity,
   useNotify,
   useRedirect,
 } from 'react-admin';
@@ -91,11 +90,8 @@ const backlinksDefaultValue = [
   },
 ];
 
-export default function PostCreate(): React.JSX.Element | null {
-  const { data, isLoading, error } = useGetIdentity();
+export default function PostCreate(): React.JSX.Element {
   const dateDefaultValue = useMemo(() => new Date(), []);
-
-  if (isLoading || error) return null;
 
   return (
     <Create redirect="edit">
@@ -124,7 +120,6 @@ export default function PostCreate(): React.JSX.Element | null {
             }
           }}
         </FormDataConsumer>
-        <TextInput source="author_id" defaultValue={data?.id} style={{ display: 'none' }} />
       </SimpleFormConfigurable>
     </Create>
   );

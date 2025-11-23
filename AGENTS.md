@@ -6,23 +6,25 @@
 
 - **Build**: `pnpm build` (root에서 실행)
 - **Dev**: `pnpm dev` (root에서 실행, 개발 서버)
-- **Lint**: `pnpm lint` (root에서 실행)
+- **Lint**: `pnpm lint` (root에서 실행, 참고: ESLint 8 + Next.js 16 호환성 이슈로 타입 체크는 빌드 시 수행)
 - **Tests**: No test suite configured yet
 - **Type Generation**: `pnpm update-types` (generates Supabase types)
 - **Env Switch**: `pnpm env:stage` or `pnpm env:prod` (환경 전환)
+- **Supabase Local**: `pnpm supabase:start` / `pnpm supabase:stop` (로컬 Supabase 시작/중지)
 
 ## Code Style
 
 - **Formatting**: Prettier with 100 chars width, 2 spaces, single quotes, trailing commas, arrow parens: avoid
 - **TypeScript**: Strict mode enabled, use `noUncheckedIndexedAccess`, prefer explicit types for function returns
-- **Imports**: Use path aliases: `@/libs/*`, `@/types/*`, `@/i18n/*`, `@ui/*` (내부 components/ui/\*)
-- **File Organization**: Group imports (external → internal with aliases → relative), blank line before code
+- **Imports**: Use path aliases: `@/libs/*`, `@/types/*`, `@/i18n/*`, `@ui/*` (내부 components/ui/\*), `@/lib/*`, `@/styles/*`, `@/components/*`
+- **Import Order**: Group imports (external → internal with aliases → relative), blank line before code
 - **React**: Use `'use client'` directive for client components, `'use server'` for server actions
-- **Components**: Functional components with TypeScript, prefer `React.FC` or explicit return types like `Promise<React.JSX.Element>`
+- **Components**: Functional components with TypeScript, prefer explicit return types like `Promise<React.JSX.Element>` for async components
 - **Naming**: PascalCase for components/types, camelCase for functions/variables, kebab-case for files in route groups
 - **Error Handling**: Use Zod for validation, return error objects `{ message: string }` in server actions
-- **Async**: Prefer async/await, use React Query for data fetching with prefetchQuery for SSR
+- **Async**: Prefer async/await, use React Query for data fetching
 - **Exports**: Default export for pages/components, named exports for utilities/actions
+- **JSX**: Use `React.JSX.Element` type instead of `JSX.Element`
 
 ## Tech Stack
 
@@ -36,6 +38,8 @@
 ```
 santosha/
 ├── app/              # Next.js App Router (외부/관리자 페이지)
+│   ├── (admin)/     # 관리자 페이지 (React Admin)
+│   └── (external)/  # 외부 공개 페이지
 ├── components/       # UI 컴포넌트 (shadcn/ui)
 ├── lib/             # 유틸리티
 ├── libs/            # 비즈니스 로직 (Supabase, 상수)
@@ -51,7 +55,7 @@ santosha/
 프로젝트는 `.env.local`, `.env.stage`, `.env.prod` 환경 변수 파일을 사용합니다:
 
 - `NEXT_PUBLIC_SUPABASE_URL`: Supabase 프로젝트 URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase anon key
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase anon key (또는 PUBLISHABLE_KEY)
 - `SUPABASE_PROJECT_ID`: Supabase 프로젝트 ID (타입 생성용)
 
 환경 전환은 `pnpm env:stage` 또는 `pnpm env:prod` 사용.

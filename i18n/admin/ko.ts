@@ -32,13 +32,6 @@ const ko: TranslationMessages = U.merge(
           pictures: 'Related Pictures',
         },
       },
-      users: {
-        name: 'User |||| Users',
-        fields: {
-          name: 'Name',
-          role: 'Role',
-        },
-      },
     },
     post: {
       list: {

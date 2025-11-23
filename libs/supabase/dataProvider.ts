@@ -40,7 +40,7 @@ export const dataProvider = withLifecycleCallbacks(
           return { category_id, ...rest };
         }
 
-        const filename = `posts/${rest.author_id}-${uuidv4()}`;
+        const filename = `posts/${uuidv4()}`;
 
         const { data: uploadedData, error } = await supabaseClient.storage
           .from("images")

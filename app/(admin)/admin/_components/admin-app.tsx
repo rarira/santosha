@@ -10,7 +10,6 @@ import { dataProvider } from '@/libs/supabase/dataProvider';
 import categories from '../categories';
 import contacts from '../contacts';
 import posts from '../posts';
-import users from '../users';
 
 const AdminApp: React.FC = () => (
   <Admin
@@ -20,7 +19,6 @@ const AdminApp: React.FC = () => (
     i18nProvider={i18nProvider}
     darkTheme={null}
   >
-    <Resource name="users" {...users} />
     <Resource name="posts" {...posts} />
     <Resource name="categories" {...categories} />
     <Resource name="contacts" {...contacts} />
