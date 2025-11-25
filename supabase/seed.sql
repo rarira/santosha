@@ -37,32 +37,32 @@ INSERT INTO public.posts (id, created_at, title, body, published_at, teaser, cat
 -- Data for Name: schedules (Weekly Schedule for Each Class)
 --
 INSERT INTO public.schedules (title, class_type, center_id, day_of_week, start_time, end_time, additional_info) VALUES
--- Monday (0)
-('Vinyasa', 'studio', 1, 0, '10:00', '11:00', '초급~중급'),
-('Hatha', 'studio', 1, 0, '19:00', '20:00', '초급'),
+-- Sunday (0) - No classes
 
--- Tuesday (1)
-('Ashtanga', 'studio', 1, 1, '10:00', '11:30', '중급~고급'),
-('리프레시', 'studio', 1, 1, '19:30', '20:30', '모든 레벨'),
+-- Monday (1)
+('Vinyasa', 'studio', 1, 1, '10:00', '11:00', '초급~중급'),
+('Hatha', 'studio', 1, 1, '19:00', '20:00', '초급'),
 
--- Wednesday (2)
-('Vinyasa', 'studio', 1, 2, '10:00', '11:00', '초급~중급'),
-('Hatha', 'studio', 1, 2, '19:00', '20:00', '초급'),
+-- Tuesday (2)
+('Ashtanga', 'studio', 1, 2, '10:00', '11:30', '중급~고급'),
+('리프레시', 'studio', 1, 2, '19:30', '20:30', '모든 레벨'),
 
--- Thursday (3)
-('Ashtanga', 'studio', 1, 3, '10:00', '11:30', '중급~고급'),
-('리프레시', 'studio', 1, 3, '14:00', '15:00', '모든 레벨'),
+-- Wednesday (3)
+('Vinyasa', 'studio', 1, 3, '10:00', '11:00', '초급~중급'),
+('Hatha', 'studio', 1, 3, '19:00', '20:00', '초급'),
 
--- Friday (4)
-('Vinyasa', 'studio', 1, 4, '10:00', '11:00', '초급~중급'),
-('Hatha', 'studio', 1, 4, '19:00', '20:00', '초급'),
+-- Thursday (4)
+('Ashtanga', 'studio', 1, 4, '10:00', '11:30', '중급~고급'),
+('리프레시', 'studio', 1, 4, '14:00', '15:00', '모든 레벨'),
 
--- Saturday (5)
-('Ashtanga', 'studio', 1, 5, '09:00', '10:30', '중급~고급'),
-('Vinyasa', 'studio', 1, 5, '11:00', '12:00', '초급~중급'),
-('리프레시', 'studio', 1, 5, '14:00', '15:00', '모든 레벨');
+-- Friday (5)
+('Vinyasa', 'studio', 1, 5, '10:00', '11:00', '초급~중급'),
+('Hatha', 'studio', 1, 5, '19:00', '20:00', '초급'),
 
--- Sunday (6) - No classes
+-- Saturday (6)
+('Ashtanga', 'studio', 1, 6, '09:00', '10:30', '중급~고급'),
+('Vinyasa', 'studio', 1, 6, '11:00', '12:00', '초급~중급'),
+('리프레시', 'studio', 1, 6, '14:00', '15:00', '모든 레벨');
 
 --
 -- Storage objects for post images

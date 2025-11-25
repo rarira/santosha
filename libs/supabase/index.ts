@@ -111,7 +111,10 @@ export async function getSchedules(): Promise<
 > {
   const { data, error } = await supabaseClient
     .from("schedules")
-    .select("*, center:centers(*)")
+    .select(`
+      *,
+      centers(*)
+    `)
     .order("day_of_week")
     .order("start_time");
 
@@ -120,7 +123,16 @@ export async function getSchedules(): Promise<
     return [];
   }
 
-  return data as unknown as (Tables<"schedules"> & {
+  console.log("🔍 Raw schedules from DB (first 2):", JSON.stringify(data?.slice(0, 2), null, 2));
+
+  // Rename centers to center
+  const result = data?.map((schedule: any) => ({
+    ...schedule,
+    center: schedule.centers || null,
+    centers: undefined,
+  }));
+
+  return result as unknown as (Tables<"schedules"> & {
     center: Tables<"centers"> | null;
   })[];
 }

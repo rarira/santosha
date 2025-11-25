@@ -15,11 +15,11 @@ CREATE TABLE IF NOT EXISTS public.centers (
 -- Add RLS policies for centers
 ALTER TABLE public.centers ENABLE ROW LEVEL SECURITY;
 
--- Allow authenticated users to read centers
+-- Allow anyone to view centers (public info)
 CREATE POLICY "Anyone can view centers"
   ON public.centers
   FOR SELECT
-  TO authenticated
+  TO authenticated, anon
   USING (true);
 
 -- Allow authenticated users to insert centers

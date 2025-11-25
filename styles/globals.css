@@ -22,6 +22,11 @@
   --color-accent: hsl(35 75% 62%);
   --color-accent-foreground: hsl(25 20% 20%);
 
+  /* Yoga Schedule Colors */
+  --color-yoga-terracotta: hsl(18 65% 58%);
+  --color-yoga-sage: hsl(75 35% 50%);
+  --color-yoga-sand: hsl(35 50% 70%);
+
   /* Semantic tokens mapped to core palette */
   --color-border: hsl(25 15% 88%);
   --color-input: hsl(25 15% 92%);
@@ -148,6 +153,11 @@
     --foreground: hsl(25 20% 20%);
     --accent: hsl(35 75% 62%);
     --accent-foreground: hsl(25 20% 20%);
+
+    /* Yoga Schedule Colors */
+    --yoga-terracotta: hsl(18 65% 58%);
+    --yoga-sage: hsl(75 35% 50%);
+    --yoga-sand: hsl(35 50% 70%);
 
     /* Semantic tokens */
     --card: hsl(0 0% 100% / 0.95);

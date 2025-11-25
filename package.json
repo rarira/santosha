@@ -19,6 +19,7 @@
     "@mui/icons-material": "^5.16.10",
     "@mui/material": "^5.16.10",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-popover": "^1.1.15",
     "@spectrum/ra-language-korean": "^0.0.8",
     "@supabase/supabase-js": "^2.47.10",
     "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
