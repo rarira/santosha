@@ -13,7 +13,9 @@ import { Textarea } from '@ui/textarea';
 import { TextInputFieldProps } from './text-input-field';
 
 interface TextAreaFieldProps<TFieldValues extends Record<string, any>>
-  extends TextInputFieldProps<TFieldValues> {}
+  extends TextInputFieldProps<TFieldValues> {
+  maxLength?: number;
+}
 
 function TextAreaField<TFieldValues extends Record<string, any>>({
   name,
@@ -22,6 +24,7 @@ function TextAreaField<TFieldValues extends Record<string, any>>({
   label,
   placeholder,
   description,
+  maxLength = 1000,
 }: TextAreaFieldProps<TFieldValues>): React.JSX.Element | null {
   return (
     <FormField
@@ -29,16 +32,29 @@ function TextAreaField<TFieldValues extends Record<string, any>>({
       name={name}
       render={({ field }) => (
         <FormItem className={className}>
-          {label && <FormLabel>{label}</FormLabel>}
+          {label && <FormLabel className="text-sm font-semibold text-yoga-sage">{label}</FormLabel>}
           <FormControl>
-            <Textarea placeholder={placeholder} className="resize-none" {...field} />
+            <div className="relative group">
+              <Textarea
+                placeholder={placeholder}
+                className="resize-none min-h-32 border-yoga-sand/30 focus:border-yoga-terracotta focus:ring-yoga-terracotta/20 pr-16"
+                maxLength={maxLength}
+                {...field}
+              />
+              <div className="absolute bottom-3 right-3 text-xs text-muted-foreground opacity-0 group-focus-within:opacity-100 transition-opacity duration-200">
+                <span className={field.value?.length >= maxLength ? 'text-red-500 font-medium' : ''}>
+                  {field.value?.length || 0}
+                </span>
+                <span className="text-muted-foreground/60"> / {maxLength}</span>
+              </div>
+            </div>
           </FormControl>
           {description && (
             <FormDescription>
               You can <span>@mention</span> other users and organizations.
             </FormDescription>
           )}
-          <FormMessage />
+          <FormMessage className="text-xs" />
         </FormItem>
       )}
     />

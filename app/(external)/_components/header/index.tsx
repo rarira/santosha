@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import useScrollDirection from "app/hooks/useScrollDirection";
@@ -24,14 +25,18 @@ function Header(): React.JSX.Element {
           : "w-full md:top-0 md:max-w-(--max-width) md:bg-background"
       }`}
     >
-      <Link href="/" replace className="flex items-center justify-center">
-        <h1
-          className={`font-bold self-center pl-2 transition-all duration-300 ${
-            isScrolled ? "text-2xl md:text-2xl" : "text-3xl md:text-4xl"
-          }`}
-        >
-          Santosha
-        </h1>
+      <Link href="/" replace className="flex items-center justify-center pl-2">
+        <div className={`relative transition-all duration-300 ${
+          isScrolled ? "h-10 w-32" : "h-12 w-40"
+        }`}>
+          <Image
+            src="/image/santosha_logo.webp"
+            alt="Santosha Yoga"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
       </Link>
       <DesktopHeaderNavMenu />
       <MobileHeaderNavMenu />

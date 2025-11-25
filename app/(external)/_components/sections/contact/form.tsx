@@ -68,17 +68,17 @@ function ContactForm(): React.JSX.Element {
 
   return (
     <>
-      <Card className="w-full lg:w-1/2 lg:max-w-[600px] border-0 shadow-lg bg-gradient-to-br from-white to-yoga-cream/30 backdrop-blur-sm">
-        <CardContent className="pt-6">
+      <Card className="w-full lg:w-1/2 lg:max-w-[600px] border-0 shadow-xl bg-white/95 backdrop-blur-sm">
+        <CardContent className="p-8 lg:p-10">
           <Form {...form}>
             {state?.issues && (
-              <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
+              <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium">
                 {state.message}
               </div>
             )}
             <form
               ref={formRef}
-              className="space-y-6"
+              className="space-y-5"
               action={submitAction}
               onSubmit={e => {
                 e.preventDefault();
@@ -91,6 +91,7 @@ function ContactForm(): React.JSX.Element {
                     key={name}
                     name={name}
                     label={ko.form.field[name]}
+                    placeholder={ko.form.placeholder[name]}
                     control={form.control}
                   />
                 ) : (
@@ -98,18 +99,22 @@ function ContactForm(): React.JSX.Element {
                     key={name}
                     name={name}
                     label={ko.form.field[name]}
+                    placeholder={ko.form.placeholder[name]}
+                    maxLength={100}
                     control={form.control}
                   />
                 );
               })}
-              <Button
-                disabled={isPending}
-                type="submit"
-                className="w-full sm:w-auto px-8 bg-gradient-to-r from-yoga-terracotta to-yoga-sage hover:shadow-lg transition-all duration-300 hover:scale-105"
-              >
-                {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-                {ko.form.submit}
-              </Button>
+              <div className="pt-2">
+                <Button
+                  disabled={isPending}
+                  type="submit"
+                  className="w-full h-12 text-base font-semibold bg-linear-to-r from-yoga-terracotta to-yoga-sage hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                >
+                  {isPending && <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />}
+                  {ko.form.submit}
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
