@@ -40,7 +40,9 @@ export const dataProvider = withLifecycleCallbacks(
           return { category_id, ...rest };
         }
 
-        const filename = `posts/${uuidv4()}`;
+        // Get file extension from the original file
+        const fileExtension = picture.rawFile.name.split('.').pop() || 'jpg';
+        const filename = `posts/${uuidv4()}.${fileExtension}`;
 
         const { data: uploadedData, error } = await supabaseClient.storage
           .from("images")

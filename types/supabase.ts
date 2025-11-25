@@ -30,6 +30,33 @@ export type Database = {
         }
         Relationships: []
       }
+      centers: {
+        Row: {
+          additional_info: string | null
+          address: string
+          created_at: string
+          id: number
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          additional_info?: string | null
+          address: string
+          created_at?: string
+          id?: number
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          additional_info?: string | null
+          address?: string
+          created_at?: string
+          id?: number
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contacts: {
         Row: {
           content: string | null
@@ -110,6 +137,53 @@ export type Database = {
           },
         ]
       }
+      schedules: {
+        Row: {
+          additional_info: string | null
+          center_id: number | null
+          class_type: Database["public"]["Enums"]["class_type"]
+          created_at: string
+          day_of_week: number
+          end_time: string
+          id: number
+          start_time: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          additional_info?: string | null
+          center_id?: number | null
+          class_type?: Database["public"]["Enums"]["class_type"]
+          created_at?: string
+          day_of_week: number
+          end_time: string
+          id?: number
+          start_time: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          additional_info?: string | null
+          center_id?: number | null
+          class_type?: Database["public"]["Enums"]["class_type"]
+          created_at?: string
+          day_of_week?: number
+          end_time?: string
+          id?: number
+          start_time?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schedules_center_id_fkey"
+            columns: ["center_id"]
+            isOneToOne: false
+            referencedRelation: "centers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -120,6 +194,7 @@ export type Database = {
     Enums: {
       CategoryExtraInfo: "ClassScore"
       CategoryName: "요가" | "라이프스타일"
+      class_type: "studio" | "private" | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -249,6 +324,7 @@ export const Constants = {
     Enums: {
       CategoryExtraInfo: ["ClassScore"],
       CategoryName: ["요가", "라이프스타일"],
+      class_type: ["studio", "private", "other"],
     },
   },
 } as const

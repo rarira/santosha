@@ -8,8 +8,10 @@ import { authProvider } from '@/libs/supabase/authProvider';
 import { dataProvider } from '@/libs/supabase/dataProvider';
 
 import categories from '../categories';
+import centers from '../centers';
 import contacts from '../contacts';
 import posts from '../posts';
+import schedules from '../schedules';
 
 const AdminApp: React.FC = () => (
   <Admin
@@ -22,6 +24,8 @@ const AdminApp: React.FC = () => (
     <Resource name="posts" {...posts} />
     <Resource name="categories" {...categories} />
     <Resource name="contacts" {...contacts} />
+    <Resource name="centers" {...centers} />
+    <Resource name="schedules" {...schedules} />
   </Admin>
 );
 

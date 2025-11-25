@@ -32,7 +32,7 @@ export async function createSignedUrl({
 }) {
   const { data, error } = await supabaseClient.storage
     .from(bucket)
-    .createSignedUrl(filePath + ".jpg", expiresIn, options);
+    .createSignedUrl(filePath, expiresIn, options);
 
   if (error) {
     console.error("Failed to create signed URL:", error);
@@ -104,4 +104,23 @@ export async function getCategory(
   }
 
   return data[0];
+}
+
+export async function getSchedules(): Promise<
+  (Tables<"schedules"> & { center: Tables<"centers"> | null })[]
+> {
+  const { data, error } = await supabaseClient
+    .from("schedules")
+    .select("*, center:centers(*)")
+    .order("day_of_week")
+    .order("start_time");
+
+  if (error) {
+    console.error("Failed to fetch schedules:", error);
+    return [];
+  }
+
+  return data as unknown as (Tables<"schedules"> & {
+    center: Tables<"centers"> | null;
+  })[];
 }

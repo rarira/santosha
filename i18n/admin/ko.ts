@@ -32,6 +32,26 @@ const ko: TranslationMessages = U.merge(
           pictures: 'Related Pictures',
         },
       },
+      centers: {
+        name: '센터 |||| 센터',
+        fields: {
+          name: '센터명',
+          address: '주소',
+          additional_info: '기타 정보',
+        },
+      },
+      schedules: {
+        name: '스케줄 |||| 스케줄',
+        fields: {
+          title: '수업명',
+          class_type: '수업 종류',
+          center_id: '수업 장소',
+          day_of_week: '요일',
+          start_time: '시작 시간',
+          end_time: '종료 시간',
+          additional_info: '기타 정보',
+        },
+      },
     },
     post: {
       list: {

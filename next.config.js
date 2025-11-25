@@ -63,5 +63,8 @@ module.exports = {
         pathname: "/storage/v1/object/sign/**",
       },
     ],
+    dangerouslyAllowSVG: true,
+    // Allow localhost/loopback IPs for local development
+    unoptimized: process.env.NODE_ENV === "development",
   },
 };
