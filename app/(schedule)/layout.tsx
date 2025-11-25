@@ -6,14 +6,16 @@ import { cn } from '@/lib/utils';
 
 import { noto_sans_kr } from '@/libs/font';
 
-import Header from './_components/header';
-
 export const metadata: Metadata = {
-  title: 'Santosha Yoga Studio',
-  description: 'Yoga studio in the heart of the city.',
+  title: 'Santosha Yoga Studio - 수업 시간표',
+  description: '주간 요가 수업 일정을 확인하세요.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
+export default function ScheduleLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.JSX.Element {
   return (
     <html
       lang="ko"
@@ -21,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       suppressHydrationWarning
     >
       <body className="flex-col justify-items-center bg-background">
-        <Header />
         {children}
       </body>
     </html>

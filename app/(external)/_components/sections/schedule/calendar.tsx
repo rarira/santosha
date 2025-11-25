@@ -1,6 +1,9 @@
 'use client';
 
-import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ui/dialog';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@ui/drawer';
+import { useViewport } from '../../../../hooks/useViewport';
 import type { Tables } from '@/types/supabase';
 
 const DAYS_OF_WEEK = ['일', '월', '화', '수', '목', '금', '토'];
@@ -44,8 +47,19 @@ function formatTime(time: string): string {
 }
 
 function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Element {
-  console.log('📅 Total schedules:', schedules.length);
-  console.log('📅 First schedule sample:', schedules[0]);
+  const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const { isMobile } = useViewport();
+
+  const handleScheduleClick = (schedule: Schedule) => {
+    setSelectedSchedule(schedule);
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setTimeout(() => setSelectedSchedule(null), 200);
+  };
   
   // Group schedules by day of week
   const schedulesByDay = schedules.reduce(
@@ -59,8 +73,6 @@ function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Eleme
     {} as Record<number, Schedule[]>
   );
 
-  console.log('📊 Schedules by day:', schedulesByDay);
-
   // Generate time slots
   const timeSlots: string[] = [];
   for (let hour = START_HOUR; hour < END_HOUR; hour++) {
@@ -70,13 +82,13 @@ function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Eleme
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="min-w-[800px]">
+      <div className="min-w-[800px] md:min-w-0">
         {/* Header */}
         <div className="grid grid-cols-8 gap-px bg-yoga-sand/20">
-          <div className="bg-background p-2 text-center font-medium text-sm">시간</div>
+          <div className="bg-background p-2 text-center font-medium text-[10px] md:text-sm">시간</div>
           {DAYS_OF_WEEK.map((day, index) => (
-            <div key={index} className="bg-background p-2 text-center font-medium text-sm">
-              {day}요일
+            <div key={index} className="bg-background p-2 text-center font-medium text-[10px] md:text-sm">
+              {day}<span className="hidden sm:inline">요일</span>
             </div>
           ))}
         </div>
@@ -88,8 +100,8 @@ function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Eleme
             {timeSlots.map((time, index) => (
               <div
                 key={time}
-                className={`border-t border-yoga-sand/20 p-1 text-xs text-muted-foreground text-center ${
-                  index % 2 === 0 ? 'font-medium' : 'text-[10px]'
+                className={`border-t border-yoga-sand/20 p-1 text-[9px] md:text-xs text-muted-foreground text-center ${
+                  index % 2 === 0 ? 'font-medium' : 'text-[8px] md:text-[10px]'
                 }`}
                 style={{ height: '40px' }}
               >
@@ -122,77 +134,27 @@ function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Eleme
                   const colorClass =
                     CLASS_TYPE_COLORS[schedule.class_type as keyof typeof CLASS_TYPE_COLORS];
 
-                  console.log('🔲 Rendering schedule:', {
-                    title: schedule.title,
-                    day: dayIndex,
-                    startSlot,
-                    duration,
-                    startTime: schedule.start_time,
-                    endTime: schedule.end_time,
-                  });
-
                   return (
-                    <Popover key={schedule.id}>
-                      <PopoverTrigger asChild>
-                        <button
-                          className={`absolute left-1 right-1 rounded-lg border-2 ${colorClass} transition-all cursor-pointer p-2 text-white shadow-lg font-medium overflow-hidden`}
-                          style={{
-                            top: `${startSlot * 40}px`,
-                            height: `${duration * 40 - 4}px`,
-                            zIndex: 10,
-                          }}
-                        >
-                          <div className="text-sm font-bold truncate">{schedule.title}</div>
-                          <div className="text-xs opacity-95">
-                            {formatTime(schedule.start_time)} - {formatTime(schedule.end_time)}
-                          </div>
-                          {schedule.center && (
-                            <div className="text-xs opacity-90 truncate">
-                              📍 {schedule.center.name}
-                            </div>
-                          )}
-                        </button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-80" side="top">
-                        <div className="space-y-2">
-                          <h4 className="text-lg font-semibold text-yoga-terracotta">
-                            {schedule.title}
-                          </h4>
-                          <div className="space-y-1 text-sm">
-                            <div className="flex items-center gap-2">
-                              <span className="text-muted-foreground">⏰</span>
-                              <span>
-                                {formatTime(schedule.start_time)} - {formatTime(schedule.end_time)}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-muted-foreground">📚</span>
-                              <span>
-                                {schedule.class_type === 'studio'
-                                  ? '스튜디오'
-                                  : schedule.class_type === 'private'
-                                    ? '개인레슨'
-                                    : '기타'}
-                              </span>
-                            </div>
-                            {schedule.center && (
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground">📍</span>
-                                <span>{schedule.center.name}</span>
-                              </div>
-                            )}
-                            {schedule.additional_info && (
-                              <div className="flex items-start gap-2 mt-2 pt-2 border-t border-yoga-sand/20">
-                                <span className="text-muted-foreground">💡</span>
-                                <span className="text-xs text-muted-foreground">
-                                  {schedule.additional_info}
-                                </span>
-                              </div>
-                            )}
-                          </div>
+                    <button
+                      key={schedule.id}
+                      onClick={() => handleScheduleClick(schedule)}
+                      className={`absolute left-0.5 right-0.5 md:left-1 md:right-1 rounded-lg border-2 ${colorClass} transition-all cursor-pointer p-1 md:p-2 text-white shadow-lg font-medium overflow-hidden`}
+                      style={{
+                        top: `${startSlot * 40}px`,
+                        height: `${duration * 40 - 4}px`,
+                        zIndex: 10,
+                      }}
+                    >
+                      <div className="text-[9px] md:text-sm font-bold truncate leading-tight">{schedule.title}</div>
+                      <div className="text-[8px] md:text-xs opacity-95 leading-tight">
+                        {formatTime(schedule.start_time)} - {formatTime(schedule.end_time)}
+                      </div>
+                      {schedule.center && (
+                        <div className="text-[8px] md:text-xs opacity-90 truncate leading-tight">
+                          📍 {schedule.center.name}
                         </div>
-                      </PopoverContent>
-                    </Popover>
+                      )}
+                    </button>
                   );
                 })}
               </div>
@@ -223,6 +185,146 @@ function ScheduleCalendar({ schedules }: ScheduleCalendarProps): React.JSX.Eleme
           </div>
         )}
       </div>
+
+      {/* Desktop: Dialog */}
+      {!isMobile && selectedSchedule && (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">{selectedSchedule.title}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">🕐</span>
+                <div>
+                  <p className="text-sm text-muted-foreground">수업 시간</p>
+                  <p className="font-medium text-lg">
+                    {formatTime(selectedSchedule.start_time)} -{' '}
+                    {formatTime(selectedSchedule.end_time)}
+                  </p>
+                </div>
+              </div>
+
+              {selectedSchedule.center && (
+                <div className="flex items-center gap-3">
+                  <span className="text-4xl">📍</span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">장소</p>
+                    <p className="font-medium text-lg">{selectedSchedule.center.name}</p>
+                    {selectedSchedule.center.address && (
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {selectedSchedule.center.address}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">
+                  {selectedSchedule.class_type === 'studio'
+                    ? '🏢'
+                    : selectedSchedule.class_type === 'private'
+                      ? '👤'
+                      : '📚'}
+                </span>
+                <div>
+                  <p className="text-sm text-muted-foreground">수업 유형</p>
+                  <p className="font-medium text-lg">
+                    {selectedSchedule.class_type === 'studio'
+                      ? '스튜디오'
+                      : selectedSchedule.class_type === 'private'
+                        ? '개인레슨'
+                        : '기타'}
+                  </p>
+                </div>
+              </div>
+
+              {selectedSchedule.additional_info && (
+                <div className="flex items-start gap-3">
+                  <span className="text-4xl">ℹ️</span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">추가 정보</p>
+                    <p className="text-sm mt-1 whitespace-pre-wrap">
+                      {selectedSchedule.additional_info}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* Mobile: Drawer (Bottom Sheet) */}
+      {isMobile && selectedSchedule && (
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+          <DrawerContent className="max-h-[85vh]">
+            <DrawerHeader>
+              <DrawerTitle className="text-xl">{selectedSchedule.title}</DrawerTitle>
+            </DrawerHeader>
+            <div className="space-y-4 px-4 pb-8 overflow-y-auto">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">🕐</span>
+                <div>
+                  <p className="text-sm text-muted-foreground">수업 시간</p>
+                  <p className="font-medium">
+                    {formatTime(selectedSchedule.start_time)} -{' '}
+                    {formatTime(selectedSchedule.end_time)}
+                  </p>
+                </div>
+              </div>
+
+              {selectedSchedule.center && (
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">📍</span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">장소</p>
+                    <p className="font-medium">{selectedSchedule.center.name}</p>
+                    {selectedSchedule.center.address && (
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {selectedSchedule.center.address}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">
+                  {selectedSchedule.class_type === 'studio'
+                    ? '🏢'
+                    : selectedSchedule.class_type === 'private'
+                      ? '👤'
+                      : '📚'}
+                </span>
+                <div>
+                  <p className="text-sm text-muted-foreground">수업 유형</p>
+                  <p className="font-medium">
+                    {selectedSchedule.class_type === 'studio'
+                      ? '스튜디오'
+                      : selectedSchedule.class_type === 'private'
+                        ? '개인레슨'
+                        : '기타'}
+                  </p>
+                </div>
+              </div>
+
+              {selectedSchedule.additional_info && (
+                <div className="flex items-start gap-3">
+                  <span className="text-3xl">ℹ️</span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">추가 정보</p>
+                    <p className="text-sm mt-1 whitespace-pre-wrap">
+                      {selectedSchedule.additional_info}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </DrawerContent>
+        </Drawer>
+      )}
     </div>
   );
 }
