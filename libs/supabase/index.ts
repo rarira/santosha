@@ -7,7 +7,7 @@ import { ContactFormValues } from "app/(external)/_components/sections/contact/f
 export const { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } = Util.getEnv();
 export const supabaseClient = createClient(
   SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
 const DEFAULT_EXPIRES_IN = 60 * 5; // 5 minutes
@@ -32,7 +32,7 @@ export async function createSignedUrl({
 }) {
   const { data, error } = await supabaseClient.storage
     .from(bucket)
-    .createSignedUrl(filePath, expiresIn, options);
+    .createSignedUrl(filePath + ".jpg", expiresIn, options);
 
   if (error) {
     console.error("Failed to create signed URL:", error);
@@ -44,7 +44,7 @@ export async function createSignedUrl({
 }
 
 export async function createContact(
-  formData: ContactFormValues,
+  formData: ContactFormValues
 ): Promise<PostgrestError | null> {
   const { error } = await supabaseClient.from("contacts").insert({
     ...formData,
@@ -93,7 +93,7 @@ export async function getPosts({
 }
 
 export async function getCategory(
-  name: Enums<"CategoryName">,
+  name: Enums<"CategoryName">
 ): Promise<Tables<"categories">> {
   const { data, error } = await supabaseClient
     .from("categories")

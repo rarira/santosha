@@ -1,30 +1,32 @@
-import { Card } from '@ui/card';
+import { Card } from "@ui/card";
 
-import U from '@/libs/util';
-import { Tables } from '@/types/supabase';
+import U from "@/libs/util";
+import { Tables } from "@/types/supabase";
 
-import ClassScoreIndicator from './score-indicator';
-import ClassThumbnailImage from './thumbnail-Image';
+import ClassScoreIndicator from "./score-indicator";
+import ClassThumbnailImage from "./thumbnail-Image";
 
 interface ClassItemcardProps {
-  post: Tables<'posts'>;
+  post: Tables<"posts">;
 }
 
 function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
   return (
-    <Card className="group overflow-hidden border-0 bg-gradient-to-br from-yoga-sand/30 to-yoga-cream/50 backdrop-blur-sm shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-      <div className="flex flex-col h-full">
+    <Card className="group overflow-hidden border-0 bg-linear-to-br from-yoga-sand/30 to-yoga-cream/50 backdrop-blur-sm shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+      <div className="flex flex-col">
         {/* Image Section with Teaser Overlay */}
         <div className="relative overflow-hidden">
           {!!post.image && (
             <ClassThumbnailImage
-              imageFullPath={(post.image as Record<string, unknown>)['fullPath']}
+              imageFullPath={
+                (post.image as Record<string, unknown>)["fullPath"]
+              }
               alt={`${post.title}-thumbnail-image`}
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="transition-transform duration-500 group-hover:scale-105"
             />
           )}
           {/* Teaser Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-end p-6">
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent flex items-end p-6">
             <p className="text-white text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {post.teaser}
             </p>
@@ -32,7 +34,7 @@ function ClassItemcard({ post }: ClassItemcardProps): React.JSX.Element {
         </div>
 
         {/* Content Section */}
-        <div className="p-6 flex flex-col flex-grow">
+        <div className="p-6 flex flex-col grow">
           <h4 className="text-2xl font-semibold text-yoga-terracotta mb-6 text-center">
             {post.title}
           </h4>
