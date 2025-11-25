@@ -6,26 +6,34 @@ module.exports = {
   },
   images: {
     remotePatterns: [
+      // Supabase Storage - signed URLs (production)
       {
         protocol: "https",
         hostname: "iqxwubpdovdzncdhgmdd.supabase.co",
         port: "",
-        pathname: "/storage/v1/object/sign/images/**",
+        pathname: "/storage/v1/object/sign/**",
       },
+      // Supabase Storage - signed URLs (staging)
       {
         protocol: "https",
         hostname: "soxmnstpyjhecjdubpyi.supabase.co",
         port: "",
-        pathname: "/storage/v1/object/sign/images/**",
+        pathname: "/storage/v1/object/sign/**",
       },
+      // 로컬 Supabase
       {
         protocol: "http",
         hostname: "127.0.0.1",
         port: "54321",
-        pathname: "/storage/v1/**",
+        pathname: "/storage/v1/object/sign/**",
+      },
+      // localhost alternative
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "54321",
+        pathname: "/storage/v1/object/sign/**",
       },
     ],
-    // 로컬 개발 환경에서 이미지 최적화 비활성화
-    unoptimized: process.env.NODE_ENV === "development",
   },
 };
