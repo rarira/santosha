@@ -52,24 +52,21 @@ export const dataProvider = withLifecycleCallbacks(
           });
 
         if (error) {
-          console.log({ error });
+          // Upload failed, return data without image
+          return { category_id, ...rest };
         } else {
           const { image, ...oldData } = rest;
-          const { path, ...restUplodedData } = uploadedData;
 
           if (image) {
             const { bucket, path: oldpath } = splitBucketFullPath(
               image.fullPath,
             );
-            const { error: removeError } = await supabaseClient.storage
+            await supabaseClient.storage
               .from(bucket)
               .remove([oldpath]);
-            if (removeError) {
-              console.log({ removeError });
-            }
           }
 
-          return { ...oldData, category_id, image: restUplodedData };
+          return { ...oldData, category_id, image: uploadedData };
         }
       },
     },

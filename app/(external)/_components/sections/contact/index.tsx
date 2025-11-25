@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import Link from "next/link";
 import ContactForm from "./form";
 import SectionContainer from "../_components/section-container";
 import SectionTitle from "../_components/section-title";
-import { Button } from '@ui/button';
+import { Button } from "@ui/button";
 
 function ContactSection(): React.JSX.Element {
   return (
@@ -42,9 +42,7 @@ function ContactSection(): React.JSX.Element {
                 variant="outline"
                 className="w-full sm:w-auto border-yoga-sage text-yoga-sage hover:bg-yoga-sage hover:text-white transition-colors"
               >
-                <Link href="/schedule">
-                  📅 수업 시간표 보기
-                </Link>
+                <Link href="/schedule">📅 현재 수업 시간표 보기</Link>
               </Button>
             </div>
           </div>

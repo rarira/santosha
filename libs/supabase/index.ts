@@ -19,6 +19,17 @@ export function splitBucketFullPath(fullPath: string) {
   return { bucket, path: path.join("/") };
 }
 
+export function getPublicUrl({
+  bucket,
+  filePath,
+}: {
+  bucket: string;
+  filePath: string;
+}): string {
+  const { data } = supabaseClient.storage.from(bucket).getPublicUrl(filePath);
+  return data.publicUrl;
+}
+
 export async function createSignedUrl({
   bucket,
   filePath,
@@ -29,18 +40,12 @@ export async function createSignedUrl({
   filePath: string;
   expiresIn?: number;
   options?: { download?: string | boolean; transform?: any };
-}) {
-  const { data, error } = await supabaseClient.storage
-    .from(bucket)
-    .createSignedUrl(filePath, expiresIn, options);
-
-  if (error) {
-    console.error("Failed to create signed URL:", error);
-    // Return a placeholder or empty signed URL instead of throwing
-    return { signedUrl: "", path: filePath };
-  }
-
-  return data;
+}): Promise<{ signedUrl: string; path: string }> {
+  // For now, just use public URL since the bucket is public
+  // Image transformation can be added later if needed
+  const publicUrl = getPublicUrl({ bucket, filePath });
+  
+  return { signedUrl: publicUrl, path: filePath };
 }
 
 export async function createContact(
@@ -85,7 +90,6 @@ export async function getPosts({
   const { data, error } = await promise;
 
   if (error) {
-    console.error("Failed to fetch posts:", error);
     return [];
   }
 
@@ -111,19 +115,18 @@ export async function getSchedules(): Promise<
 > {
   const { data, error } = await supabaseClient
     .from("schedules")
-    .select(`
+    .select(
+      `
       *,
       centers(*)
-    `)
+    `
+    )
     .order("day_of_week")
     .order("start_time");
 
   if (error) {
-    console.error("Failed to fetch schedules:", error);
     return [];
   }
-
-  console.log("🔍 Raw schedules from DB (first 2):", JSON.stringify(data?.slice(0, 2), null, 2));
 
   // Rename centers to center
   const result = data?.map((schedule: any) => ({

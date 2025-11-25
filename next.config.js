@@ -6,6 +6,13 @@ module.exports = {
   },
   images: {
     remotePatterns: [
+      // Supabase Storage - public URLs (production)
+      {
+        protocol: "https",
+        hostname: "iqxwubpdovdzncdhgmdd.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**",
+      },
       // Supabase Storage - signed URLs with transform (production)
       {
         protocol: "https",
@@ -19,6 +26,13 @@ module.exports = {
         hostname: "iqxwubpdovdzncdhgmdd.supabase.co",
         port: "",
         pathname: "/storage/v1/object/sign/**",
+      },
+      // Supabase Storage - public URLs (staging)
+      {
+        protocol: "https",
+        hostname: "soxmnstpyjhecjdubpyi.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**",
       },
       // Supabase Storage - signed URLs with transform (staging)
       {
@@ -34,6 +48,13 @@ module.exports = {
         port: "",
         pathname: "/storage/v1/object/sign/**",
       },
+      // 로컬 Supabase - public URLs
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "54321",
+        pathname: "/storage/v1/object/public/**",
+      },
       // 로컬 Supabase - transform
       {
         protocol: "http",
@@ -47,6 +68,13 @@ module.exports = {
         hostname: "127.0.0.1",
         port: "54321",
         pathname: "/storage/v1/object/sign/**",
+      },
+      // localhost alternative - public URLs
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "54321",
+        pathname: "/storage/v1/object/public/**",
       },
       // localhost alternative - transform
       {
