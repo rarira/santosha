@@ -1,6 +1,6 @@
 {
   "name": "santosha-web",
-  "version": "0.0.1-alpha.SW-14",
+  "version": "0.0.1-beta",
   "private": true,
   "scripts": {
     "dev": "next dev",
