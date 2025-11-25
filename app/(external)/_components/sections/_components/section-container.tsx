@@ -17,7 +17,7 @@ function SectionContainer({ children, sectionName }: SectionContainerProps): Rea
       key={sectionName}
       ref={sectionRef}
       id={`${sectionName}-section`}
-      className={`flex-col max-w-[var(--max-width)] md:mx-auto pt-20 pb-8 px-4 md:px-8 transition-all ease-out duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`flex-col max-w-(--max-width) md:mx-auto pt-20 pb-8 px-4 md:px-8 transition-all ease-out duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
       {children}
     </section>

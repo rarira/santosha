@@ -11,8 +11,8 @@ function ClassScoreIndicator({ score, fullScore }: ClassScoreIndicatorProps): Re
           key={index}
           className={`w-8 h-2 rounded-full transition-all duration-300 ${
             index < score
-              ? 'bg-gradient-to-r from-yoga-terracotta to-yoga-sage shadow-sm'
-              : 'bg-yoga-sand/30'
+              ? 'bg-secondary shadow-sm'
+              : 'bg-neutral-light/40'
           }`}
         />
       ))}

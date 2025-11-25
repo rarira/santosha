@@ -5,14 +5,11 @@ import { useState } from 'react';
 
 import { nav_menu } from '@/libs/data/nav_menu';
 
-import { ThemeToggle } from './theme-toggle';
-
 function MobileHeaderNavMenu(): React.JSX.Element {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-row md:hidden items-center">
-      <ThemeToggle className="mr-2" />
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger className="md:hidden mr-4">
           <HamburgerMenuIcon className="w-6 h-6 stroke-slate-900 stroke-0 focus:stroke-1" />

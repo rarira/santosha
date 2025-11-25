@@ -1,8 +1,8 @@
-import HeroCarousel from './Carousel';
+import HeroCarousel from "./Carousel";
 
 function Hero(): React.JSX.Element {
   return (
-    <div className="relative flex-col max-w-[var(--max-width)] mx-auto">
+    <div className="relative flex-col max-w-(--max-width) mx-auto">
       <HeroCarousel />
     </div>
   );
