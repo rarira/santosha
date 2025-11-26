@@ -1,13 +1,16 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 function ScheduleHeader(): React.JSX.Element {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="fixed flex top-0 z-50  h-20 left-1/2 translate-x-[-50%] w-full mx-auto md:max-w-(--max-width) border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="w-full px-4 py-4">
-        <Link href="/" className="inline-flex items-center hover:opacity-80 transition-opacity">
+        <Link
+          href="/"
+          className="inline-flex items-center hover:opacity-80 transition-opacity"
+        >
           <Image
             src="/image/santosha_logo.webp"
             alt="Santosha Logo"
