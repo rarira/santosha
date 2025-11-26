@@ -1,8 +1,8 @@
 import EventIcon from '@mui/icons-material/Event';
 
-import ScheduleCreate from './schedule-create';
-import ScheduleEdit from './schedule-edit';
-import ScheduleList from './schedule-list';
+import ScheduleCreate from './create';
+import ScheduleEdit from './edit';
+import ScheduleList from './list';
 
 const schedules = {
   list: ScheduleList,

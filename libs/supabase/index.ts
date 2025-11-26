@@ -7,7 +7,14 @@ import { ContactFormValues } from "app/(external)/_components/sections/contact/f
 export const { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } = Util.getEnv();
 export const supabaseClient = createClient(
   SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
+  SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    },
+  }
 );
 
 const DEFAULT_EXPIRES_IN = 60 * 5; // 5 minutes

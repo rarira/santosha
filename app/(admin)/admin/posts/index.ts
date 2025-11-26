@@ -1,9 +1,9 @@
 import BookIcon from '@mui/icons-material/Book';
 
-import PostCreate from './post-create';
-import PostEdit from './post-edit';
-import PostList from './post-list';
-import PostShow from './post-show';
+import PostCreate from './create';
+import PostEdit from './edit';
+import PostList from './list';
+import PostShow from './show';
 
 const posts = {
   list: PostList,

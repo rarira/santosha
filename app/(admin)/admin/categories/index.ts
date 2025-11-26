@@ -1,8 +1,8 @@
 import CategoryIcon from '@mui/icons-material/Category';
 
-import CategoryCreate from './category-create';
-import CategoryEdit from './category-edit';
-import CategoryList from './category-list';
+import CategoryCreate from './create';
+import CategoryEdit from './edit';
+import CategoryList from './list';
 
 const categories = {
   list: CategoryList,

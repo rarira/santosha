@@ -1,8 +1,8 @@
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-import CenterCreate from './center-create';
-import CenterEdit from './center-edit';
-import CenterList from './center-list';
+import CenterCreate from './create';
+import CenterEdit from './edit';
+import CenterList from './list';
 
 const centers = {
   list: CenterList,

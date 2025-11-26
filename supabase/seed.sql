@@ -1,6 +1,100 @@
 SET session_replication_role = replica;
 
 --
+-- Data for Name: auth.users (Admin accounts)
+--
+INSERT INTO auth.users (
+    instance_id,
+    id,
+    aud,
+    role,
+    email,
+    encrypted_password,
+    email_confirmed_at,
+    invited_at,
+    confirmation_token,
+    confirmation_sent_at,
+    recovery_token,
+    recovery_sent_at,
+    email_change_token_new,
+    email_change,
+    email_change_sent_at,
+    last_sign_in_at,
+    raw_app_meta_data,
+    raw_user_meta_data,
+    is_super_admin,
+    created_at,
+    updated_at,
+    phone,
+    phone_confirmed_at,
+    phone_change,
+    phone_change_token,
+    phone_change_sent_at,
+    email_change_token_current,
+    email_change_confirm_status,
+    banned_until,
+    reauthentication_token,
+    reauthentication_sent_at,
+    is_sso_user,
+    deleted_at
+) VALUES (
+    '00000000-0000-0000-0000-000000000000',
+    'ff648a44-398c-4671-b868-f1763155c475',
+    'authenticated',
+    'authenticated',
+    'rarira@gmail.com',
+    '$2a$10$raKe1H8QAc.eORVNLLbCt.vnQuZeben/ouz3NZoQQF8PBL5VE65Cy', -- password: test1234
+    now(),
+    NULL,
+    '',
+    NULL,
+    '',
+    NULL,
+    '',
+    '',
+    NULL,
+    NULL,
+    '{"provider": "email", "providers": ["email"]}',
+    '{}',
+    NULL,
+    now(),
+    now(),
+    NULL,
+    NULL,
+    '',
+    '',
+    NULL,
+    '',
+    0,
+    NULL,
+    '',
+    NULL,
+    false,
+    NULL
+);
+
+--
+-- Data for Name: auth.identities
+--
+INSERT INTO auth.identities (
+    id,
+    user_id,
+    identity_data,
+    provider,
+    last_sign_in_at,
+    created_at,
+    updated_at
+) VALUES (
+    'ff648a44-398c-4671-b868-f1763155c475',
+    'ff648a44-398c-4671-b868-f1763155c475',
+    '{"sub": "ff648a44-398c-4671-b868-f1763155c475", "email": "rarira@gmail.com", "email_verified": false, "phone_verified": false}',
+    'email',
+    now(),
+    now(),
+    now()
+);
+
+--
 -- Data for Name: categories
 --
 INSERT INTO public.categories (id, created_at, name, extra_info) VALUES
@@ -66,11 +160,13 @@ INSERT INTO public.schedules (title, class_type, center_id, day_of_week, start_t
 
 --
 -- Storage objects for post images
+-- Note: 실제 이미지 파일은 별도로 Supabase Storage에 업로드되어야 합니다.
+-- 아래 INSERT 문은 메타데이터만 복원하며, 실제 파일이 storage 폴더에 있어야 합니다.
 --
--- INSERT INTO storage.objects (name, bucket_id, owner, created_at, updated_at, last_accessed_at, metadata) VALUES 
--- ('posts/de351e75-782e-4df7-9c1f-6c388c80276d-7215f096-4040-47b9-b6aa-74d546effa15.jpg', 'images', NULL, '2025-11-25 10:56:59.91654+00', '2025-11-25 10:56:59.91654+00', '2025-11-25 10:56:59.91654+00', '{"eTag": "\"caa6c69af6368cc892d53deb22ebc857\"", "size": 219216, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-25T10:56:59.902Z", "contentLength": 219216, "httpStatusCode": 200}'),
--- ('posts/de351e75-782e-4df7-9c1f-6c388c80276d-e35ae702-e541-433c-9577-9256e1fe74c2.jpg', 'images', NULL, '2025-11-25 10:56:59.974523+00', '2025-11-25 10:56:59.974523+00', '2025-11-25 10:56:59.974523+00', '{"eTag": "\"3dff6ef6d25c186e0f239781ae06b7b7\"", "size": 23432, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-25T10:56:59.966Z", "contentLength": 23432, "httpStatusCode": 200}'),
--- ('posts/de351e75-782e-4df7-9c1f-6c388c80276d-146c4d7d-91a6-4a5e-817e-14d0bda5a40a.jpg', 'images', NULL, '2025-11-25 10:56:59.974709+00', '2025-11-25 10:56:59.974709+00', '2025-11-25 10:56:59.974709+00', '{"eTag": "\"f6c91bb01fb0d5f93435a74e21a1ffe1\"", "size": 93087, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-25T10:56:59.966Z", "contentLength": 93087, "httpStatusCode": 200}'),
--- ('posts/de351e75-782e-4df7-9c1f-6c388c80276d-f41da9a5-f776-4782-8fb8-1129e5da8b75.jpg', 'images', NULL, '2025-11-25 10:56:59.985523+00', '2025-11-25 10:56:59.985523+00', '2025-11-25 10:56:59.985523+00', '{"eTag": "\"21ff19bdb22372cd383e261005c3330c\"", "size": 279415, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-25T10:56:59.978Z", "contentLength": 279415, "httpStatusCode": 200}');
+INSERT INTO storage.objects (id, name, bucket_id, owner, created_at, updated_at, last_accessed_at, metadata) VALUES 
+('d2a45494-b7ab-41ad-8509-315a3c0585c6', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-146c4d7d-91a6-4a5e-817e-14d0bda5a40a.jpg', 'images', NULL, now(), now(), now(), '{"eTag": "\"f6c91bb01fb0d5f93435a74e21a1ffe1\"", "size": 93087, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-26T06:26:06.329Z", "contentLength": 93087, "httpStatusCode": 200}'),
+('599a8320-6056-4253-9dc6-0dbed58f9cc3', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-7215f096-4040-47b9-b6aa-74d546effa15.jpg', 'images', NULL, now(), now(), now(), '{"eTag": "\"caa6c69af6368cc892d53deb22ebc857\"", "size": 219216, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-26T06:26:06.381Z", "contentLength": 219216, "httpStatusCode": 200}'),
+('14cea190-fda6-4405-b5ae-5e56588fd48d', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-e35ae702-e541-433c-9577-9256e1fe74c2.jpg', 'images', NULL, now(), now(), now(), '{"eTag": "\"3dff6ef6d25c186e0f239781ae06b7b7\"", "size": 23432, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-26T06:26:06.397Z", "contentLength": 23432, "httpStatusCode": 200}'),
+('3fa1ae39-e87c-417b-974e-61f00021731f', 'posts/de351e75-782e-4df7-9c1f-6c388c80276d-f41da9a5-f776-4782-8fb8-1129e5da8b75.jpg', 'images', NULL, now(), now(), now(), '{"eTag": "\"21ff19bdb22372cd383e261005c3330c\"", "size": 279415, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-11-26T06:26:06.417Z", "contentLength": 279415, "httpStatusCode": 200}');
 
 SET session_replication_role = DEFAULT;

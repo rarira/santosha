@@ -52,8 +52,9 @@ export const dataProvider = withLifecycleCallbacks(
           });
 
         if (error) {
-          // Upload failed, return data without image
-          return { category_id, ...rest };
+          // Upload failed, log error and return data without image
+          console.error("Image upload failed:", error);
+          throw new Error(`Image upload failed: ${error.message}`);
         } else {
           const { image, ...oldData } = rest;
 

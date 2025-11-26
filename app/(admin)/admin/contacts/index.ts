@@ -1,7 +1,7 @@
 import ContactIcon from '@mui/icons-material/ContactSupport';
 
-import ContactEdit from './contact-edit';
-import ContactList from './contact-list';
+import ContactEdit from './edit';
+import ContactList from './list';
 
 const contacts = {
   list: ContactList,
