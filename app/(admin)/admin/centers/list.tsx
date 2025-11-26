@@ -30,8 +30,8 @@ export default function CenterList(): React.JSX.Element {
         <TextField source="id" />
         <TextField source="name" label="센터명" />
         <TextField source="address" label="주소" />
-        <TextField source="phone" label="전화번호" />
-        <TextField source="link" label="지도 링크" />
+        <TextField source="naver_place_id" label="네이버 플레이스 ID" />
+        <TextField source="social_link" label="소셜 링크" />
         <DateField source="created_at" label="생성일" showTime />
         <EditButton />
       </Datagrid>

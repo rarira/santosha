@@ -9,6 +9,8 @@
     "lint": "echo 'ESLint 8 + Next.js 16: Known circular reference issue. Type checking is done during build.'",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
+    "supabase:reset": "bash scripts/reset-db.sh",
+    "supabase:dump": "bash scripts/dump-seed-data.sh",
     "update-types": "eval $(grep '^SUPABASE_PROJECT_ID' .env) && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > types/supabase.ts",
     "env:switch": "bash scripts/switch-env.sh",
     "env:stage": "bash scripts/switch-env.sh stage",
