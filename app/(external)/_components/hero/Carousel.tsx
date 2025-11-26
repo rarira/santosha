@@ -7,31 +7,10 @@ import {
   type CarouselApi,
 } from '@ui/carousel';
 import { cn } from '@/lib/utils';
+import { HERO_SLIDES } from '@/lib/statics';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
-import carouselImage1 from 'public/image/hero/lizzy-004.jpg';
-import carouselImage2 from 'public/image/hero/lizzy-006.jpg';
-import carouselImage3 from 'public/image/hero/lizzy-014.jpg';
-
-const slides = [
-  {
-    image: carouselImage1,
-    title: '평온한 마음',
-    subtitle: '요가로 찾는 내면의 평화',
-  },
-  {
-    image: carouselImage2,
-    title: '건강한 몸',
-    subtitle: '균형잡힌 자세와 호흡',
-  },
-  {
-    image: carouselImage3,
-    title: '행복한 일상',
-    subtitle: '산토샤 요가와 함께',
-  },
-];
 
 function HeroCarousel(): React.JSX.Element {
   const [api, setApi] = useState<CarouselApi>();
@@ -72,7 +51,7 @@ function HeroCarousel(): React.JSX.Element {
       className="relative"
     >
       <CarouselContent>
-        {slides.map((slide, index) => (
+        {HERO_SLIDES.map((slide, index) => (
           <CarouselItem key={index} className="relative">
             {/* 모바일: 1:1, 데스크톱: 16:9 - CSS로 처리 */}
             <div className="relative w-full aspect-square md:aspect-video md:rounded-2xl overflow-hidden">

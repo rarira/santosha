@@ -1,6 +1,6 @@
 interface SectionTitleProps {
   title: string;
-  subtitle?: string;
+  subtitle?: string | null;
 }
 
 function SectionTitle({ title, subtitle }: SectionTitleProps): React.JSX.Element {

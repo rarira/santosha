@@ -1,38 +1,40 @@
 import Link from "next/link";
+import { SECTIONS, CONTACT_INFO } from "@/lib/statics";
 import ContactForm from "./form";
 import SectionContainer from "../_components/section-container";
 import SectionTitle from "../_components/section-title";
 import { Button } from "@ui/button";
 
 function ContactSection(): React.JSX.Element {
+  const { title, subtitle } = SECTIONS.contact;
+
   return (
     <SectionContainer sectionName="contact">
-      <SectionTitle title="Contact" subtitle="연락해 주세요" />
+      <SectionTitle title={title} subtitle={subtitle} />
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
         <div className="flex-1 space-y-6">
           <div className="p-8 rounded-2xl bg-linear-to-br from-yoga-sand/30 to-yoga-cream/40 backdrop-blur-sm border border-yoga-sand/20">
             <h3 className="text-2xl font-semibold text-yoga-terracotta mb-4">
-              함께 요가를 시작해보세요
+              {CONTACT_INFO.heading}
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              요가에 관심이 있으시거나 궁금한 점이 있으시면 언제든 연락주세요.
-              친절하고 자세하게 안내해드리겠습니다.
+              {CONTACT_INFO.description}
             </p>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-3">
                 <span className="text-yoga-sage font-medium min-w-16">
-                  문의 시간
+                  {CONTACT_INFO.businessHours.label}
                 </span>
                 <span className="text-muted-foreground">
-                  평일 09:00 - 18:00
+                  {CONTACT_INFO.businessHours.value}
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-yoga-sage font-medium min-w-16">
-                  답변 시간
+                  {CONTACT_INFO.responseTime.label}
                 </span>
                 <span className="text-muted-foreground">
-                  영업일 기준 24시간 이내
+                  {CONTACT_INFO.responseTime.value}
                 </span>
               </div>
             </div>
@@ -42,7 +44,7 @@ function ContactSection(): React.JSX.Element {
                 variant="outline"
                 className="w-full sm:w-auto border-yoga-sage text-yoga-sage hover:bg-yoga-sage hover:text-white transition-colors"
               >
-                <Link href="/schedule">📅 현재 수업 시간표 보기</Link>
+                <Link href={CONTACT_INFO.scheduleButton.href}>{CONTACT_INFO.scheduleButton.text}</Link>
               </Button>
             </div>
           </div>

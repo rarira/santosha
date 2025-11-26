@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { SITE_INFO } from "@/lib/statics";
 import useScrollDirection from "app/hooks/useScrollDirection";
 import { useViewport } from "app/hooks/useViewport";
 
@@ -30,8 +31,8 @@ function Header(): React.JSX.Element {
           isScrolled ? "h-10 w-32" : "h-12 w-40"
         }`}>
           <Image
-            src="/image/santosha_logo.webp"
-            alt="Santosha Yoga"
+            src={SITE_INFO.logo.path}
+            alt={SITE_INFO.logo.alt}
             fill
             className="object-contain"
             priority
