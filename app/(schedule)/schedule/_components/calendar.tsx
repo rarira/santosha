@@ -46,6 +46,217 @@ function formatTime(time: string): string {
   return time.slice(0, 5);
 }
 
+// Generate time slots
+function generateTimeSlots(): string[] {
+  const timeSlots: string[] = [];
+  for (let hour = START_HOUR; hour < END_HOUR; hour++) {
+    timeSlots.push(`${hour.toString().padStart(2, "0")}:00`);
+    timeSlots.push(`${hour.toString().padStart(2, "0")}:30`);
+  }
+  return timeSlots;
+}
+
+// Calendar Header Component
+function CalendarHeader({
+  isMobile,
+}: {
+  isMobile: boolean;
+}): React.JSX.Element {
+  return (
+    <div className="grid grid-cols-7 gap-px bg-yoga-sand/20">
+      {DAYS_OF_WEEK.map((day, index) => (
+        <div
+          key={index}
+          className={`bg-background p-2 text-center font-medium ${
+            isMobile ? "text-[10px]" : "text-sm"
+          }`}
+        >
+          {isMobile ? day : `${day}요일`}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Schedule Block Component
+function ScheduleBlock({
+  schedule,
+  isSelected,
+  isMobile,
+  onClick,
+}: {
+  schedule: Schedule;
+  isSelected: boolean;
+  isMobile: boolean;
+  onClick: () => void;
+}): React.JSX.Element {
+  const { startSlot, duration } = getSchedulePosition(
+    schedule.start_time,
+    schedule.end_time
+  );
+  const colorClass =
+    CLASS_TYPE_COLORS[schedule.class_type as keyof typeof CLASS_TYPE_COLORS];
+
+  const styles = isMobile
+    ? {
+        position: "left-0.5 right-0.5",
+        padding: "p-1",
+        titleSize: "text-[9px]",
+        timeSize: "text-[8px]",
+        centerSize: "text-[8px]",
+        marginBottom: "mb-1",
+      }
+    : {
+        position: "left-1 right-1",
+        padding: "p-2",
+        titleSize: "text-sm",
+        timeSize: "text-xs",
+        centerSize: "text-xs",
+        marginBottom: "mb-2",
+      };
+
+  return (
+    <button
+      onClick={onClick}
+      className={`absolute ${styles.position} rounded-lg border-2 ${colorClass} transition-all cursor-pointer ${styles.padding} text-white shadow-lg font-medium overflow-hidden ${
+        isSelected && !isMobile ? "ring-4 ring-yoga-terracotta/50" : ""
+      }`}
+      style={{
+        top: `${startSlot * 40}px`,
+        height: `${duration * 40 - 4}px`,
+        zIndex: isSelected && !isMobile ? 20 : 10,
+      }}
+    >
+      <div
+        className={`${styles.titleSize} font-bold truncate leading-tight ${styles.marginBottom}`}
+      >
+        {schedule.title}
+      </div>
+      <div
+        className={`${styles.timeSize} opacity-95 leading-tight ${styles.marginBottom}`}
+      >
+        {formatTime(schedule.start_time)} - {formatTime(schedule.end_time)}
+      </div>
+      {schedule.center && (
+        <div className={`${styles.centerSize} opacity-90 truncate leading-tight`}>
+          {isMobile ? `📍 ${schedule.center.name}` : schedule.center.name}
+        </div>
+      )}
+    </button>
+  );
+}
+
+// Calendar Grid Component
+function CalendarGrid({
+  schedulesByDay,
+  timeSlots,
+  hasSchedules,
+  isMobile,
+  selectedSchedule,
+  onScheduleClick,
+}: {
+  schedulesByDay: Record<number, Schedule[]>;
+  timeSlots: string[];
+  hasSchedules: boolean;
+  isMobile: boolean;
+  selectedSchedule: Schedule | null;
+  onScheduleClick: (schedule: Schedule) => void;
+}): React.JSX.Element {
+  const timeLabelStyle = isMobile
+    ? "absolute left-0.5 top-0 text-[8px] text-muted-foreground/50 font-medium"
+    : "absolute left-1 top-0 text-[10px] text-muted-foreground/50 font-medium";
+
+  return (
+    <div
+      className={`relative grid grid-cols-7 gap-px bg-yoga-sand/20 ${
+        !hasSchedules ? "min-h-[600px]" : ""
+      }`}
+    >
+      {DAYS_OF_WEEK.map((_, dayIndex) => {
+        const daySchedules = schedulesByDay[dayIndex] || [];
+
+        return (
+          <div key={dayIndex} className="relative bg-background">
+            {/* Time slot grid lines with time labels for first column (Sunday) */}
+            {hasSchedules &&
+              timeSlots.map((time, index) => (
+                <div
+                  key={time}
+                  className="border-t border-yoga-sand/10 relative"
+                  style={{ height: "40px" }}
+                >
+                  {dayIndex === 0 && index % 2 === 0 && (
+                    <div className={timeLabelStyle}>{time}</div>
+                  )}
+                </div>
+              ))}
+
+            {/* Schedule blocks */}
+            {daySchedules.map((schedule) => (
+              <ScheduleBlock
+                key={schedule.id}
+                schedule={schedule}
+                isSelected={selectedSchedule?.id === schedule.id}
+                isMobile={isMobile}
+                onClick={() => onScheduleClick(schedule)}
+              />
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// Empty State Component
+function EmptyState({ isMobile }: { isMobile: boolean }): React.JSX.Element {
+  const styles = isMobile
+    ? {
+        container: "text-center p-6",
+        emoji: "text-5xl mb-3",
+        title: "text-lg font-semibold text-yoga-terracotta mb-1",
+        subtitle: "text-xs text-muted-foreground",
+      }
+    : {
+        container: "text-center p-8",
+        emoji: "text-6xl mb-4",
+        title: "text-xl font-semibold text-yoga-terracotta mb-2",
+        subtitle: "text-sm text-muted-foreground",
+      };
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm rounded-lg z-30">
+      <div className={styles.container}>
+        <div className={styles.emoji}>📅</div>
+        <p className={styles.title}>현재 등록된 수업이 없습니다</p>
+        <p className={styles.subtitle}>
+          새로운 수업 일정이 곧 업데이트될 예정입니다
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// Legend Component
+function Legend(): React.JSX.Element {
+  return (
+    <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-yoga-terracotta border-2 border-yoga-terracotta" />
+        <span>스튜디오</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-yoga-sage border-2 border-yoga-sage" />
+        <span>개인레슨</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-yoga-sand border-2 border-yoga-sand" />
+        <span>기타</span>
+      </div>
+    </div>
+  );
+}
+
 function ScheduleDetailPanel({
   schedule,
 }: {
@@ -158,12 +369,8 @@ function ScheduleCalendar({
     return acc;
   }, {} as Record<number, Schedule[]>);
 
-  // Generate time slots
-  const timeSlots: string[] = [];
-  for (let hour = START_HOUR; hour < END_HOUR; hour++) {
-    timeSlots.push(`${hour.toString().padStart(2, "0")}:00`);
-    timeSlots.push(`${hour.toString().padStart(2, "0")}:30`);
-  }
+  const timeSlots = generateTimeSlots();
+  const hasSchedules = schedules.length > 0;
 
   return (
     <>
@@ -172,7 +379,7 @@ function ScheduleCalendar({
         {/* Calendar container - 2 column when schedules exist, centered single column when empty */}
         <div
           className={`${
-            schedules.length > 0
+            hasSchedules
               ? "grid md:grid-cols-[1fr_400px] md:gap-6"
               : "flex justify-center"
           }`}
@@ -180,128 +387,25 @@ function ScheduleCalendar({
           {/* Calendar */}
           <div className="overflow-x-auto">
             <div className="min-w-[600px] relative">
-              {/* Header */}
-              <div className="grid grid-cols-7 gap-px bg-yoga-sand/20">
-                {DAYS_OF_WEEK.map((day, index) => (
-                  <div
-                    key={index}
-                    className="bg-background p-2 text-center font-medium text-sm"
-                  >
-                    {day}요일
-                  </div>
-                ))}
-              </div>
+              <CalendarHeader isMobile={false} />
 
-              {/* Time grid */}
-              <div
-                className={`relative grid grid-cols-7 gap-px bg-yoga-sand/20 ${
-                  schedules.length === 0 ? "min-h-[600px]" : ""
-                }`}
-              >
-                {/* Days grid */}
-                {DAYS_OF_WEEK.map((_, dayIndex) => {
-                  const daySchedules = schedulesByDay[dayIndex] || [];
+              <CalendarGrid
+                schedulesByDay={schedulesByDay}
+                timeSlots={timeSlots}
+                hasSchedules={hasSchedules}
+                isMobile={false}
+                selectedSchedule={selectedSchedule}
+                onScheduleClick={handleScheduleClick}
+              />
 
-                  return (
-                    <div key={dayIndex} className="relative bg-background">
-                      {/* Time slot grid lines with time labels for first column (Sunday) */}
-                      {schedules.length > 0 &&
-                        timeSlots.map((time, index) => (
-                          <div
-                            key={time}
-                            className="border-t border-yoga-sand/10 relative"
-                            style={{ height: "40px" }}
-                          >
-                            {dayIndex === 0 && index % 2 === 0 && (
-                              <div className="absolute left-1 top-0 text-[10px] text-muted-foreground/50 font-medium">
-                                {time}
-                              </div>
-                            )}
-                          </div>
-                        ))}
+              {!hasSchedules && <EmptyState isMobile={false} />}
 
-                      {/* Schedule blocks */}
-                      {daySchedules.map((schedule) => {
-                        const { startSlot, duration } = getSchedulePosition(
-                          schedule.start_time,
-                          schedule.end_time
-                        );
-                        const colorClass =
-                          CLASS_TYPE_COLORS[
-                            schedule.class_type as keyof typeof CLASS_TYPE_COLORS
-                          ];
-                        const isSelected = selectedSchedule?.id === schedule.id;
-
-                        return (
-                          <button
-                            key={schedule.id}
-                            onClick={() => handleScheduleClick(schedule)}
-                            className={`absolute left-1 right-1 rounded-lg border-2 ${colorClass} transition-all cursor-pointer p-2 text-white shadow-lg font-medium overflow-hidden ${
-                              isSelected ? "ring-4 ring-yoga-terracotta/50" : ""
-                            }`}
-                            style={{
-                              top: `${startSlot * 40}px`,
-                              height: `${duration * 40 - 4}px`,
-                              zIndex: isSelected ? 20 : 10,
-                            }}
-                          >
-                            <div className="text-sm font-bold truncate leading-tight mb-2">
-                              {schedule.title}
-                            </div>
-                            <div className="text-xs opacity-95 leading-tight mb-2">
-                              {formatTime(schedule.start_time)} -{" "}
-                              {formatTime(schedule.end_time)}
-                            </div>
-                            {schedule.center && (
-                              <div className="text-xs opacity-90 truncate leading-tight">
-                                {schedule.center.name}
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* No schedules overlay - Desktop */}
-              {schedules.length === 0 && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm rounded-lg z-30">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">📅</div>
-                    <p className="text-xl font-semibold text-yoga-terracotta mb-2">
-                      현재 등록된 수업이 없습니다
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      새로운 수업 일정이 곧 업데이트될 예정입니다
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Legend */}
-              {schedules.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded bg-yoga-terracotta border-2 border-yoga-terracotta" />
-                    <span>스튜디오</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded bg-yoga-sage border-2 border-yoga-sage" />
-                    <span>개인레슨</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded bg-yoga-sand border-2 border-yoga-sand" />
-                    <span>기타</span>
-                  </div>
-                </div>
-              )}
+              {hasSchedules && <Legend />}
             </div>
           </div>
 
           {/* Right: Detail panel (only when schedules exist) */}
-          {schedules.length > 0 && (
+          {hasSchedules && (
             <div className="sticky top-24 h-[calc(100vh-8rem)] bg-background border-2 border-yoga-sand/30 rounded-lg p-6 overflow-y-auto">
               <ScheduleDetailPanel schedule={selectedSchedule} />
             </div>
@@ -312,120 +416,20 @@ function ScheduleCalendar({
       {/* Mobile: Single column with drawer */}
       <div className="md:hidden w-full overflow-x-auto px-2">
         <div className="min-w-[320px] relative">
-          {/* Header */}
-          <div className="grid grid-cols-7 gap-px bg-yoga-sand/20">
-            {DAYS_OF_WEEK.map((day, index) => (
-              <div
-                key={index}
-                className="bg-background p-2 text-center font-medium text-[10px]"
-              >
-                {day}
-              </div>
-            ))}
-          </div>
+          <CalendarHeader isMobile={true} />
 
-          {/* Time grid */}
-          <div
-            className={`relative grid grid-cols-7 gap-px bg-yoga-sand/20 ${
-              schedules.length === 0 ? "min-h-[600px]" : ""
-            }`}
-          >
-            {/* Days grid */}
-            {DAYS_OF_WEEK.map((_, dayIndex) => {
-              const daySchedules = schedulesByDay[dayIndex] || [];
+          <CalendarGrid
+            schedulesByDay={schedulesByDay}
+            timeSlots={timeSlots}
+            hasSchedules={hasSchedules}
+            isMobile={true}
+            selectedSchedule={selectedSchedule}
+            onScheduleClick={handleScheduleClick}
+          />
 
-              return (
-                <div key={dayIndex} className="relative bg-background">
-                  {/* Time slot grid lines with time labels for first column (Sunday) */}
-                  {schedules.length > 0 &&
-                    timeSlots.map((time, index) => (
-                      <div
-                        key={time}
-                        className="border-t border-yoga-sand/10 relative"
-                        style={{ height: "40px" }}
-                      >
-                        {dayIndex === 0 && index % 2 === 0 && (
-                          <div className="absolute left-0.5 top-0 text-[8px] text-muted-foreground/50 font-medium">
-                            {time}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+          {!hasSchedules && <EmptyState isMobile={true} />}
 
-                  {/* Schedule blocks */}
-                  {daySchedules.map((schedule) => {
-                    const { startSlot, duration } = getSchedulePosition(
-                      schedule.start_time,
-                      schedule.end_time
-                    );
-                    const colorClass =
-                      CLASS_TYPE_COLORS[
-                        schedule.class_type as keyof typeof CLASS_TYPE_COLORS
-                      ];
-
-                    return (
-                      <button
-                        key={schedule.id}
-                        onClick={() => handleScheduleClick(schedule)}
-                        className={`absolute left-0.5 right-0.5 rounded-lg border-2 ${colorClass} transition-all cursor-pointer p-1 text-white shadow-lg font-medium overflow-hidden`}
-                        style={{
-                          top: `${startSlot * 40}px`,
-                          height: `${duration * 40 - 4}px`,
-                          zIndex: 10,
-                        }}
-                      >
-                        <div className="text-[9px] font-bold truncate leading-tight mb-1">
-                          {schedule.title}
-                        </div>
-                        <div className="text-[8px] opacity-95 leading-tight mb-1">
-                          {formatTime(schedule.start_time)} -{" "}
-                          {formatTime(schedule.end_time)}
-                        </div>
-                        {schedule.center && (
-                          <div className="text-[8px] opacity-90 truncate leading-tight">
-                            {schedule.center.name}
-                          </div>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* No schedules overlay - Mobile */}
-          {schedules.length === 0 && (
-            <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm rounded-lg z-30">
-              <div className="text-center p-6">
-                <div className="text-5xl mb-3">📅</div>
-                <p className="text-lg font-semibold text-yoga-terracotta mb-1">
-                  현재 등록된 수업이 없습니다
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  새로운 수업 일정이 곧 업데이트될 예정입니다
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Legend */}
-          {schedules.length > 0 && (
-            <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-yoga-terracotta border-2 border-yoga-terracotta" />
-                <span>스튜디오</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-yoga-sage border-2 border-yoga-sage" />
-                <span>개인레슨</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-yoga-sand border-2 border-yoga-sand" />
-                <span>기타</span>
-              </div>
-            </div>
-          )}
+          {hasSchedules && <Legend />}
         </div>
       </div>
 
