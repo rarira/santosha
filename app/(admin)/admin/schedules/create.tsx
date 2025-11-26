@@ -4,8 +4,11 @@ import {
   SelectInput,
   SimpleForm,
   TextInput,
+  Toolbar,
+  SaveButton,
   required,
 } from 'react-admin';
+import Link from 'next/link';
 
 const DAY_CHOICES = [
   { id: 0, name: '일요일' },
@@ -23,10 +26,35 @@ const CLASS_TYPE_CHOICES = [
   { id: 'other', name: '기타' },
 ];
 
+function CustomToolbar(props: any) {
+  return (
+    <Toolbar {...props}>
+      <SaveButton />
+      <Link
+        href="/schedule"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          padding: '6px 16px',
+          color: '#1976d2',
+          textDecoration: 'none',
+          display: 'inline-flex',
+          alignItems: 'center',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+          marginLeft: '8px',
+        }}
+      >
+        📅 캘린더 보기
+      </Link>
+    </Toolbar>
+  );
+}
+
 export default function ScheduleCreate(): React.JSX.Element {
   return (
     <Create redirect="list">
-      <SimpleForm>
+      <SimpleForm toolbar={<CustomToolbar />}>
         <TextInput source="title" label="수업명" validate={[required()]} fullWidth />
         <SelectInput
           source="class_type"

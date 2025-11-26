@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict PzDRFb6QBVpZG86e4B7T2ujAjluWiZgEchc782Zwm96n809ppunDH6lsNpjbbdm
+-- \restrict dSdYIJpEfnf4VeTWJSKK64BFRO5pUXP3xiXmp3rnXOMezB9O1bAkEOyqcNWqh7m
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -28,7 +28,8 @@ SET row_security = off;
 INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created_at", "ip_address") VALUES
 	('00000000-0000-0000-0000-000000000000', '543e420f-5c83-42e1-aa17-8525816803d3', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"provider":"email","user_email":"rarira@gmail.com","user_id":"bfe5efd7-6ad4-45b7-9896-d41370c0e63f","user_phone":""}}', '2025-11-26 10:27:36.884957+00', ''),
 	('00000000-0000-0000-0000-000000000000', '3b67f7e5-cd13-463d-8e2a-d01503fc1c41', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"provider":"email","user_email":"rarira@gmail.com","user_id":"4ecb83fb-674d-4f0f-9009-40a4f87b35e1","user_phone":""}}', '2025-11-26 10:30:22.90999+00', ''),
-	('00000000-0000-0000-0000-000000000000', '0a93b903-b770-4bc2-a19f-9a0b6e0e7d50', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"provider":"email","user_email":"rarira@gmail.com","user_id":"94c8b404-5e60-48d7-a802-d3f28282ae57","user_phone":""}}', '2025-11-26 10:31:06.236028+00', '');
+	('00000000-0000-0000-0000-000000000000', '0a93b903-b770-4bc2-a19f-9a0b6e0e7d50', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"provider":"email","user_email":"rarira@gmail.com","user_id":"94c8b404-5e60-48d7-a802-d3f28282ae57","user_phone":""}}', '2025-11-26 10:31:06.236028+00', ''),
+	('00000000-0000-0000-0000-000000000000', '76be063f-577f-4463-b5cb-c10a1ec94a71', '{"action":"login","actor_id":"94c8b404-5e60-48d7-a802-d3f28282ae57","actor_username":"rarira@gmail.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-11-26 13:41:47.435692+00', '');
 
 
 --
@@ -42,7 +43,7 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 --
 
 INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encrypted_password", "email_confirmed_at", "invited_at", "confirmation_token", "confirmation_sent_at", "recovery_token", "recovery_sent_at", "email_change_token_new", "email_change", "email_change_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change", "phone_change_token", "phone_change_sent_at", "email_change_token_current", "email_change_confirm_status", "banned_until", "reauthentication_token", "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous") VALUES
-	('00000000-0000-0000-0000-000000000000', '94c8b404-5e60-48d7-a802-d3f28282ae57', 'authenticated', 'authenticated', 'rarira@gmail.com', '$2a$10$V0i5br4bNg.mPL0sRd66Tua.2Vhz7e/2BWSfh20kcCQYwlhSIGQP2', '2025-11-26 10:31:06.236878+00', NULL, '', NULL, '', NULL, '', '', NULL, NULL, '{"provider": "email", "providers": ["email"]}', '{"email_verified": true}', NULL, '2025-11-26 10:31:06.233447+00', '2025-11-26 10:31:06.23728+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	('00000000-0000-0000-0000-000000000000', '94c8b404-5e60-48d7-a802-d3f28282ae57', 'authenticated', 'authenticated', 'rarira@gmail.com', '$2a$10$V0i5br4bNg.mPL0sRd66Tua.2Vhz7e/2BWSfh20kcCQYwlhSIGQP2', '2025-11-26 10:31:06.236878+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-26 13:41:47.436597+00', '{"provider": "email", "providers": ["email"]}', '{"email_verified": true}', NULL, '2025-11-26 10:31:06.233447+00', '2025-11-26 13:41:47.438998+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -69,12 +70,16 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 -- Data for Name: sessions; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "factor_id", "aal", "not_after", "refreshed_at", "user_agent", "ip", "tag", "oauth_client_id", "refresh_token_hmac_key", "refresh_token_counter") VALUES
+	('19cad1cf-c54c-40df-9f6a-67d44281b551', '94c8b404-5e60-48d7-a802-d3f28282ae57', '2025-11-26 13:41:47.436641+00', '2025-11-26 13:41:47.436641+00', NULL, 'aal1', NULL, NULL, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '172.18.0.1', NULL, NULL, NULL, NULL);
 
 
 --
 -- Data for Name: mfa_amr_claims; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "authentication_method", "id") VALUES
+	('19cad1cf-c54c-40df-9f6a-67d44281b551', '2025-11-26 13:41:47.439358+00', '2025-11-26 13:41:47.439358+00', 'password', '20598f21-2582-446d-ad5b-816aaa78c34d');
 
 
 --
@@ -111,6 +116,8 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 -- Data for Name: refresh_tokens; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "revoked", "created_at", "updated_at", "parent", "session_id") VALUES
+	('00000000-0000-0000-0000-000000000000', 1, 'q574ej6wpqki', '94c8b404-5e60-48d7-a802-d3f28282ae57', false, '2025-11-26 13:41:47.438131+00', '2025-11-26 13:41:47.438131+00', NULL, '19cad1cf-c54c-40df-9f6a-67d44281b551');
 
 
 --
@@ -141,14 +148,14 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: supabase_auth_admin
 --
 
-SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 1, false);
+SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 1, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict PzDRFb6QBVpZG86e4B7T2ujAjluWiZgEchc782Zwm96n809ppunDH6lsNpjbbdm
+-- \unrestrict dSdYIJpEfnf4VeTWJSKK64BFRO5pUXP3xiXmp3rnXOMezB9O1bAkEOyqcNWqh7m
 
 RESET ALL;
 
@@ -172,8 +179,9 @@ INSERT INTO "public"."categories" ("id", "created_at", "name", "extra_info") VAL
 --
 
 INSERT INTO "public"."centers" ("id", "name", "address", "description", "additional_info", "created_at", "updated_at", "naver_place_id", "social_link") VALUES
-	(1, '우노요가스튜디오', '경기도 용인시 수지구 성복2로 76번길26-6 샤르망1차 3층', NULL, NULL, '2025-11-26 10:26:22.029911+00', '2025-11-26 10:26:22.029911+00', '20670849', NULL),
-	(2, '아름다운핫요가 1호점', '경기 화성시 봉담읍 동화길 93-12 701호 702호', NULL, NULL, '2025-11-26 10:26:22.029911+00', '2025-11-26 10:26:22.029911+00', '21852415', 'https://www.instagram.com/beautifulhotyoga/');
+	(2, '아름다운핫요가 1호점', '경기 화성시 봉담읍 동화길 93-12 701호 702호', NULL, NULL, '2025-11-26 10:26:22.029911+00', '2025-11-26 10:26:22.029911+00', '21852415', 'https://www.instagram.com/beautifulhotyoga/'),
+	(1, '우노요가스튜디오', '경기도 용인시 수지구 성복2로 76번길26-6 샤르망1차 3층', NULL, NULL, '2025-11-26 10:26:22.029911+00', '2025-11-26 13:42:37.89101+00', '1247004434', 'https://www.instagram.com/unoyogastudio/'),
+	(3, '아름다운핫요가 2호점', '경기 화성시 봉담읍 상리중심상가길 28-18 MG빌딩 308호', NULL, NULL, '2025-11-26 13:43:05.062653+00', '2025-11-26 13:43:05.062653+00', '1365716576', 'https://www.instagram.com/beautifulhotyoga/');
 
 
 --
@@ -224,7 +232,7 @@ SELECT pg_catalog.setval('"public"."categories_id_seq"', 2, true);
 -- Name: centers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."centers_id_seq"', 2, true);
+SELECT pg_catalog.setval('"public"."centers_id_seq"', 3, true);
 
 
 --
@@ -252,7 +260,7 @@ SELECT pg_catalog.setval('"public"."schedules_id_seq"', 13, true);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict 4lDlXW9nEFwxYToeYsFmiyOdTGJyzJM6RUbO5eCTu1KYsDU97Wx0EbwyEzprx50
+-- \unrestrict uOOKuFC6fZEGRGmBPGTOCUMTexuOFuRS9NRxUZ43QUdMf1cutV1w07fdHyEqBlw
 
 RESET ALL;
 

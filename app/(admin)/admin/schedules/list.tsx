@@ -13,6 +13,7 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin';
+import Link from 'next/link';
 
 const DAY_CHOICES = [
   { id: 0, name: '일요일' },
@@ -42,6 +43,22 @@ function ScheduleListActions() {
       <FilterButton />
       <CreateButton />
       <ExportButton />
+      <Link
+        href="/schedule"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          padding: '6px 16px',
+          color: '#1976d2',
+          textDecoration: 'none',
+          display: 'inline-flex',
+          alignItems: 'center',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+        }}
+      >
+        📅 캘린더 보기
+      </Link>
     </TopToolbar>
   );
 }
