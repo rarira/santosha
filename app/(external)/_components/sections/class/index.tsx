@@ -8,8 +8,8 @@ async function ClassSection(): Promise<React.JSX.Element> {
   const { title, subtitle } = SECTIONS.class;
 
   return (
-    <SectionContainer sectionName="class">
-      <SectionTitle title={title} subtitle={subtitle} />
+    <SectionContainer sectionName="class" variant="floating">
+      <SectionTitle title={title} subtitle={subtitle} variant="outlined" />
       <ClassList />
     </SectionContainer>
   );

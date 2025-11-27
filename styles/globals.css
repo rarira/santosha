@@ -128,6 +128,89 @@
       transform: translateY(-10px);
     }
   }
+  @keyframes wave {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    50% {
+      transform: translateX(-25%) translateY(-10px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes particle-float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translate(10px, -10px) rotate(90deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translate(-5px, -20px) rotate(180deg);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(-15px, -10px) rotate(270deg);
+      opacity: 0.5;
+    }
+  }
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
 
   /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -138,6 +221,13 @@
   --animate-fade-in-right: fadeInRight 0.6s ease-out;
   --animate-scale-in: scaleIn 0.5s ease-out;
   --animate-float: float 3s ease-in-out infinite;
+  --animate-wave: wave 20s linear infinite;
+  --animate-gradient-shift: gradientShift 15s ease infinite;
+  --animate-particle-float: particle-float 8s ease-in-out infinite;
+  --animate-blob: blob 7s ease-in-out infinite;
+  --animate-slide-in-up: slideInUp 0.8s ease-out;
+  --animate-slide-in-down: slideInDown 0.8s ease-out;
+  --animate-rotate-in: rotateIn 0.7s ease-out;
 }
 
 @layer base {
@@ -207,6 +297,115 @@
       hsl(var(--primary) / 0.08) 0%,
       hsl(var(--accent) / 0.12) 100%
     );
+  }
+
+  /* Animated gradients */
+  .bg-gradient-animated {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--background)),
+      hsl(var(--primary) / 0.05),
+      hsl(var(--secondary) / 0.05),
+      hsl(var(--accent) / 0.05)
+    );
+    background-size: 400% 400%;
+    animation: var(--animate-gradient-shift);
+  }
+
+  /* Floating particles effect */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .particle-1 {
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--primary) / 0.3);
+    animation: particle-float 8s ease-in-out infinite;
+  }
+
+  .particle-2 {
+    width: 6px;
+    height: 6px;
+    background: hsl(var(--secondary) / 0.25);
+    animation: particle-float 10s ease-in-out infinite 2s;
+  }
+
+  .particle-3 {
+    width: 3px;
+    height: 3px;
+    background: hsl(var(--accent) / 0.35);
+    animation: particle-float 12s ease-in-out infinite 4s;
+  }
+
+  /* Blob effect */
+  .blob {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.15;
+    animation: blob 7s ease-in-out infinite;
+    filter: blur(40px);
+  }
+
+  /* Wave effect */
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.05),
+      transparent
+    );
+    animation: wave 20s linear infinite;
+  }
+
+  /* Enhanced glass with border */
+  .glass-border {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: 0 8px 32px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  /* Morphing background */
+  .bg-morph {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bg-morph::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      hsl(var(--primary) / 0.08) 0%,
+      transparent 70%
+    );
+    animation: blob 10s ease-in-out infinite;
+  }
+
+  .bg-morph::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      hsl(var(--accent) / 0.06) 0%,
+      transparent 70%
+    );
+    animation: blob 12s ease-in-out infinite reverse;
   }
 }
 

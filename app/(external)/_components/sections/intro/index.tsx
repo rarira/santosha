@@ -10,8 +10,8 @@ function IntroSection(): React.JSX.Element {
   const { title, subtitle } = SECTIONS.intro;
 
   return (
-    <SectionContainer sectionName="intro">
-      <SectionTitle title={title} subtitle={subtitle} />
+    <SectionContainer sectionName="intro" variant="elevated">
+      <SectionTitle title={title} subtitle={subtitle} variant="gradient" />
       <div className=" flex flex-col md:flex-row md:justify-between md:items-start gap-10">
         <div className="relative flex w-full md:w-1/2 justify-start">
           <IntroProfile />

@@ -8,8 +8,8 @@ function ProcessSection(): React.JSX.Element {
   const { title, subtitle } = SECTIONS.process;
 
   return (
-    <SectionContainer sectionName="process">
-      <SectionTitle title={title} subtitle={subtitle} />
+    <SectionContainer sectionName="process" variant="bordered">
+      <SectionTitle title={title} subtitle={subtitle} variant="split" />
       <ProcessGrid />
     </SectionContainer>
   );

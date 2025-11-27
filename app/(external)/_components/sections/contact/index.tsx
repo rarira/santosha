@@ -9,8 +9,8 @@ function ContactSection(): React.JSX.Element {
   const { title, subtitle } = SECTIONS.contact;
 
   return (
-    <SectionContainer sectionName="contact">
-      <SectionTitle title={title} subtitle={subtitle} />
+    <SectionContainer sectionName="contact" variant="default">
+      <SectionTitle title={title} subtitle={subtitle} variant="default" />
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
         <div className="flex-1 space-y-6">
           <div className="p-8 rounded-2xl bg-linear-to-br from-yoga-sand/30 to-yoga-cream/40 backdrop-blur-sm border border-yoga-sand/20">

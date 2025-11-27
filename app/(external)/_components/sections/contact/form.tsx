@@ -68,11 +68,19 @@ function ContactForm(): React.JSX.Element {
 
   return (
     <>
-      <Card className="w-full lg:w-1/2 lg:max-w-[600px] border-0 shadow-xl bg-white/95 backdrop-blur-sm">
-        <CardContent className="p-8 lg:p-10">
+      <Card className="relative w-full lg:w-1/2 lg:max-w-[600px] border-0 shadow-xl bg-white/95 backdrop-blur-sm overflow-hidden group hover:shadow-2xl transition-all duration-500">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+        {/* Border glow effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute inset-0 rounded-lg border-2 border-primary/20 blur-sm" />
+        </div>
+
+        <CardContent className="p-8 lg:p-10 relative z-10">
           <Form {...form}>
             {state?.issues && (
-              <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium">
+              <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium animate-[slideInDown_0.5s_ease-out]">
                 {state.message}
               </div>
             )}
@@ -85,34 +93,51 @@ function ContactForm(): React.JSX.Element {
                 form.handleSubmit(onSubmit)();
               }}
             >
-              {formFields.map(({ name, type }) => {
+              {formFields.map(({ name, type }, index) => {
                 return type === 'input' ? (
-                  <TextInputField
+                  <div
                     key={name}
-                    name={name}
-                    label={ko.form.field[name]}
-                    placeholder={ko.form.placeholder[name]}
-                    control={form.control}
-                  />
+                    className="animate-[slideInUp_0.6s_ease-out]"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <TextInputField
+                      name={name}
+                      label={ko.form.field[name]}
+                      placeholder={ko.form.placeholder[name]}
+                      control={form.control}
+                    />
+                  </div>
                 ) : (
-                  <TextAreaField
+                  <div
                     key={name}
-                    name={name}
-                    label={ko.form.field[name]}
-                    placeholder={ko.form.placeholder[name]}
-                    maxLength={100}
-                    control={form.control}
-                  />
+                    className="animate-[slideInUp_0.6s_ease-out]"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <TextAreaField
+                      name={name}
+                      label={ko.form.field[name]}
+                      placeholder={ko.form.placeholder[name]}
+                      maxLength={100}
+                      control={form.control}
+                    />
+                  </div>
                 );
               })}
               <div className="pt-2">
                 <Button
                   disabled={isPending}
                   type="submit"
-                  className="w-full h-12 text-base font-semibold bg-linear-to-r from-yoga-terracotta to-yoga-sage hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                  className="relative w-full h-12 text-base font-semibold bg-linear-to-r from-yoga-terracotta to-yoga-sage hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden group/button"
                 >
-                  {isPending && <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />}
-                  {ko.form.submit}
+                  {/* Shine effect on button */}
+                  <div className="absolute inset-0 opacity-0 group-hover/button:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/button:translate-x-full transition-transform duration-1000" />
+                  </div>
+                  
+                  <span className="relative z-10 flex items-center justify-center">
+                    {isPending && <ReloadIcon className="mr-2 h-5 w-5 animate-spin" />}
+                    {ko.form.submit}
+                  </span>
                 </Button>
               </div>
             </form>
